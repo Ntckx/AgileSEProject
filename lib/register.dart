@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/register.dart';
-import 'package:gradient_borders/gradient_borders.dart';
-import 'package:outline_gradient_button/outline_gradient_button.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:flutter_application_1/registerBodyInformation.dart';
+import 'package:go_router/go_router.dart';
 
+// import 'package:flutter_application_1/src/widget.dart';
 
-class RegisterBodyInfo extends StatelessWidget {
+class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('OK KAMLANG ΚΑΙ'),
+        title: Text('OK KAMLANG KAI'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -20,17 +19,16 @@ class RegisterBodyInfo extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Replace with your cat image
                   ClipRRect(
                     borderRadius: BorderRadius.circular(500),
                     child: Image.asset(
-                      'assets/maxresdefault.jpg', // Replace with your asset path
+                      '../assets/maxresdefault.jpg',
                       width: 250,
                       height: 250,
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(height: 10), // Add space between image and text
+                  SizedBox(height: 10),
                   Text(
                     'WELCOME TO OK KAMLANG KAI',
                     style: TextStyle(fontSize: 25),
@@ -52,7 +50,7 @@ class RegisterBodyInfo extends StatelessWidget {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: 'Weight',
+                      hintText: 'Email',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -63,7 +61,17 @@ class RegisterBodyInfo extends StatelessWidget {
                   ),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: 'Height',
+                      hintText: 'Username',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  TextField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: 'Password',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -73,8 +81,9 @@ class RegisterBodyInfo extends StatelessWidget {
                     height: 20,
                   ),
                   TextField(
+                    obscureText: true,
                     decoration: InputDecoration(
-                      hintText: 'Age',
+                      hintText: 'Confirm Password',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -87,13 +96,7 @@ class RegisterBodyInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterBodyInfo()),
-                          );
-                        },
+                        onPressed: () => context.go('/body'),
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero, // Remove padding
                           shape: RoundedRectangleBorder(
@@ -118,7 +121,7 @@ class RegisterBodyInfo extends StatelessWidget {
                             alignment: Alignment.center,
                             padding: EdgeInsets.zero, // Remove padding
                             child: Text(
-                              'Register',
+                              'Next',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -130,61 +133,13 @@ class RegisterBodyInfo extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // Container(
-                      //   width: 100,
-                      //   height: 50,
-                      //   decoration: BoxDecoration(
-                      //       border: const GradientBoxBorder(
-                      //         gradient: LinearGradient(
-                      //             colors: [Colors.red, Colors.yellow]),
-                      //         width: 4,
-                      //       ),
-                      //       borderRadius: BorderRadius.circular(16)),
-                      // ),
-                      SizedBox(
-                        height: 50,
-                        width: 200, // Set the desired height
-                        child: OutlineGradientButton(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Register(),
-                              ),
-                            );
-                          },
-                          child: Center(
-                            child: GradientText(
-                              'Back',
-                              style: const TextStyle(fontSize: 20),
-                              
-                              colors: [Colors.red.shade700, Colors.yellow.shade700],
-                            ),
-                          ),
-                          gradient: LinearGradient(
-                            colors: [Colors.red.shade700, Colors.yellow],
-                            begin: Alignment.topLeft,
-                            end: Alignment.topRight,
-                          ),
-                          strokeWidth: 4,
-                          radius: Radius.circular(30),
-                        ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Already have an account?'),
+                      Text(
+                        'Already have an account?',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       TextButton(
                         onPressed: () {
                           // Navigate to login page
@@ -202,7 +157,7 @@ class RegisterBodyInfo extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ),
+                  )
                 ],
               ),
             ),
