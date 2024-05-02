@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/register.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const MyApp());
