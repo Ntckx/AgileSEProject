@@ -1,10 +1,49 @@
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/src/register.dart';
+import 'package:flutter_application_1/pages/register.dart';
+import 'package:flutter_application_1/src/user.dart';
+import 'package:go_router/go_router.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
-class RegisterBodyInfo extends StatelessWidget {
+class RegisterBodyInfo extends StatefulWidget {
+  final AppUser user;
+
+  const RegisterBodyInfo({Key? key, required this.user}) : super(key: key);
+
+  @override
+  State<RegisterBodyInfo> createState() => _RegisterBodyInfoState();
+}
+
+class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
+  final _weightController = TextEditingController();
+  final _heightController = TextEditingController();
+  final _ageController = TextEditingController();
+
+  Future signUp() async {
+    if (Validate()) {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: widget.user.email, password: widget.user.password);
+    }
+  }
+
+  bool Validate() {
+    bool validateResult = true;
+    if (_weightController.text.isEmpty) {
+      validateResult = false;
+    }
+    if (_heightController.text.isEmpty) {
+      validateResult = false;
+    }
+    if (_ageController.text.isEmpty) {
+      validateResult = false;
+    }
+
+    return validateResult;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +85,12 @@ class RegisterBodyInfo extends StatelessWidget {
                     'Put Your Information',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
+                  //weight
                   TextField(
+                    controller: _weightController,
                     decoration: InputDecoration(
                       hintText: 'Weight',
                       border: OutlineInputBorder(
@@ -60,7 +101,9 @@ class RegisterBodyInfo extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  //height
                   TextField(
+                    controller: _heightController,
                     decoration: InputDecoration(
                       hintText: 'Height',
                       border: OutlineInputBorder(
@@ -71,7 +114,9 @@ class RegisterBodyInfo extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
+                  //age
                   TextField(
+                    controller: _ageController,
                     decoration: InputDecoration(
                       hintText: 'Age',
                       border: OutlineInputBorder(
@@ -86,13 +131,7 @@ class RegisterBodyInfo extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterBodyInfo()),
-                          );
-                        },
+                        onPressed: signUp,
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero, // Remove padding
                           shape: RoundedRectangleBorder(
@@ -150,20 +189,15 @@ class RegisterBodyInfo extends StatelessWidget {
                         height: 50,
                         width: 200, // Set the desired height
                         child: OutlineGradientButton(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Register(),
-                              ),
-                            );
-                          },
+                          onTap: () {},
                           child: Center(
                             child: GradientText(
                               'Back',
                               style: const TextStyle(fontSize: 20),
-                              
-                              colors: [Colors.red.shade700, Colors.yellow.shade700],
+                              colors: [
+                                Colors.red.shade700,
+                                Colors.yellow.shade700
+                              ],
                             ),
                           ),
                           gradient: LinearGradient(
