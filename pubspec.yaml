@@ -69,9 +69,6 @@ flutter:
   assets:
     - assets/maxresdefault.jpg
 
-  assets:
-    - assets/maxresdefault.jpg
-
 
   # To add assets to your application, add an assets section, like this:
   # assets:
