@@ -45,6 +45,15 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _heightController.dispose();
+    _weightController.dispose();
+    _ageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

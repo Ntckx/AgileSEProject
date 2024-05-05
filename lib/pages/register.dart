@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/registerBodyInformation.dart';
 import 'package:flutter_application_1/src/user.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +7,10 @@ import 'package:go_router/go_router.dart';
 // import 'package:flutter_application_1/src/widget.dart';
 
 class Register extends StatefulWidget {
+  final VoidCallback showLoginpage;
+
+  const Register({super.key, required this.showLoginpage});
+
   @override
   State<Register> createState() => _RegisterState();
 }
@@ -39,10 +44,21 @@ class _RegisterState extends State<Register> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    _emailController.dispose();
+    _usernameController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('OK KAMLANG KAI'),
+        title: const Center(child: Logo()),
+        backgroundColor: const Color(0xFFDA2D4A),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -52,19 +68,27 @@ class _RegisterState extends State<Register> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(500),
-                    child: Image.asset(
-                      '../assets/maxresdefault.jpg',
-                      width: 250,
-                      height: 250,
-                      fit: BoxFit.cover,
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 4),
+                        borderRadius: BorderRadius.circular(500)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(500),
+                      child: Image.asset(
+                        '../assets/maxresdefault.jpg',
+                        width: 150,
+                        height: 150,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(height: 10),
                   Text(
                     'WELCOME TO OK KAMLANG KAI',
-                    style: TextStyle(fontSize: 25),
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -202,9 +226,12 @@ class _RegisterState extends State<Register> {
                             return Colors.transparent; // Remove overlay color
                           }),
                         ),
-                        child: Text(
-                          'Login',
-                          style: TextStyle(fontSize: 16, color: Colors.blue),
+                        child: GestureDetector(
+                          onTap: widget.showLoginpage,
+                          child: Text(
+                            'Login',
+                            style: TextStyle(fontSize: 16, color: Colors.blue),
+                          ),
                         ),
                       ),
                     ],
