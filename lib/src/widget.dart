@@ -35,7 +35,7 @@ class Cardplan extends StatelessWidget {
         height: 150,
         width: 400,
         child: Padding(
-          padding: EdgeInsets.only(left: 30),
+          padding: EdgeInsets.only(left: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
