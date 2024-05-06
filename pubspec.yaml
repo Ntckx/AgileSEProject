@@ -77,8 +77,14 @@ flutter:
     - assets/images/ABS.png
     - assets/images/ARMS.jpg
     - assets/gif/Bicycle.gif
-    - assets/images/Award.png
-
+    - assets/images/Award.png 
+    - assets/maxresdefault.jpg
+    - assets/images/Bicycle2.jpg
+    - assets/images/Pushup1.jpg
+    - assets/pushup.png
+    - assets/picture.png
+    - assets/maxresdefault.jpg
+    - assets/BicycleCrunches.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
