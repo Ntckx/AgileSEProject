@@ -133,55 +133,56 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      ElevatedButton(
-                        onPressed: signIn,
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero, // Remove padding
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          splashFactory:
-                              NoSplash.splashFactory, // Remove splash effect
-                        ),
-                        child: Ink(
-                          height: 50,
-                          width: 200,
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [Colors.red.shade700, Colors.yellow],
-                              begin: Alignment.topLeft,
-                              end: Alignment.topRight,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: signIn,
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.zero, // Remove padding
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              splashFactory: NoSplash
+                                  .splashFactory, // Remove splash effect
                             ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Container(
-                            alignment: Alignment.center,
-                            padding: EdgeInsets.zero, // Remove padding
-                            child: Text(
-                              'Next',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                            child: Ink(
+                              height: 50,
+                              width: 200,
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.red.shade700, Colors.yellow],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.topRight,
+                                ),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: Container(
+                                alignment: Alignment.center,
+                                padding: EdgeInsets.zero, // Remove padding
+                                child: Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                        ],
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      GestureDetector(
+                          child: Image.asset('images/Android_Icon.png')),
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      child: Icon(Icons.phone_android),
-                    ),
-                  )
                 ],
               ),
             ),
