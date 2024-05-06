@@ -50,7 +50,11 @@ class MyHomePage extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.red,
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/Workout#1.png'),
+                      fit:BoxFit.cover,
+                      colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5),BlendMode.darken)
+                      )
                   ),
                   height: 150,
                   width: 400,
@@ -92,60 +96,56 @@ class MyHomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ),
+                  )),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 14, top: 25),
+              child: Text(
+                "Your own desire",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 14, top: 25),
-                child: Text(
-                  "Your own desire",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 14, top: 4),
-                child: Cardplan(
-                  planname: "ABS",
-                  details: "20 Min - 16 gestures",
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 14, top: 15),
-                child: Cardplan(
-                  planname: "ARMS",
-                  details: "30 Min - 25 gestures",
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(top: 200),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Icon(
-                      Icons.search,
-                      size: 40.0,
-                      semanticLabel:
-                          'Text to announce in accessibility modes',
-                    ),
-                    Icon(
-                      Icons.home,
-                      size: 40.0,
-                    ),
-                    Icon(
-                      Icons.leaderboard,
-                      size: 40.0,
-                    ),
-                    Icon(
-                      Icons.account_circle,
-                      size: 40.0,
-                    ),
-                  ],
-                ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 14, top: 4),
+              child: 
+              Cardplan(
+                planname: "ABS",
+                details: "20 Min - 16 gestures",
+                imagePath: 'assets/images/ABS.png',
               )
-            ],
-          ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 14, top: 15),
+              child: Cardplan (planname: "ARMS",details: "30 Min - 25 gestures",imagePath: 'assets/images/ARMS.jpg',)
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 200),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Icon(
+                    Icons.search,
+                    size: 40.0,
+                    semanticLabel: 'Text to announce in accessibility modes',
+                  ),
+                  Icon(
+                    Icons.home,
+                    size: 40.0,
+                  ),
+                  Icon(
+                    Icons.leaderboard,
+                    size: 40.0,
+                  ),
+                  Icon(
+                    Icons.account_circle,
+                    size: 40.0,
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
-    );
+    ));
   }
 }
