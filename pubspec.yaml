@@ -66,12 +66,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets:
-    - assets/maxresdefault.jpg
-
+  
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/Android_Icon.png
+    - assets/maxresdefault.jpg
     - assets/images/Workout#1.png
     - assets/images/Cat.jpg
     - assets/images/ABS.png
