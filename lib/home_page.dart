@@ -52,7 +52,7 @@ class MyHomePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage('assets/images/Workout#1.png'),
+                      image: const AssetImage('assets/images/Workout#1.png'),
                       fit:BoxFit.cover,
                       colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5),BlendMode.darken)
                       )

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/congrate_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'src/widget.dart';
 
@@ -82,7 +83,11 @@ class CaloriesPage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(250, 65),
                     backgroundColor: const Color(0xFFDA2D4A)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => CongratePage()))
+                  );
+                },
                 child: const SizedBox(
                   width: 300,
                   child: Row(

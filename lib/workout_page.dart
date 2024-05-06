@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/calories_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'src/widget.dart';
 
@@ -48,13 +49,12 @@ class WorkoutPage extends StatelessWidget {
                   child: Container(
                     width: 400,
                     height: 250,
-                   decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image:  const DecorationImage(
-              image: AssetImage('assets/gif/Bicycle.gif'),
-              fit: BoxFit.cover,
-             
-            )),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: const DecorationImage(
+                          image: AssetImage('assets/gif/Bicycle.gif'),
+                          fit: BoxFit.cover,
+                        )),
                   ),
                 ),
               ],
@@ -75,10 +75,14 @@ class WorkoutPage extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 minimumSize: const Size(250, 65),
                 backgroundColor: const Color(0xFFDA2D4A)),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: ((context) => CaloriesPage()))
+                  );
+            },
             child: const SizedBox(
               width: 300,
-              child:  Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
@@ -89,8 +93,11 @@ class WorkoutPage extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(width: 10),
-                  Icon(Icons.check_circle_outline_rounded,color: Colors.white,size: 30,),
-                 
+                  Icon(
+                    Icons.check_circle_outline_rounded,
+                    color: Colors.white,
+                    size: 30,
+                  ),
                 ],
               ),
             ),
