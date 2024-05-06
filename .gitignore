@@ -45,3 +45,6 @@ app.*.map.json
 #Ignore sensitive file
 android/app/google-services.json
 lib/auth/firebase_options.dart
+
+
+pubspec.yaml
