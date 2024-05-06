@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/src/register.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
@@ -87,11 +88,7 @@ class RegisterBodyInfo extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterBodyInfo()),
-                          );
+                          Navigator.pushNamed(context,'/workouthome');
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero, // Remove padding

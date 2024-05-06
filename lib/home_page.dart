@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'src/widget.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'OKKAMLANGKAI',
-        theme: ThemeData(
-          textTheme: GoogleFonts.robotoTextTheme(),
-          useMaterial3: true,
-        ),
-        home: const MyHomePage());
+      title: 'OKKAMLANGKAI',
+      theme: ThemeData(
+        textTheme: GoogleFonts.robotoTextTheme(),
+        useMaterial3: true,
+      ),
+      home: const MyHomePage(),
+    );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +32,22 @@ class MyHomePage extends StatelessWidget {
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 14, top: 50),
-              child: Text(
-                "Recommend Plan",
-                textAlign: TextAlign.left,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 14, top: 50),
+                child: Text(
+                  "Recommend Plan",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 14, top: 4),
-              child: Container(
+              Padding(
+                padding: const EdgeInsets.only(left: 14, top: 4),
+                child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
@@ -85,7 +84,8 @@ class MyHomePage extends StatelessWidget {
                           child: Center(
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size(300, 40)),
+                                minimumSize: const Size(300, 40),
+                              ),
                               onPressed: () {},
                               child: const Text(
                                 'Start',
@@ -146,6 +146,6 @@ class MyHomePage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }
