@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-class ReccomendedPlan extends StatelessWidget {
+class RecommendedPlan extends StatelessWidget {
+  static const IconData edit = IconData(0xe21a, fontFamily: 'MaterialIcons');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,15 +45,32 @@ class ReccomendedPlan extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft, // Align text to the left
-                child: Text(
-                  ' Workout list',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
+              Padding(
+                padding:
+                    EdgeInsets.all(20), // Add padding of 8 pixels on all sides
+                child: Row(
+                  children: [
+                    Text(
+                      'Workout list',
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    Spacer(), // Add a spacer to push the text to the right
+                    IconButton(
+                      icon: Icon(
+                        edit,
+                        size: 24,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        // Add functionality here
+                      },
+                    ),
+                  ],
                 ),
               ),
+              SizedBox(height: 20),
               workoutItem(
                 context,
                 'Bicycle Crunches',
@@ -90,47 +109,48 @@ class ReccomendedPlan extends StatelessWidget {
     );
   }
 
- Widget workoutItem(
-  BuildContext context,
-  String workoutName,
-  String imagePath,
-) {
-  return Stack(
-    alignment: Alignment.centerLeft,
-    children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Image.asset(
-          imagePath,
-          width: 500,
-          fit: BoxFit.cover,
+  Widget workoutItem(
+    BuildContext context,
+    String workoutName,
+    String imagePath,
+  ) {
+    return Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Image.asset(
+            imagePath,
+            width: 500,
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      Container(
-        margin: EdgeInsets.only(left: 30, bottom: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              workoutName,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+        Container(
+          margin: EdgeInsets.only(left: 30, bottom: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                workoutName,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              '20 times',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
+              Text(
+                '20 times',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    ],
-  );
-}}
+      ],
+    );
+  }
+}
