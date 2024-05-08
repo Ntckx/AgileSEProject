@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'src/widget.dart';
+import 'package:flutter_application_1/edit_workout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,8 +63,8 @@ class MySearch extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Recently',
-                        style:
-                            TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -71,25 +72,41 @@ class MySearch extends StatelessWidget {
                     padding: const EdgeInsets.all(5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
-                      child: const Cardplan(
-                        planname: 'ABS',
-                        details: '20 Min - 16 gestures',
-                        imagePath: 'assets/images/ABS.png',
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditWorkoutABS()));
+                        },
+                        child: const Cardplan(
+                          planname: 'ABS',
+                          details: '20 Min - 16 gestures',
+                          imagePath: 'assets/images/ABS.png',
+                        ),
                       ),
                     ),
                   ),
-              
-                 Padding(
+
+                  Padding(
                     padding: const EdgeInsets.all(5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
-                      child: const Cardplan(
-                        planname: 'Arms',
-                        details: '30 Min - 25 gestures',
-                        imagePath: 'assets/images/ARMS.jpg',
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditWorkoutABS()));
+                        },
+                        child: const Cardplan(
+                          planname: 'Arms',
+                          details: '30 Min - 25 gestures',
+                          imagePath: 'assets/images/ARMS.jpg',
+                        ),
                       ),
                     ),
-                  ),
+                  )
                 ],
               ),
             ),
