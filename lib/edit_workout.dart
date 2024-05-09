@@ -18,7 +18,7 @@ class EditWorkoutABS extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      'assets/picture.png',
+                      'assets/images/picture.png',
                       width: 500,
                       fit: BoxFit.cover,
                     ),
@@ -43,24 +43,45 @@ class EditWorkoutABS extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft, // Align text to the left
-                child: Text(
-                  ' Workout list',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
+              Padding(
+                padding: EdgeInsets.all(2.0), // Add padding
+                child: Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        'Workout list',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    Spacer(),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/workoutoption');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                        ),
+                        child: Text(
+                          '+ Add',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               workoutItemWithDeleteConfirmation(
                 context,
                 'Bicycle Crunches',
-                'assets/BicycleCrunches.png',
+                'assets/images/BicycleCrunches.png',
               ),
               workoutItemWithDeleteConfirmation(
                 context,
                 'Pushup',
-                'assets/pushup.png',
+                'assets/images/pushup.png',
               ),
               ElevatedButton(
                 onPressed: () {
@@ -113,7 +134,6 @@ class EditWorkoutABS extends StatelessWidget {
             onPressed: () {
               // Show confirmation dialog
               showDialog(
-
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(

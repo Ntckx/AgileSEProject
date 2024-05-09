@@ -32,7 +32,9 @@ class CongratePage extends StatelessWidget {
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
       ),
-      body: Center(
+      body: 
+      SingleChildScrollView(
+      child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -64,7 +66,10 @@ class CongratePage extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(250, 65),
                     backgroundColor: const Color(0xFFDA2D4A)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/workouthome');
+
+                },
                 child: const SizedBox(
                   width: 300,
                   child: Row(
@@ -87,6 +92,6 @@ class CongratePage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

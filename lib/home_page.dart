@@ -86,7 +86,10 @@ class MyHomePage extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(300, 40),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(context,'/recommendedplan');
+
+                              },
                               child: const Text(
                                 'Start',
                                 style: TextStyle(color: Colors.black),
@@ -112,11 +115,13 @@ class MyHomePage extends StatelessWidget {
                 planname: "ABS",
                 details: "20 Min - 16 gestures",
                 imagePath: 'assets/images/ABS.png',
+                descriptionTopic: 'ABS',
+                descriptionDetail: 'Abs, short for abdominals, refer to the muscles in your midsection. They include the rectus abdominis, obliques, and transverse abdominis. Exercises like crunches, planks, and leg raises can help strengthen and define your abs. Focus on proper form and engage your core muscles throughout each movement for best results.',
               )
             ),
             const Padding(
               padding: EdgeInsets.only(left: 14, top: 15),
-              child: Cardplan (planname: "ARMS",details: "30 Min - 25 gestures",imagePath: 'assets/images/ARMS.jpg',)
+              child: Cardplan (planname: "ARMS",details: "30 Min - 25 gestures",imagePath: 'assets/images/ARMS.jpg',descriptionTopic: 'ARMS', descriptionDetail: "Arms include biceps, triceps, and forearms. Strengthen them with exercises like bicep curls, tricep dips, and forearm curls using weights or resistance bands. Focus on proper form and gradually increase resistance for results.")
             ),
             const Padding(
               padding: EdgeInsets.only(top: 200),

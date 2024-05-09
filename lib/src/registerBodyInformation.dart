@@ -15,6 +15,27 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
   String? selectedItem;
 
   bool isChecked = false;
+
+  void _showCheckBoxAlert() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Terms and Conditions"),
+          content: Text("You must agree to the terms and conditions to proceed."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("OK",style: TextStyle(color: Colors.red),),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +53,7 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(500),
                     child: Image.asset(
-                      'assets/images/maxresdefault.jpg',
+                      '../assets/images/maxresdefault.jpg',
                       width: 250,
                       height: 250,
                       fit: BoxFit.cover,
@@ -200,7 +221,15 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/workouthome');
+                          if (isChecked) {
+                            if (selectedItem != null) {
+                              Navigator.pushNamed(context, '/workouthome');
+                            } else {
+                              // Show alert or snackbar indicating that the sex field is required
+                            }
+                          } else {
+                            _showCheckBoxAlert();
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,

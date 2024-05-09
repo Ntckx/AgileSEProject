@@ -61,6 +61,13 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # assets:
+  #   - assets/maxresdefault.jpg
+  #   - assets/picture.png
+  #   - assets/BicycleCrunches.png
+  #   - assets/pushup.png
+
+
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/Workout#1.png
@@ -68,13 +75,15 @@ flutter:
     - assets/images/ABS.png
     - assets/images/ARMS.jpg
     - assets/gif/Bicycle.gif
+    - assets/images/Award.png
+    - assets/images/picture.png
+    - assets/images/BicycleCrunches.png
+    - assets/images/pushup.png
     - assets/images/Award.png 
     - assets/images/Bicycle2.jpg
     - assets/images/Pushup1.jpg
-    - assets/images/pushup.png
-    - assets/images/picture.png
     - assets/images/maxresdefault.jpg
-    - assets/images/BicycleCrunches.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
