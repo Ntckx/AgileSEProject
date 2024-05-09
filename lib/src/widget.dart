@@ -20,26 +20,70 @@ class Cardplan extends StatelessWidget {
   final String planname;
   final String details;
   final String imagePath;
-  const Cardplan({super.key, required this.planname, required this.details , required this.imagePath});
+  final String descriptionTopic;
+  final String descriptionDetail;
+  const Cardplan(
+      {super.key,
+      required this.planname,
+      required this.details,
+      required this.imagePath,
+      required this.descriptionDetail,
+      required this.descriptionTopic,
+      });
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            image:  DecorationImage(
-              image: AssetImage(imagePath),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.5),BlendMode.darken)
-            )),
+            image: DecorationImage(
+                image: AssetImage(imagePath),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.5), BlendMode.darken))),
         height: 150,
         width: 400,
         child: Padding(
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20, top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title:  Text(descriptionTopic),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  Text(descriptionDetail),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    icon:
+                        Icon(Icons.info_outline, size: 30, color: Colors.white),
+                  ),
+                ),
+              ),
               Text(
                 planname,
                 style: const TextStyle(
@@ -59,30 +103,41 @@ class Cardplan extends StatelessWidget {
 
 class Calcard extends StatelessWidget {
   final String posture;
-  final String amount; 
-  final double kcal; 
-  const Calcard({super.key, required this.posture , required this.amount , required this.kcal});
+  final String amount;
+  final double kcal;
+  const Calcard(
+      {super.key,
+      required this.posture,
+      required this.amount,
+      required this.kcal});
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color(0xFFDA2D4A).withOpacity(0.5)
-                  ),
-                  height: 100,
-                  width: 400,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget> [
-                      Icon(Icons.fitness_center,size: 40,),
-                      Text(posture, style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                      Text(amount, style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
-                      Text("${kcal}kcal", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold)),
-                    ],
-                  )),
-            );
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: const Color(0xFFDA2D4A).withOpacity(0.5)),
+          height: 100,
+          width: 400,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Icon(
+                Icons.fitness_center,
+                size: 40,
+              ),
+              Text(
+                posture,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(amount,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text("${kcal}kcal",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            ],
+          )),
+    );
   }
 }

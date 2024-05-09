@@ -56,11 +56,19 @@ class AbsPage extends StatelessWidget {
                     height: 150,
                     width: 400,
                     child: const Padding(
-                      padding: EdgeInsets.only(top: 45, left: 20),
+                      padding: EdgeInsets.only(top: 20),
                       child: Center(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(right: 10),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: Icon(Icons.info_outline,size: 30,color: Colors.white),
+                              ),
+                            ),
                             Center(
                               child: Text(
                                 'Good Choice',
@@ -99,6 +107,8 @@ class AbsPage extends StatelessWidget {
                     planname: "Bicycle Crunches",
                     details: "20 times",
                     imagePath: 'assets/images/Bicycle2.jpg',
+                    descriptionTopic: 'Bicycle Crunches',
+                    descriptionDetail: 'Bicycle crunches are a core exercise where you lie on your back, lift your legs, and alternately bring your knees towards your chest while twisting your torso to touch the opposite elbow to knee. They work your abs, obliques, and hip flexors. Lie down, hands behind your head, knees up. Lift your head, neck, and shoulders, then pedal your legs like riding a bike while twisting your torso to touch elbows to knees alternately. Aim for controlled movements and engage your core throughout.',
                   )),
               const Padding(
                   padding: EdgeInsets.only(top: 15),
@@ -106,6 +116,8 @@ class AbsPage extends StatelessWidget {
                     planname: "Push up",
                     details: "100 times",
                     imagePath: 'assets/images/Pushup1.jpg',
+                    descriptionTopic: 'Push up',
+                    descriptionDetail: 'Push-ups are a classic bodyweight exercise that target the chest, shoulders, and arms. Start in a plank position with hands shoulder-width apart, lower your body until your chest nearly touches the ground, then push back up to the starting position. Keep your core engaged and body in a straight line throughout the movement.',
                   )),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
