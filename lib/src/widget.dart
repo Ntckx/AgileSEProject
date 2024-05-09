@@ -20,11 +20,16 @@ class Cardplan extends StatelessWidget {
   final String planname;
   final String details;
   final String imagePath;
+  final String descriptionTopic;
+  final String descriptionDetail;
   const Cardplan(
       {super.key,
       required this.planname,
       required this.details,
-      required this.imagePath});
+      required this.imagePath,
+      required this.descriptionDetail,
+      required this.descriptionTopic,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +44,46 @@ class Cardplan extends StatelessWidget {
         height: 150,
         width: 400,
         child: Padding(
-          padding: EdgeInsets.only(left: 30),
+          padding: const EdgeInsets.only(left: 20, top: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title:  Text(descriptionTopic),
+                            content: SingleChildScrollView(
+                              child: ListBody(
+                                children: <Widget>[
+                                  Text(descriptionDetail),
+                                ],
+                              ),
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    icon:
+                        Icon(Icons.info_outline, size: 30, color: Colors.white),
+                  ),
+                ),
+              ),
               Text(
                 planname,
                 style: const TextStyle(
