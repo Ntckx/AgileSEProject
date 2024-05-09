@@ -173,7 +173,7 @@ class _WorkoutItemState extends State<WorkoutItem> {
                       color: Colors.white,
                     ),
                     Text(
-                      '$_timesPerformed times',
+                      '20 times',
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,
