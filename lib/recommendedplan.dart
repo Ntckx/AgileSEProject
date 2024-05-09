@@ -167,11 +167,6 @@ class _WorkoutItemState extends State<WorkoutItem> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      onPressed: _decreaseTimes,
-                      icon: Icon(Icons.remove),
-                      color: Colors.white,
-                    ),
                     Text(
                       '20 times',
                       style: TextStyle(
@@ -179,11 +174,6 @@ class _WorkoutItemState extends State<WorkoutItem> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                    IconButton(
-                      onPressed: _increaseTimes,
-                      icon: Icon(Icons.add),
-                      color: Colors.white,
                     ),
                   ],
                 ),
