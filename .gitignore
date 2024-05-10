@@ -48,3 +48,4 @@ lib/auth/firebase_options.dart
 
 
 pubspec.yaml
+pubspec.lock
