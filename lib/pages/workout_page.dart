@@ -1,27 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/calories_page.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'src/widget.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'OKKAMLANGKAI',
-        theme: ThemeData(
-          textTheme: GoogleFonts.robotoTextTheme(),
-          useMaterial3: true,
-        ),
-        home: const WorkoutPage());
-  }
-}
+import 'package:flutter_application_1/pages/calories_page.dart';
+import '../src/widget.dart';
 
 class WorkoutPage extends StatelessWidget {
   const WorkoutPage({super.key});
@@ -77,8 +56,7 @@ class WorkoutPage extends StatelessWidget {
                 backgroundColor: const Color(0xFFDA2D4A)),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => CaloriesPage()))
-                  );
+                  MaterialPageRoute(builder: ((context) => CaloriesPage())));
             },
             child: const SizedBox(
               width: 300,

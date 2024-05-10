@@ -1,30 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/congrate_page.dart';
-import 'package:flutter_application_1/workout_page.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'src/widget.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'OKKAMLANGKAI',
-        theme: ThemeData(
-          textTheme: GoogleFonts.robotoTextTheme(),
-          useMaterial3: true,
-        ),
-        home: const AbsPage());
-  }
-}
+import 'package:flutter_application_1/pages/workout_page.dart';
+import '../src/widget.dart';
 
 class AbsPage extends StatelessWidget {
   const AbsPage({super.key});
@@ -86,27 +62,35 @@ class AbsPage extends StatelessWidget {
                       ),
                     )),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 25),
-                child: Text(
-                  "Your own desire",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 25),
+                    child: Text(
+                      "Workout list",
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    
+                  ),
+                  
+                  const Padding(
+                      padding: EdgeInsets.only(top: 4),
+                      child: Cardplan(
+                        planname: "Bicycle Crunches",
+                        details: "20 times",
+                        imagePath: 'images/Bicycle2.jpg',
+                      )),
+                  const Padding(
+                      padding: EdgeInsets.only(top: 15),
+                      child: Cardplan(
+                        planname: "Push up",
+                        details: "100 times",
+                        imagePath: 'images/Pushup1.jpg',
+                      )),
+                ],
               ),
-              const Padding(
-                  padding: EdgeInsets.only(top: 4),
-                  child: Cardplan(
-                    planname: "Bicycle Crunches",
-                    details: "20 times",
-                    imagePath: 'assets/images/Bicycle2.jpg',
-                  )),
-              const Padding(
-                  padding: EdgeInsets.only(top: 15),
-                  child: Cardplan(
-                    planname: "Push up",
-                    details: "100 times",
-                    imagePath: 'assets/images/Pushup1.jpg',
-                  )),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: ElevatedButton(
@@ -142,31 +126,6 @@ class AbsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 200),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Icon(
-                      Icons.search,
-                      size: 40.0,
-                      semanticLabel: 'Text to announce in accessibility modes',
-                    ),
-                    Icon(
-                      Icons.home,
-                      size: 40.0,
-                    ),
-                    Icon(
-                      Icons.leaderboard,
-                      size: 40.0,
-                    ),
-                    Icon(
-                      Icons.account_circle,
-                      size: 40.0,
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),

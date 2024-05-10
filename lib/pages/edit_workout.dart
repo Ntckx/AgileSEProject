@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/leaderboard_page.dart';
+import 'package:flutter_application_1/pages/recommendedplan.dart';
 
 class EditWorkoutABS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('OK KAMLANG KAI'),
+        title: const Center(child: Logo()),
+        backgroundColor: const Color(0xFFDA2D4A),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -18,7 +21,7 @@ class EditWorkoutABS extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      'assets/picture.png',
+                      'images/picture.png',
                       width: 500,
                       fit: BoxFit.cover,
                     ),
@@ -45,40 +48,55 @@ class EditWorkoutABS extends StatelessWidget {
               SizedBox(height: 20),
               Align(
                 alignment: Alignment.topLeft, // Align text to the left
-                child: Text(
-                  ' Workout list',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(' Workout list',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                 ),
               ),
               workoutItemWithDeleteConfirmation(
                 context,
                 'Bicycle Crunches',
-                'assets/BicycleCrunches.png',
+                'images/BicycleCrunches.png',
               ),
               workoutItemWithDeleteConfirmation(
                 context,
                 'Pushup',
-                'assets/pushup.png',
+                'images/pushup.png',
               ),
-              ElevatedButton(
-                onPressed: () {
-                  // Handle button press
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red, // Background color
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                ),
-                child: Text(
-                  'Confirm',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(250, 65),
+                      backgroundColor: const Color(0xFFDA2D4A)),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => RecommendedPlan())));
+                  },
+                  child: const SizedBox(
+                    width: 300,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Confirm',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(
+                          Icons.check_circle_outline_rounded,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -113,7 +131,6 @@ class EditWorkoutABS extends StatelessWidget {
             onPressed: () {
               // Show confirmation dialog
               showDialog(
-
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(

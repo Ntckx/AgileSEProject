@@ -1,27 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/congrate_page.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'src/widget.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'OKKAMLANGKAI',
-        theme: ThemeData(
-          textTheme: GoogleFonts.robotoTextTheme(),
-          useMaterial3: true,
-        ),
-        home: const CaloriesPage());
-  }
-}
+import 'package:flutter_application_1/pages/congrate_page.dart';
+import '../src/widget.dart';
 
 class CaloriesPage extends StatelessWidget {
   const CaloriesPage({super.key});
@@ -32,6 +11,7 @@ class CaloriesPage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -48,20 +28,19 @@ class CaloriesPage extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  gradient:  LinearGradient(
+                  gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
                         const Color(0xFFDA2D4A),
                         const Color(0xFF741827).withOpacity(0.7)
-                      ]
-                      ),
+                      ]),
                 ),
                 height: 200,
                 width: 200,
                 child: const Center(
                     child: Text(
-                  '1,400 kcal',
+                  '200 kcal',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 30,
@@ -74,8 +53,8 @@ class CaloriesPage extends StatelessWidget {
 
             Calcard(
                 posture: "Bicycle Crunches", amount: "20 times", kcal: 200.00),
-            Calcard(posture: "Pushup", amount: "20 times", kcal: 400.00),
-            Calcard(posture: "Squat", amount: "20 times", kcal: 800.00),
+            // Calcard(posture: "Pushup", amount: "20 times", kcal: 400.00),
+            // Calcard(posture: "Squat", amount: "20 times", kcal: 800.00),
 
             Padding(
               padding: const EdgeInsets.only(top: 20),
@@ -84,9 +63,10 @@ class CaloriesPage extends StatelessWidget {
                     minimumSize: const Size(250, 65),
                     backgroundColor: const Color(0xFFDA2D4A)),
                 onPressed: () {
-                  Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => CongratePage()))
-                  );
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => CongratePage())));
                 },
                 child: const SizedBox(
                   width: 300,
