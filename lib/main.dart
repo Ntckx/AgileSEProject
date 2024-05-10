@@ -1,8 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/calories_page.dart';
+import 'package:flutter_application_1/getready_page.dart';
+import 'package:flutter_application_1/recommendedplan.dart';
 import 'package:flutter_application_1/src/register.dart';
 import 'package:flutter_application_1/home_page.dart';
 import 'package:flutter_application_1/edit_workout.dart';
+import 'package:flutter_application_1/workout_page.dart';
+import 'package:flutter_application_1/workoutoption_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +44,13 @@ class MyApp extends StatelessWidget {
           '/': (context) => Register(),
           '/workouthome': (context) => MyHomePage(),
           '/editworkout': (context) => EditWorkoutABS(),
+          '/recommendedplan':(context)=> RecommendedPlan(),
+          '/getready':(context)=> MyGetReady(),
+          '/recommendedplanworkout':(context)=> WorkoutPage(),
+          '/caloriesburnedrecommendplan':(context)=> CaloriesPage(),
+          '/workoutoption':(context)=>MyWorkoutPlan(),
+
+
 
         });
   }

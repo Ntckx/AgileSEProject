@@ -86,7 +86,10 @@ class MyHomePage extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(300, 40),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(context,'/recommendedplan');
+
+                              },
                               child: const Text(
                                 'Start',
                                 style: TextStyle(color: Colors.black),

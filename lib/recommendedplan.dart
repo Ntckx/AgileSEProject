@@ -46,8 +46,7 @@ class RecommendedPlan extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Padding(
-                padding:
-                    EdgeInsets.all(20), // Add padding of 8 pixels on all sides
+                padding: EdgeInsets.all(20),
                 child: Row(
                   children: [
                     Text(
@@ -56,7 +55,7 @@ class RecommendedPlan extends StatelessWidget {
                         fontSize: 24,
                       ),
                     ),
-                    Spacer(), // Add a spacer to push the text to the right
+                    Spacer(),
                     IconButton(
                       icon: Icon(
                         edit,
@@ -64,29 +63,27 @@ class RecommendedPlan extends StatelessWidget {
                         color: Colors.black,
                       ),
                       onPressed: () {
-                        // Add functionality here
+                        Navigator.pushNamed(context, '/editworkout');
                       },
                     ),
                   ],
                 ),
               ),
               SizedBox(height: 20),
-              workoutItem(
-                context,
-                'Bicycle Crunches',
-                'assets/images/BicycleCrunches.png',
+              WorkoutItem(
+                workoutName: 'Bicycle Crunches',
+                imagePath: 'assets/images/BicycleCrunches.png',
               ),
-              workoutItem(
-                context,
-                'Pushup',
-                'assets/images/pushup.png',
+              WorkoutItem(
+                workoutName: 'Pushup',
+                imagePath: 'assets/images/pushup.png',
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Handle button press
+                  Navigator.pushNamed(context, '/getready');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red, // Background color
+                  backgroundColor: Colors.red,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
@@ -108,46 +105,80 @@ class RecommendedPlan extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget workoutItem(
-    BuildContext context,
-    String workoutName,
-    String imagePath,
-  ) {
+class WorkoutItem extends StatefulWidget {
+  final String workoutName;
+  final String imagePath;
+
+  const WorkoutItem({
+    Key? key,
+    required this.workoutName,
+    required this.imagePath,
+  }) : super(key: key);
+
+  @override
+  _WorkoutItemState createState() => _WorkoutItemState();
+}
+
+class _WorkoutItemState extends State<WorkoutItem> {
+  int _timesPerformed = 20;
+
+  void _increaseTimes() {
+    setState(() {
+      _timesPerformed++;
+    });
+  }
+
+  void _decreaseTimes() {
+    if (_timesPerformed > 0) {
+      setState(() {
+        _timesPerformed--;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.centerLeft,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.asset(
-            imagePath,
+            widget.imagePath,
             width: 500,
             fit: BoxFit.cover,
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(left: 30, bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                workoutName,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+        Positioned.fill(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  widget.workoutName,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              Text(
-                '20 times',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '20 times',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

@@ -18,7 +18,7 @@ class EditWorkoutABS extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      'assets/picture.png',
+                      'assets/images/picture.png',
                       width: 500,
                       fit: BoxFit.cover,
                     ),
@@ -43,25 +43,45 @@ class EditWorkoutABS extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft, // Align text to the left
-                child: Text(
-                  ' Workout list',
-                  style: TextStyle(
-                    fontSize: 24,
-                  ),
+              Padding(
+                padding: EdgeInsets.all(2.0), // Add padding
+                child: Row(
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Text(
+                        'Workout list',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    Spacer(),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/workoutoption');
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                        ),
+                        child: Text(
+                          '+ Add',
+                          style: TextStyle(fontSize: 24, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              workoutItemWithDeleteConfirmation(
-                context,
-                'Bicycle Crunches',
-                'assets/BicycleCrunches.png',
+              WorkoutItemWithDeleteConfirmation(
+                workoutName: 'Bicycle Crunches',
+                imagePath: 'assets/images/BicycleCrunches.png',
               ),
-              workoutItemWithDeleteConfirmation(
-                context,
-                'Pushup',
-                'assets/pushup.png',
+              WorkoutItemWithDeleteConfirmation(
+                workoutName: 'Pushup',
+                imagePath: 'assets/images/pushup.png',
               ),
+              // Other widgets...
               ElevatedButton(
                 onPressed: () {
                   // Handle button press
@@ -82,26 +102,56 @@ class EditWorkoutABS extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
             ],
           ),
         ),
       ),
     );
   }
+}
 
-  Widget workoutItemWithDeleteConfirmation(
-    BuildContext context,
-    String workoutName,
-    String imagePath,
-  ) {
+class WorkoutItemWithDeleteConfirmation extends StatefulWidget {
+  final String workoutName;
+  final String imagePath;
+
+  const WorkoutItemWithDeleteConfirmation({
+    Key? key,
+    required this.workoutName,
+    required this.imagePath,
+  }) : super(key: key);
+
+  @override
+  _WorkoutItemWithDeleteConfirmationState createState() =>
+      _WorkoutItemWithDeleteConfirmationState();
+}
+
+class _WorkoutItemWithDeleteConfirmationState
+    extends State<WorkoutItemWithDeleteConfirmation> {
+  int _times = 20; // Initial number of times
+
+  void _incrementTimes() {
+    setState(() {
+      _times++;
+    });
+  }
+
+  void _decrementTimes() {
+    setState(() {
+      if (_times > 1) {
+        _times--;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.asset(
-            imagePath,
+            widget.imagePath,
             width: 500,
             fit: BoxFit.cover,
           ),
@@ -113,7 +163,6 @@ class EditWorkoutABS extends StatelessWidget {
             onPressed: () {
               // Show confirmation dialog
               showDialog(
-
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
@@ -162,7 +211,7 @@ class EditWorkoutABS extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              workoutName,
+              widget.workoutName,
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.white,
@@ -173,14 +222,12 @@ class EditWorkoutABS extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  onPressed: () {
-                    // Handle minus button press
-                  },
+                  onPressed: _decrementTimes,
                   icon: Icon(Icons.remove),
                   color: Colors.white,
                 ),
                 Text(
-                  '20 times',
+                  '$_times times',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
@@ -188,9 +235,7 @@ class EditWorkoutABS extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {
-                    // Handle plus button press
-                  },
+                  onPressed: _incrementTimes,
                   icon: Icon(Icons.add),
                   color: Colors.white,
                 ),
