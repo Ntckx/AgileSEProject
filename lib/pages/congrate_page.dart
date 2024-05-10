@@ -14,7 +14,9 @@ class CongratePage extends StatelessWidget {
         backgroundColor: const Color(0xFFDA2D4A),
         automaticallyImplyLeading: false,
       ),
-      body: Center(
+      body: 
+      SingleChildScrollView(
+      child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -69,6 +71,6 @@ class CongratePage extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

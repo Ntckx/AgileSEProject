@@ -77,48 +77,32 @@ class RecommendedPlan extends StatelessWidget {
                   ],
                 ),
               ),
-              workoutItem(
-                context,
-                'Bicycle Crunches',
-                'images/BicycleCrunches.png',
+              SizedBox(height: 20),
+              WorkoutItem(
+                workoutName: 'Bicycle Crunches',
+                imagePath: 'assets/images/BicycleCrunches.png',
               ),
-              workoutItem(
-                context,
-                'Pushup',
-                'images/pushup.png',
+              WorkoutItem(
+                workoutName: 'Pushup',
+                imagePath: 'assets/images/pushup.png',
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(250, 65),
-                      backgroundColor: const Color(0xFFDA2D4A)),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => WorkoutPage())));
-                  },
-                  child: const SizedBox(
-                    width: 300,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Start',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(width: 10),
-                        Icon(
-                          Icons.check_circle_outline_rounded,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ],
-                    ),
+              ElevatedButton(
+                onPressed: () {
+                  
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                ),
+                child: Text(
+                  'Start',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -129,44 +113,80 @@ class RecommendedPlan extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget workoutItem(
-    BuildContext context,
-    String workoutName,
-    String imagePath,
-  ) {
+class WorkoutItem extends StatefulWidget {
+  final String workoutName;
+  final String imagePath;
+
+  const WorkoutItem({
+    Key? key,
+    required this.workoutName,
+    required this.imagePath,
+  }) : super(key: key);
+
+  @override
+  _WorkoutItemState createState() => _WorkoutItemState();
+}
+
+class _WorkoutItemState extends State<WorkoutItem> {
+  int _timesPerformed = 20;
+
+  void _increaseTimes() {
+    setState(() {
+      _timesPerformed++;
+    });
+  }
+
+  void _decreaseTimes() {
+    if (_timesPerformed > 0) {
+      setState(() {
+        _timesPerformed--;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.centerLeft,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Image.asset(
-            imagePath,
+            widget.imagePath,
             width: 500,
             fit: BoxFit.cover,
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(left: 30, bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                workoutName,
-                style: TextStyle(
+        Positioned.fill(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  widget.workoutName,
+                  style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '20 times',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      '20 times',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ],

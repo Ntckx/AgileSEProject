@@ -12,7 +12,9 @@ class WorkoutPage extends StatelessWidget {
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
       ),
-      body: Column(
+      body: 
+      SingleChildScrollView(
+      child: Column(
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(top: 25),
@@ -80,8 +82,9 @@ class WorkoutPage extends StatelessWidget {
               ),
             ),
           ),
+           SizedBox(height: 20,)
         ],
       ),
-    );
+    ));
   }
 }

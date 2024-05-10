@@ -3,7 +3,7 @@ import 'package:flutter_application_1/pages/congrate_page.dart';
 import '../src/widget.dart';
 
 class CaloriesPage extends StatelessWidget {
-  const CaloriesPage({super.key});
+  const CaloriesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +13,18 @@ class CaloriesPage extends StatelessWidget {
         backgroundColor: const Color(0xFFDA2D4A),
         automaticallyImplyLeading: false,
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 14, top: 20),
-              child: Text(
-                "Summary",
-                style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 14, top: 20),
+                child: Text(
+                  "Summary",
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
             Center(
               child: Container(
                 decoration: BoxDecoration(
@@ -84,14 +85,72 @@ class CaloriesPage extends StatelessWidget {
                       Icon(
                         Icons.check_circle_outline_rounded,
                         color: Colors.white,
-                        size: 30,
                       ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+
+              //Card
+
+              Calcard(
+                posture: "Bicycle Crunches",
+                amount: "20 times",
+                kcal: 200.00,
+              ),
+              Calcard(
+                posture: "Pushup",
+                amount: "20 times",
+                kcal: 400.00,
+              ),
+              Calcard(
+                posture: "Squat",
+                amount: "20 times",
+                kcal: 800.00,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(250, 65),
+                    backgroundColor: const Color(0xFFDA2D4A),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: ((context) => CongratePage()),
+                      ),
+                    );
+                  },
+                  child: SizedBox(
+                    width: 300,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Collect',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Icon(
+                          Icons.check_circle_outline_rounded,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
