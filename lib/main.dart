@@ -1,15 +1,17 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/auth/main_page.dart';
-import 'package:flutter_application_1/pages/login_page.dart';
-import 'package:flutter_application_1/pages/setting_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'auth/firebase_options.dart';
-import 'pages/home_page.dart';
-import 'pages/register.dart';
-import 'pages/registerBodyInformation.dart';
-import 'package:go_router/go_router.dart';
 
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+
+//   runApp(ChangeNotifierProvider(
+//     create: (context) => ApplicationState(),
+//     builder: ((context, child) => const MyApp()),
+//   ));
+// }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -17,7 +19,6 @@ void main() async {
 
   runApp(const MyApp());
 }
-
 // final GoRouter _router = GoRouter(routes: [
 //   GoRoute(path: '/', builder: (context, state) => Register(), routes: [
 //     GoRoute(
@@ -29,6 +30,21 @@ void main() async {
 //     path: '/home',
 //     builder: (context, state) => const MyHomePage(),
 //   )
+// ]);
+// final GoRouter _router = GoRouter(routes: [
+//   GoRoute(
+//       path: '/',
+//       builder: (context, state) {
+//         return const AuthFunc();
+//       },
+//       routes: [
+//         GoRoute(
+//           path: 'home',
+//           builder: (context, state) {
+//             return const BottomNavPage();
+//           },
+//         ),
+//       ])
 // ]);
 
 class MyApp extends StatelessWidget {
@@ -43,7 +59,8 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.robotoTextTheme(),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      debugShowCheckedModeBanner: false,
+      home: MainPage(),
     );
   }
 }

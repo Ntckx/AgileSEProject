@@ -1,22 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
 
 class BottomNavPage extends StatefulWidget {
-  const BottomNavPage({super.key});
+  const BottomNavPage({Key? key}) : super(key: key);
 
   @override
   State<BottomNavPage> createState() => _BottomNavPageState();
 }
 
 class _BottomNavPageState extends State<BottomNavPage> {
-  int _currentIndex = 1;
+  final user = FirebaseAuth.instance.currentUser;
+  int _currentIndex = 0;
 
   final List<Widget> _pages = [
     MyHomePage(),
     MyHomePage(),
-    Leaderboard(),
+    MyLeaderBoardPage(),
     ProfilePage(),
   ];
 
@@ -26,9 +28,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
       body: Center(child: _pages.elementAt(_currentIndex)),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: (index) {
-          _onItemTapped(index);
-        },
+        onTap: _onItemTapped,
         showUnselectedLabels: true,
         selectedItemColor: const Color(0xFFDA2D4A),
         backgroundColor: Colors.white60,
@@ -68,7 +68,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
   }
 
   void _onItemTapped(int index) {
-    return setState(() {
+    setState(() {
       _currentIndex = index;
     });
   }

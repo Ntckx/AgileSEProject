@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/registerBodyInformation.dart';
 import 'package:flutter_application_1/src/user.dart';
-import 'package:go_router/go_router.dart';
-
 // import 'package:flutter_application_1/src/widget.dart';
 
 class Register extends StatefulWidget {

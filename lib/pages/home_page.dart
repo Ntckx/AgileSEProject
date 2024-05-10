@@ -1,4 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/pages/catagories_abs.dart';
+import 'package:flutter_application_1/pages/recommendedplan.dart';
 import '../src/widget.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -10,6 +14,7 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Center(child: Logo()),
           backgroundColor: const Color(0xFFDA2D4A),
+          automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -63,7 +68,13 @@ class MyHomePage extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     minimumSize: const Size(300, 40)),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return const RecommendedPlan();
+                                    },
+                                  ));
+                                },
                                 child: const Text(
                                   'Start',
                                   style: TextStyle(color: Colors.black),
@@ -82,13 +93,22 @@ class MyHomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
-              const Padding(
-                  padding: EdgeInsets.only(left: 14, top: 4),
-                  child: Cardplan(
-                    planname: "ABS",
-                    details: "20 Min - 16 gestures",
-                    imagePath: '../assets/images/ABS.png',
-                  )),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const AbsPage();
+                    },
+                  ));
+                },
+                child: const Padding(
+                    padding: EdgeInsets.only(left: 14, top: 4),
+                    child: Cardplan(
+                      planname: "ABS",
+                      details: "20 Min - 16 gestures",
+                      imagePath: '../assets/images/ABS.png',
+                    )),
+              ),
               const Padding(
                   padding: EdgeInsets.only(left: 14, top: 15),
                   child: Cardplan(

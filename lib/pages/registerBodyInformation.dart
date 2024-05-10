@@ -1,10 +1,8 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/register.dart';
 import 'package:flutter_application_1/src/user.dart';
-import 'package:go_router/go_router.dart';
-import 'package:gradient_borders/gradient_borders.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
@@ -23,13 +21,45 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
   final _ageController = TextEditingController();
 
   Future signUp() async {
-    if (Validate()) {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: widget.user.email, password: widget.user.password);
+    if (validate()) {
+      try {
+        await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: widget.user.email.trim(),
+                password: widget.user.password.trim())
+            .then((cred) => {
+                  FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(cred.user?.uid)
+                      .set({
+                    'email': widget.user.email,
+                    'username': widget.user.username,
+                    'height': int.parse(_heightController.text.trim()),
+                    'weight': int.parse(_weightController.text.trim()),
+                    'age': int.parse(_ageController.text.trim()),
+                    'caloriesBurn' : 0,
+                    'timeSpend' : 0,
+                    'workoutsAmount' : 0
+                  })
+                });
+      } catch (e) {
+        print(e);
+      }
     }
   }
 
-  bool Validate() {
+  // Future addUserDetails(
+  //     String email, String username, int height, int weight, int age) async {
+  //   await FirebaseFirestore.instance.collection('users').add({
+  //     'email': email,
+  //     'username': username,
+  //     'height': height,
+  //     'weight': weight,
+  //     'age': age
+  //   });
+  // }
+
+  bool validate() {
     bool validateResult = true;
     if (_weightController.text.isEmpty) {
       validateResult = false;
@@ -71,7 +101,7 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(500),
                     child: Image.asset(
-                      'assets/maxresdefault.jpg', // Replace with your asset path
+                      'maxresdefault.jpg', // Replace with your asset path
                       width: 250,
                       height: 250,
                       fit: BoxFit.cover,
@@ -140,7 +170,9 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: signUp,
+                        onPressed: () {
+                          signUp();
+                        },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero, // Remove padding
                           shape: RoundedRectangleBorder(
@@ -198,7 +230,9 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                         height: 50,
                         width: 200, // Set the desired height
                         child: OutlineGradientButton(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
                           child: Center(
                             child: GradientText(
                               'Back',

@@ -1,27 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const Leaderboard());
-}
-
-class Leaderboard extends StatelessWidget {
-  const Leaderboard({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'OKKAMLANGKAI',
-      theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(),
-        useMaterial3: true,
-      ),
-      home: const MyLeaderBoardPage(),
-    );
-  }
-}
 
 class MyLeaderBoardPage extends StatelessWidget {
   const MyLeaderBoardPage({Key? key}) : super(key: key);
@@ -32,6 +12,7 @@ class MyLeaderBoardPage extends StatelessWidget {
       appBar: AppBar(
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
