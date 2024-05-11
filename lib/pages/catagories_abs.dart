@@ -85,13 +85,14 @@ class _AbsPageState extends State<AbsPage> {
           child: FutureBuilder(
             future: getWorkoutsForPlan(),
             builder: (context, snapshot) {
-              List<Workout>? workouts = snapshot.data;
-
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (snapshot.hasData) {
+              } else if (snapshot.hasData && snapshot.data != null) {
+                currentPlan = WorkoutPlan(
+                    name: 'ABS', workouts: snapshot.data as List<Workout>);
+
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -164,7 +165,8 @@ class _AbsPageState extends State<AbsPage> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 25, right: 20),
+                              padding:
+                                  const EdgeInsets.only(top: 25, right: 20),
                               child: GestureDetector(
                                 child: const Icon(
                                   Icons.edit,
@@ -176,18 +178,21 @@ class _AbsPageState extends State<AbsPage> {
                         ),
                         ListView.builder(
                           shrinkWrap: true,
-                          itemCount: workouts?.length,
+                          itemCount: currentPlan.workouts.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: Cardplan(
-                                planname: workouts![index].workoutName,
-                                details: "${workouts[index].amount} times",
-                                imagePath: 'assets/images/Bicycle2.jpg',
-                                descriptionTopic: workouts[index].workoutName,
-                                descriptionDetail: workouts[index].description,
-                              ),
+                                  planname:
+                                      currentPlan.workouts[index].workoutName,
+                                  details:
+                                      "${currentPlan.workouts[index].amount} times",
+                                  imagePath: 'assets/images/Bicycle2.jpg',
+                                  descriptionTopic:
+                                      currentPlan.workouts[index].workoutName,
+                                  descriptionDetail:
+                                      currentPlan.workouts[index].description),
                             );
                           },
                         ),
