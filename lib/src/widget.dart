@@ -22,14 +22,14 @@ class Cardplan extends StatelessWidget {
   final String imagePath;
   final String descriptionTopic;
   final String descriptionDetail;
-  const Cardplan(
-      {super.key,
-      required this.planname,
-      required this.details,
-      required this.imagePath,
-      required this.descriptionDetail,
-      required this.descriptionTopic,
-      });
+  const Cardplan({
+    super.key,
+    required this.planname,
+    required this.details,
+    required this.imagePath,
+    required this.descriptionDetail,
+    required this.descriptionTopic,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class Cardplan extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title:  Text(descriptionTopic),
+                            title: Text(descriptionTopic),
                             content: SingleChildScrollView(
                               child: ListBody(
                                 children: <Widget>[
