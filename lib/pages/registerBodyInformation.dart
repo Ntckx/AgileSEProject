@@ -16,7 +16,6 @@ class RegisterBodyInfo extends StatefulWidget {
 }
 
 class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
-
   List<String> items = ['Male', 'Female', 'None'];
   String? selectedItem;
 
@@ -43,9 +42,10 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                     'height': int.parse(_heightController.text.trim()),
                     'weight': int.parse(_weightController.text.trim()),
                     'age': int.parse(_ageController.text.trim()),
-                    'caloriesBurn' : 0,
-                    'timeSpend' : 0,
-                    'workoutsAmount' : 0
+                    'sex': selectedItem,
+                    'caloriesBurn': 0,
+                    'timeSpend': 0,
+                    'workoutsAmount': 0
                   })
                 });
       } catch (e) {
@@ -60,20 +60,23 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text("Terms and Conditions"),
-          content: Text("You must agree to the terms and conditions to proceed."),
+          content:
+              Text("You must agree to the terms and conditions to proceed."),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("OK",style: TextStyle(color: Colors.red),),
+              child: Text(
+                "OK",
+                style: TextStyle(color: Colors.red),
+              ),
             ),
           ],
         );
       },
     );
   }
-
 
   bool validate() {
     bool validateResult = true;
@@ -116,7 +119,7 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(500),
                     child: Image.asset(
-                      'maxresdefault.jpg', // Replace with your asset path
+                      'images/maxresdefault.jpg', // Replace with your asset path
                       width: 250,
                       height: 250,
                       fit: BoxFit.cover,
