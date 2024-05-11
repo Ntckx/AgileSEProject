@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/workout_page.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'src/widget.dart';
-import 'package:flutter_application_1/edit_workout.dart';
+import '../src/widget.dart';
 import 'dart:async';
 
 void main() {
