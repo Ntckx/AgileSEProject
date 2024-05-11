@@ -72,7 +72,7 @@ class _RegisterState extends State<Register> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(500),
                       child: Image.asset(
-                        '../assets/images/maxresdefault.jpg',
+                        'images/maxresdefault.jpg',
                         width: 250,
                         height: 250,
                         fit: BoxFit.cover,
@@ -255,7 +255,7 @@ class _RegisterState extends State<Register> {
                             }),
                           ),
                           child: GestureDetector(
-                            onTap: () => widget.showLoginpage,
+                            onTap: widget.showLoginpage,
                             child: Text(
                               'Login',
                               style:

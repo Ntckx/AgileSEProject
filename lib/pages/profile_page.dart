@@ -74,7 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(500),
                             child: Image.asset(
-                              '../assets/maxresdefault.jpg',
+                              '../assets/images/maxresdefault.jpg',
                               width: 150,
                               height: 150,
                               fit: BoxFit.cover,
