@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/edit_workout.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'src/widget.dart';
-import 'package:flutter_application_1/edit_workout.dart';
+import '../src/widget.dart';
 
 void main() {
   runApp(const MyApp());
