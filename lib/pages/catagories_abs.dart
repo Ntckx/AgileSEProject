@@ -8,7 +8,9 @@ import 'package:flutter_application_1/src/workout_plan.dart';
 import '../src/widget.dart';
 
 class AbsPage extends StatefulWidget {
-  const AbsPage({super.key});
+  final WorkoutPlan plan;
+
+  const AbsPage({super.key, required this.plan});
 
   @override
   State<AbsPage> createState() => _AbsPageState();
@@ -16,10 +18,10 @@ class AbsPage extends StatefulWidget {
 
 class _AbsPageState extends State<AbsPage> {
   final user = FirebaseAuth.instance.currentUser;
-  WorkoutPlan currentPlan = WorkoutPlan(name: 'ABS', workouts: []);
   int weight = 0;
   double totalCalories = 0;
 
+  // get user weight which later will be pass to workoutpage
   Future<void> getUserInformation() async {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
@@ -36,27 +38,9 @@ class _AbsPageState extends State<AbsPage> {
     }
   }
 
-  Future<String> getPlanInformation(String planname) async {
-    String planId = '';
-    try {
-      QuerySnapshot snapshot = await FirebaseFirestore.instance
-          .collection('defaultPlan')
-          .where('planname', isEqualTo: planname)
-          .limit(1)
-          .get();
-
-      if (snapshot.docs.isNotEmpty) {
-        planId = snapshot.docs.first.id;
-      }
-    } catch (err) {
-      print('Error getting planId: $err');
-    }
-    return planId;
-  }
-
+  // get list of workout for displaying
   Future<List<Workout>> getWorkoutsForPlan() async {
-    String planId = await getPlanInformation(currentPlan.name);
-
+    String planId = widget.plan.planId;
     List<Workout> workouts = [];
     try {
       QuerySnapshot snapshot = await FirebaseFirestore.instance
@@ -67,9 +51,11 @@ class _AbsPageState extends State<AbsPage> {
       workouts = snapshot.docs.map((doc) {
         return Workout.fromFirestore(doc);
       }).toList();
+      widget.plan.workouts = workouts;
     } catch (e) {
       print('Error getting workouts: $e');
     }
+
     return workouts;
   }
 
@@ -84,14 +70,16 @@ class _AbsPageState extends State<AbsPage> {
         child: Center(
           child: FutureBuilder(
             future: getWorkoutsForPlan(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
+            builder: (context, workoutList) {
+              if (workoutList.connectionState == ConnectionState.waiting) {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: CircularProgressIndicator(),
+                  ),
                 );
-              } else if (snapshot.hasData && snapshot.data != null) {
-                currentPlan = WorkoutPlan(
-                    name: 'ABS', workouts: snapshot.data as List<Workout>);
+              } else if (workoutList.hasData) {
+                List<Workout>? workouts = workoutList.data;
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -178,21 +166,18 @@ class _AbsPageState extends State<AbsPage> {
                         ),
                         ListView.builder(
                           shrinkWrap: true,
-                          itemCount: currentPlan.workouts.length,
+                          itemCount: workouts?.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: Cardplan(
-                                  planname:
-                                      currentPlan.workouts[index].workoutName,
-                                  details:
-                                      "${currentPlan.workouts[index].amount} times",
+                                  planname: workouts![index].workoutName,
+                                  details: "${workouts[index].amount} times",
                                   imagePath: 'assets/images/Bicycle2.jpg',
-                                  descriptionTopic:
-                                      currentPlan.workouts[index].workoutName,
+                                  descriptionTopic: workouts[index].workoutName,
                                   descriptionDetail:
-                                      currentPlan.workouts[index].description),
+                                      workouts[index].description),
                             );
                           },
                         ),
@@ -209,7 +194,7 @@ class _AbsPageState extends State<AbsPage> {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => WorkoutPage(
-                                        currentPlan: currentPlan,
+                                        currentPlan: widget.plan,
                                         userWeight:
                                             double.parse(weight.toString()),
                                       )))));
@@ -241,7 +226,7 @@ class _AbsPageState extends State<AbsPage> {
                 );
               } else {
                 return Center(
-                  child: Text(snapshot.error.toString().trim()),
+                  child: Text("Error : ${workoutList.error.toString().trim()}"),
                 );
               }
             },

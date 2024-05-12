@@ -4,8 +4,10 @@ import 'package:flutter_application_1/src/workout.dart';
 
 class EditWorkoutABS extends StatelessWidget {
   final List<Workout> workouts;
+  final String planId;
 
-  const EditWorkoutABS({super.key, required this.workouts});
+  const EditWorkoutABS(
+      {super.key, required this.workouts, required this.planId});
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +87,7 @@ class EditWorkoutABS extends StatelessWidget {
                   return WorkoutItemWithDeleteConfirmation(
                     workoutName: workouts[index].workoutName,
                     amount: workouts[index].amount,
+                    planId: planId,
                     imagePath: 'assets/images/BicycleCrunches.png',
                   );
                 },
@@ -122,12 +125,14 @@ class WorkoutItemWithDeleteConfirmation extends StatefulWidget {
   final String workoutName;
   final String imagePath;
   final double amount;
+  final String planId;
 
   const WorkoutItemWithDeleteConfirmation(
       {Key? key,
       required this.workoutName,
       required this.imagePath,
-      required this.amount})
+      required this.amount,
+      required this.planId})
       : super(key: key);
 
   @override
@@ -200,7 +205,9 @@ class _WorkoutItemWithDeleteConfirmationState
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10,),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(); // Dismiss dialog
