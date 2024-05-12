@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +27,26 @@ class _WorkoutPageState extends State<WorkoutPage> {
   int _currentIndex = 0;
   double totalCalories = 0;
   bool updatingUserInformation = false;
+  int _timespend = 0;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+      setState(() {
+        _timespend++;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _timer.cancel();
+    super.dispose();
+  }
 
   void _completeWorkout() {
     setState(() {
@@ -65,14 +87,22 @@ class _WorkoutPageState extends State<WorkoutPage> {
   Future<void> updateUserInformation() async {
     User? user = FirebaseAuth.instance.currentUser;
     double currentCalories = 0;
+    int currentWorkoutAmount = 0;
+    int currentTimespend = 0;
+    int workoutSuccessAmount = _currentIndex + 1;
 
     DocumentReference documentReference =
         FirebaseFirestore.instance.collection('users').doc(user?.uid);
     DocumentSnapshot<Object?> userData = await documentReference.get();
     currentCalories = userData['caloriesBurn'];
+    currentWorkoutAmount = userData['workoutsAmount'];
+    currentTimespend = userData['timeSpend'];
 
-    await documentReference
-        .update({'caloriesBurn': totalCalories + currentCalories});
+    await documentReference.update({
+      'caloriesBurn': totalCalories + currentCalories,
+      'workoutsAmount': currentWorkoutAmount + workoutSuccessAmount,
+      'timeSpend': currentTimespend + _timespend
+    });
   }
 
   @override
