@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/catagories_abs.dart';
+import 'package:flutter_application_1/pages/default_plan.dart';
 import 'package:flutter_application_1/pages/edit_workout.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../src/widget.dart';

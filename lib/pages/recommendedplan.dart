@@ -7,7 +7,6 @@ import 'package:flutter_application_1/src/workout.dart';
 
 class RecommendedPlan extends StatelessWidget {
   static const IconData edit = IconData(0xe21a, fontFamily: 'MaterialIcons');
-  late final String userplanId;
 
   Future<String> getPlanInformation() async {
     String planId = '';
@@ -23,7 +22,6 @@ class RecommendedPlan extends StatelessWidget {
 
       if (recommendPlanSnapshot.docs.isNotEmpty) {
         planId = recommendPlanSnapshot.docs.first.id;
-        userplanId = planId;
       }
     } catch (err) {
       print('Error getting planId: $err');
@@ -42,7 +40,8 @@ class RecommendedPlan extends StatelessWidget {
           .get();
 
       workouts = snapshot.docs.map((doc) {
-        return Workout.fromFirestore(doc);
+        String workoutId = doc.id;
+        return Workout.fromFirestore(doc, workoutId: workoutId);
       }).toList();
     } catch (e) {
       print('Error getting workouts: $e');
@@ -128,7 +127,6 @@ class RecommendedPlan extends StatelessWidget {
                                 builder: (context) {
                                   return EditWorkoutABS(
                                     workouts: workouts as List<Workout>,
-                                    planId: userplanId,
                                   );
                                 },
                               )); // Add functionality here

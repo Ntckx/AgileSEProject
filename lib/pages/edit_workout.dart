@@ -1,13 +1,30 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 
 class EditWorkoutABS extends StatelessWidget {
   final List<Workout> workouts;
-  final String planId;
+  Map<String, int> updatedWorkouts = {};
 
-  const EditWorkoutABS(
-      {super.key, required this.workouts, required this.planId});
+  EditWorkoutABS({super.key, required this.workouts});
+
+  Future<void> updateWorkoutInformation(Map<String, int> updateWorkout) async {
+    WriteBatch batch = FirebaseFirestore.instance.batch();
+
+    for (String workoutId in updateWorkout.keys) {
+      DocumentReference workoutRef =
+          FirebaseFirestore.instance.collection('workouts').doc(workoutId);
+      batch.update(workoutRef, {'amount': updateWorkout[workoutId]});
+    }
+
+    try {
+      await batch.commit();
+      print('Batch update successful');
+    } catch (err) {
+      print(err);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,15 +104,22 @@ class EditWorkoutABS extends StatelessWidget {
                   return WorkoutItemWithDeleteConfirmation(
                     workoutName: workouts[index].workoutName,
                     amount: workouts[index].amount,
-                    planId: planId,
+                    workoutId: workouts[index].workoutId,
                     imagePath: 'assets/images/BicycleCrunches.png',
+                    onTimesChanged: (workoutId, times) {
+                      if (!updatedWorkouts.containsKey(workoutId)) {
+                        updatedWorkouts[workoutId] = times;
+                      } else {
+                        updatedWorkouts.addAll({workoutId: times});
+                      }
+                    },
                   );
                 },
               ),
               // Other widgets...
               ElevatedButton(
                 onPressed: () {
-                  // Handle button press
+                  updateWorkoutInformation(updatedWorkouts);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red, // Background color
@@ -125,14 +149,16 @@ class WorkoutItemWithDeleteConfirmation extends StatefulWidget {
   final String workoutName;
   final String imagePath;
   final double amount;
-  final String planId;
+  final String workoutId;
+  final Function(String, int) onTimesChanged;
 
   const WorkoutItemWithDeleteConfirmation(
       {Key? key,
       required this.workoutName,
       required this.imagePath,
       required this.amount,
-      required this.planId})
+      required this.workoutId,
+      required this.onTimesChanged})
       : super(key: key);
 
   @override
@@ -154,6 +180,7 @@ class _WorkoutItemWithDeleteConfirmationState
   void _incrementTimes() {
     setState(() {
       _times++;
+      widget.onTimesChanged(widget.workoutId, _times);
     });
   }
 
@@ -161,6 +188,7 @@ class _WorkoutItemWithDeleteConfirmationState
     setState(() {
       if (_times > 1) {
         _times--;
+        widget.onTimesChanged(widget.workoutId, _times);
       }
     });
   }
