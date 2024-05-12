@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/pages/edit_workout.dart';
 import 'package:flutter_application_1/pages/workout_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
@@ -49,7 +50,8 @@ class _AbsPageState extends State<AbsPage> {
           .get();
 
       workouts = snapshot.docs.map((doc) {
-        return Workout.fromFirestore(doc);
+        String workoutId = doc.id;
+        return Workout.fromFirestore(doc, workoutId: workoutId);
       }).toList();
       widget.plan.workouts = workouts;
     } catch (e) {
@@ -98,14 +100,14 @@ class _AbsPageState extends State<AbsPage> {
                                       BlendMode.darken))),
                           height: 150,
                           width: 400,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(top: 20),
                             child: Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: <Widget>[
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(right: 10),
                                     child: Align(
                                       alignment: Alignment.topRight,
@@ -113,7 +115,7 @@ class _AbsPageState extends State<AbsPage> {
                                           size: 30, color: Colors.white),
                                     ),
                                   ),
-                                  Center(
+                                  const Center(
                                     child: Text(
                                       'Good Choice',
                                       style: TextStyle(
@@ -125,8 +127,8 @@ class _AbsPageState extends State<AbsPage> {
                                   ),
                                   Center(
                                     child: Text(
-                                      'Here is Your ABS Plan',
-                                      style: TextStyle(
+                                      'Here is Your ${widget.plan.name} Plan',
+                                      style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -156,6 +158,15 @@ class _AbsPageState extends State<AbsPage> {
                               padding:
                                   const EdgeInsets.only(top: 25, right: 20),
                               child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      return EditWorkoutABS(
+                                        workouts: workouts as List<Workout>,
+                                      );
+                                    },
+                                  ));
+                                },
                                 child: const Icon(
                                   Icons.edit,
                                   size: 25,
