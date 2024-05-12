@@ -75,10 +75,10 @@ class MySearch extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AbsPage()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => AbsPage()));
                         },
                         child: const Cardplan(
                           planname: 'ABS',
@@ -98,10 +98,10 @@ class MySearch extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AbsPage()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => AbsPage()));
                         },
                         child: const Cardplan(
                           planname: 'Arms',
