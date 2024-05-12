@@ -16,8 +16,8 @@ class Workout {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Workout(
         workoutName: data['workoutName'],
-        amount: data['amount'],
-        metValue: data['metValue'],
-        description: data['description']);
+        amount: (data['amount'] ?? 0).toDouble(),
+        metValue: (data['metValue'] ?? 0).toDouble(),
+        description: data['description'] ?? '');
   }
 }

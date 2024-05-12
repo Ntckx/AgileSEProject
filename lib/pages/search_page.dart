@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/catagories_abs.dart';
 import 'package:flutter_application_1/pages/edit_workout.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../src/widget.dart';
@@ -77,7 +78,7 @@ class MySearch extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditWorkoutABS()));
+                                  builder: (context) => AbsPage()));
                         },
                         child: const Cardplan(
                           planname: 'ABS',
@@ -100,7 +101,7 @@ class MySearch extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => EditWorkoutABS()));
+                                  builder: (context) => AbsPage()));
                         },
                         child: const Cardplan(
                           planname: 'Arms',

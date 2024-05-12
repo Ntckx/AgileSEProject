@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
-import 'package:flutter_application_1/pages/recommendedplan.dart';
+import 'package:flutter_application_1/src/workout.dart';
 
 class EditWorkoutABS extends StatelessWidget {
+  final List<Workout> workouts;
+
+  const EditWorkoutABS({super.key, required this.workouts});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +30,7 @@ class EditWorkoutABS extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Column(
+                  const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -45,29 +49,27 @@ class EditWorkoutABS extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
-                padding: EdgeInsets.all(2.0), // Add padding
+                padding: const EdgeInsets.all(2.0), // Add padding
                 child: Row(
                   children: [
-                    Align(
+                    const Align(
                       alignment: Alignment.topRight,
                       child: Text(
                         'Workout list',
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Align(
                       alignment: Alignment.topLeft,
                       child: ElevatedButton(
-                        onPressed: () {
-                          
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                         ),
-                        child: Text(
+                        child: const Text(
                           '+ Add',
                           style: TextStyle(fontSize: 24, color: Colors.white),
                         ),
@@ -76,13 +78,16 @@ class EditWorkoutABS extends StatelessWidget {
                   ],
                 ),
               ),
-              WorkoutItemWithDeleteConfirmation(
-                workoutName: 'Bicycle Crunches',
-                imagePath: 'assets/images/BicycleCrunches.png',
-              ),
-              WorkoutItemWithDeleteConfirmation(
-                workoutName: 'Pushup',
-                imagePath: 'assets/images/pushup.png',
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: workouts.length,
+                itemBuilder: (context, index) {
+                  return WorkoutItemWithDeleteConfirmation(
+                    workoutName: workouts[index].workoutName,
+                    amount: workouts[index].amount,
+                    imagePath: 'assets/images/BicycleCrunches.png',
+                  );
+                },
               ),
               // Other widgets...
               ElevatedButton(
@@ -96,7 +101,7 @@ class EditWorkoutABS extends StatelessWidget {
                   ),
                   padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
-                child: Text(
+                child: const Text(
                   'Confirm',
                   style: TextStyle(
                     fontSize: 16,
@@ -116,12 +121,14 @@ class EditWorkoutABS extends StatelessWidget {
 class WorkoutItemWithDeleteConfirmation extends StatefulWidget {
   final String workoutName;
   final String imagePath;
+  final double amount;
 
-  const WorkoutItemWithDeleteConfirmation({
-    Key? key,
-    required this.workoutName,
-    required this.imagePath,
-  }) : super(key: key);
+  const WorkoutItemWithDeleteConfirmation(
+      {Key? key,
+      required this.workoutName,
+      required this.imagePath,
+      required this.amount})
+      : super(key: key);
 
   @override
   _WorkoutItemWithDeleteConfirmationState createState() =>
@@ -130,7 +137,14 @@ class WorkoutItemWithDeleteConfirmation extends StatefulWidget {
 
 class _WorkoutItemWithDeleteConfirmationState
     extends State<WorkoutItemWithDeleteConfirmation> {
-  int _times = 20; // Initial number of times
+  int _times = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _times = widget.amount.toInt();
+  } // Initial number of times
 
   void _incrementTimes() {
     setState(() {
@@ -186,7 +200,7 @@ class _WorkoutItemWithDeleteConfirmationState
                           ),
                         ),
                       ),
-                      Spacer(),
+                      const SizedBox(height: 10,),
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(); // Dismiss dialog

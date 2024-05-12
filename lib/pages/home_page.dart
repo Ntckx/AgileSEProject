@@ -27,11 +27,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> getHomepageInformation() async {
     try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
-          .instance
-          .collection('users')
-          .doc(user?.uid)
-          .get();
+      DocumentReference userRef =
+          FirebaseFirestore.instance.collection('users').doc(user?.uid);
+
+      DocumentSnapshot<Map<String, dynamic>> snapshot =
+          await userRef.get() as DocumentSnapshot<Map<String, dynamic>>;
 
       Map<String, dynamic>? userData = snapshot.data();
       setState(() {
