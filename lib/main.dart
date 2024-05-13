@@ -30,7 +30,7 @@ void main() async {
 //     path: '/home',
 //     builder: (context, state) => const MyHomePage(),
 //   )
-// ]);
+// ]); 
 // final GoRouter _router = GoRouter(routes: [
 //   GoRoute(
 //       path: '/',
