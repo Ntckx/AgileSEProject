@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/auth/auth_page.dart';
+import 'package:flutter_application_1/auth/main_page.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/setting_page.dart';
 
@@ -17,9 +19,26 @@ class _ProfilePageState extends State<ProfilePage> {
   int height = 0;
   int weight = 0;
   double BMI = 0;
+  int userRank = 1;
 
   Future getUserInformation() async {
     try {
+      QuerySnapshot allUser = await FirebaseFirestore.instance
+          .collection('users')
+          .orderBy('caloriesBurn', descending: true)
+          .get();
+
+      List<DocumentSnapshot> userList = allUser.docs;
+      int rank = 1;
+
+      for (DocumentSnapshot eachUser in userList) {
+        if (eachUser.id == user?.uid) {
+          userRank = rank;
+          break;
+        }
+        rank++;
+      }
+
       DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
           .instance
           .collection('users')
@@ -42,6 +61,26 @@ class _ProfilePageState extends State<ProfilePage> {
   double calculateBMI(int height, int weight) {
     double heightMeter = height / 100;
     return weight / (heightMeter * heightMeter);
+  }
+
+  void deleteAccount() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user?.uid)
+          .delete();
+
+      await FirebaseAuth.instance.signOut(); // Sign out the user
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => AuthPage()), // Navigate to AuthPage
+        (route) => false, // Clear all routes so user cannot go back
+      );
+      print('Workout deleted successfully');
+    } catch (err) {
+      print(err);
+    }
   }
 
   @override
@@ -93,9 +132,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.black),
                         ),
                         //user rank
-                        const Text(
-                          'Rank #1',
-                          style: TextStyle(
+                        Text(
+                          'Rank #$userRank',
+                          style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
@@ -166,6 +205,12 @@ class _ProfilePageState extends State<ProfilePage> {
               GestureDetector(
                 onTap: () {
                   FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MainPage(),
+                    ),
+                  );
                 },
                 child: const Row(
                   children: [
@@ -193,6 +238,51 @@ class _ProfilePageState extends State<ProfilePage> {
 
               // delete account
               GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        backgroundColor: Colors.white,
+                        title: const Text(
+                            'Are you sure you want to delete this account?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              deleteAccount();
+                            },
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.red, // Background color
+                            ),
+                            child: const Text(
+                              'Yes',
+                              style: TextStyle(
+                                color: Colors.white, // Text color
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Dismiss dialog
+                            },
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.red, // Background color
+                            ),
+                            child: const Text(
+                              'No',
+                              style: TextStyle(
+                                color: Colors.white, // Text color
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
                 child: const Row(
                   children: [
                     Icon(

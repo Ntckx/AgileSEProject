@@ -1,28 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../src/widget.dart';
 import 'dart:async';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'OKKAMLANGKAI',
-      theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(),
-        useMaterial3: true,
-      ),
-      home: MyGetReady(),
-    );
-  }
-}
 
 class MyGetReady extends StatefulWidget {
   const MyGetReady({Key? key}) : super(key: key);

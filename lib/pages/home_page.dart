@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Padding(
-                        padding: const EdgeInsets.only(left: 14, top: 20),
+                        padding: EdgeInsets.only(left: 14, top: 20),
                         child: Text(
                           "Recommend Plan",
                           textAlign: TextAlign.left,
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
-                                    image: AssetImage(
+                                    image: const AssetImage(
                                         'assets/images/Workout#1.png'),
                                     fit: BoxFit.cover,
                                     colorFilter: ColorFilter.mode(
@@ -175,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return AbsPage(
+                                  return DefaultPlan(
                                     plan: plans[index],
                                   );
                                 },
