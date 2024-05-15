@@ -1,30 +1,35 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_application_1/src/workout.dart';
 import '../src/widget.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+class MyWorkoutPlanOption extends StatelessWidget {
+  final String planId;
+  final String planname;
+  final String email;
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyWorkoutPlanOption(
+      {super.key, required this.planId, required this.planname, required this.email});
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'OKKAMLANGKAI',
-      theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(),
-        useMaterial3: true,
-      ),
-      home: MyWorkoutPlan(),
-    );
+  Future<List<Workout>> getAllWorkOut() async {
+    List<Workout> workouts = [];
+    try {
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection('workouts').get();
+      for (QueryDocumentSnapshot doc in querySnapshot.docs) {
+        Workout newWorkout = Workout.fromFirestore(doc);
+        if (!workouts
+            .any((workout) => workout.workoutName == newWorkout.workoutName)) {
+          workouts.add(newWorkout);
+        }
+      }
+    } catch (err) {
+      print(err);
+    }
+
+    return workouts;
   }
-}
-
-class MyWorkoutPlan extends StatelessWidget {
-  const MyWorkoutPlan({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +38,38 @@ class MyWorkoutPlan extends StatelessWidget {
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(2),
-        child: Container(
-            decoration: const BoxDecoration(
-                // color: Colors.grey
-                ),
-            child: Column(
-              children: [
-                Workoutplan(
-                    planname: 'Bicycle Crunches',
-                    details:
-                        'Detail Ut qui occaecat elit Lorem sint exercitation amet tempor .',
-                    imagePath: 'assets/images/Bicycle2.jpg'),
-                Workoutplan(
-                    planname: 'Pushup',
-                    details:
-                        'Detail Ut qui occaecat elit Lorem sint exercitation amet tempor .',
-                    imagePath: 'assets/images/pushup1.jpg'),
-              ],
-            )),
+      body: FutureBuilder(
+        future: getAllWorkOut(),
+        builder: (context, workouts) {
+          if (workouts.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (workouts.hasData) {
+            List<Workout>? workoutOption = workouts.data;
+
+            return Container(
+              decoration: const BoxDecoration(
+                  // color: Colors.grey
+                  ),
+              child: ListView.builder(
+                itemCount: workoutOption?.length,
+                itemBuilder: (context, index) {
+                  return Workoutplan(
+                      workout: workoutOption![index],
+                      planId: planId,
+                      planname: planname,
+                      email: email,
+                      imagePath: 'assets/images/Bicycle2.jpg');
+                },
+              ),
+            );
+          } else {
+            return Center(
+              child: Text("Errors : ${workouts.error}"),
+            );
+          }
+        },
       ),
     );
   }

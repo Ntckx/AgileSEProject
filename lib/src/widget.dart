@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/bottom_nav.dart';
+import 'package:flutter_application_1/src/workout.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Logo extends StatelessWidget {
@@ -80,7 +83,7 @@ class Cardplan extends StatelessWidget {
                       );
                     },
                     icon:
-                        Icon(Icons.info_outline, size: 30, color: Colors.white),
+                        const Icon(Icons.info_outline, size: 30, color: Colors.white),
                   ),
                 ),
               ),
@@ -101,17 +104,46 @@ class Cardplan extends StatelessWidget {
   }
 }
 
-class Workoutplan extends StatelessWidget {
-  final String planname;
-  final String details;
+class Workoutplan extends StatefulWidget {
+  final Workout workout;
   final String imagePath;
+  final String planId;
+  final String planname;
+  final String email;
 
-  const Workoutplan({
-    Key? key,
-    required this.planname,
-    required this.details,
-    required this.imagePath,
-  }) : super(key: key);
+  const Workoutplan(
+      {Key? key,
+      required this.workout,
+      required this.imagePath,
+      required this.planId,
+      required this.planname,
+      required this.email})
+      : super(key: key);
+
+  @override
+  State<Workoutplan> createState() => _WorkoutplanState();
+}
+
+class _WorkoutplanState extends State<Workoutplan> {
+  int _number = 0;
+
+  void addWorkout() async {
+    CollectionReference collectionReference =
+        FirebaseFirestore.instance.collection('workouts');
+
+    try {
+      await collectionReference.add({
+        'amount': _number,
+        'description': widget.workout.description,
+        'metValue': widget.workout.metValue.toInt(),
+        'planId': widget.planId,
+        'planname': 'new_${widget.email}_${widget.planname}_workout',
+        'workoutName': widget.workout.workoutName
+      });
+    } catch (err) {
+      print(err);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +168,7 @@ class Workoutplan extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(imagePath),
+                    image: AssetImage(widget.imagePath),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -150,16 +182,43 @@ class Workoutplan extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      planname,
+                      widget.workout.workoutName,
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
                     ),
-                    Text(
-                      details,
-                      style: const TextStyle(color: Colors.black),
+                    // Text(
+                    //   details,
+                    //   style: const TextStyle(color: Colors.black),
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: const  Icon(Icons.remove),
+                          onPressed: () {
+                            if (_number > 0) {
+                              setState(() {
+                                _number--;
+                              });
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          width: 50,
+                          child: Center(child: Text('$_number')),
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.add),
+                          onPressed: () {
+                            setState(() {
+                              _number++;
+                            });
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -167,11 +226,17 @@ class Workoutplan extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Expanded(
-                  child: ElevatedButton(
-                onPressed: () {},
+              child: ElevatedButton(
+                onPressed: () {
+                  addWorkout();
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return const BottomNavPage();
+                    },
+                  ));
+                },
                 style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(Size(50, 50)),
+                  minimumSize: MaterialStateProperty.all(const Size(50, 50)),
                   backgroundColor: MaterialStateProperty.all(Colors.orange),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                 ),
@@ -183,9 +248,85 @@ class Workoutplan extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-              )),
+              ),
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class NumberInputDialog extends StatefulWidget {
+  const NumberInputDialog({super.key});
+
+  @override
+  _NumberInputDialogState createState() => _NumberInputDialogState();
+}
+
+class _NumberInputDialogState extends State<NumberInputDialog> {
+  int _number = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Choose a Number'),
+      content: SizedBox(
+        height: 100, // Set the height here
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      if (_number > 0) {
+                        setState(() {
+                          _number--;
+                        });
+                      }
+                    },
+                  ),
+                  SizedBox(
+                    width: 50,
+                    child: Center(child: Text('$_number')),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      setState(() {
+                        _number++;
+                      });
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    child: const Text('Cancel'),
+                  ),
+                  const SizedBox(width: 10),
+                  TextButton(
+                    onPressed: () {
+                      // print('Selected number: $_number');
+                      Navigator.of(context).pop(); // Close the dialog
+                    },
+                    child: const Text('Ok'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -215,18 +356,18 @@ class Calcard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Icon(
+              const Icon(
                 Icons.fitness_center,
                 size: 40,
               ),
               Text(
                 posture,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(amount,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              Text("${kcal}kcal",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text("${kcal.toStringAsFixed(2)}kcal",
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           )),
     );
