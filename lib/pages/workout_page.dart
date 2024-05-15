@@ -28,13 +28,13 @@ class _WorkoutPageState extends State<WorkoutPage> {
   double totalCalories = 0;
   bool updatingUserInformation = false;
   int _timespend = 0;
+  List<double> caloriesEach = [];
   late Timer _timer;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _timespend++;
       });
@@ -43,14 +43,12 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _timer.cancel();
     super.dispose();
   }
 
   void _completeWorkout() {
     setState(() {
-      print('Weight : ${widget.userWeight}');
       if (_currentIndex < widget.currentPlan.workouts.length) {
         calculateCaloriesEach(widget.currentPlan.workouts[_currentIndex]);
         print("${totalCalories.toString().trim()} Kcal");
@@ -63,7 +61,11 @@ class _WorkoutPageState extends State<WorkoutPage> {
             });
             Navigator.push(context, MaterialPageRoute(
               builder: (context) {
-                return CaloriesPage();
+                return CaloriesPage(
+                  caloriesDetails: caloriesEach,
+                  plan: widget.currentPlan,
+                  totalCalories: totalCalories,
+                );
               },
             ));
           });
@@ -78,10 +80,14 @@ class _WorkoutPageState extends State<WorkoutPage> {
   }
 
   void calculateCaloriesEach(Workout workout) {
-    totalCalories += Calories(weight: widget.userWeight, workout: workout)
-        .CalculateCalories();
+    double calculateCalories =
+        Calories(weight: widget.userWeight, workout: workout)
+            .CalculateCalories();
+    totalCalories += calculateCalories;
+    caloriesEach.add(calculateCalories);
     print(
         "Workout name : ${workout.workoutName} , MET value : ${workout.metValue}");
+    print("Total calories : $totalCalories");
   }
 
   Future<void> updateUserInformation() async {
@@ -119,7 +125,10 @@ class _WorkoutPageState extends State<WorkoutPage> {
             children: <Widget>[
               if (updatingUserInformation)
                 const Center(
-                  child: CircularProgressIndicator(),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
               Padding(
                 padding: const EdgeInsets.only(top: 25),
@@ -188,7 +197,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ],

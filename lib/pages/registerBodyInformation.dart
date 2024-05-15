@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/src/bottom_nav.dart';
 import 'package:flutter_application_1/src/user.dart';
 import 'package:outline_gradient_button/outline_gradient_button.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -48,6 +49,7 @@ class _RegisterBodyInfoState extends State<RegisterBodyInfo> {
                     'workoutsAmount': 0
                   })
                 });
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavPage()));         
       } catch (e) {
         print(e);
       }
