@@ -129,14 +129,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 24,
-                              color: Colors.black),
+                              ),
                         ),
                         //user rank
                         Text(
                           'Rank #$userRank',
                           style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.black,
+                             
                               fontWeight: FontWeight.bold),
                         ),
                         //user weight
@@ -146,7 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               : "Weight : ${weight.toString().trim()}",
                           style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.black,
+                             
                               fontWeight: FontWeight.bold),
                         ),
                         //user bmi
@@ -156,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               : "BMI : ${BMI.toStringAsFixed(2).trim()}",
                           style: const TextStyle(
                               fontSize: 16,
-                              color: Colors.black,
+                             
                               fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -189,7 +189,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Text(
                       'Settings',
                       style: TextStyle(
-                        color: Colors.black,
+                      
                         fontSize: 16,
                       ),
                     )
@@ -224,7 +224,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Text(
                       'Log-out',
                       style: TextStyle(
-                        color: Colors.black,
+                      
                         fontSize: 16,
                       ),
                     )

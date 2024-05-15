@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Provider/provider.dart';
 import 'package:flutter_application_1/auth/main_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'auth/firebase_options.dart';
 
 // void main() {
@@ -53,14 +55,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'OKKAMLANGKAI',
-      theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(),
-        useMaterial3: true,
+    return ChangeNotifierProvider(
+      create: (BuildContext context)=>UiProvider()..init(),
+      child: Consumer<UiProvider>(
+        builder: (context, UiProvider notifier, child) {
+          return MaterialApp(
+            title: 'OKKAMLANGKAI',
+            themeMode: notifier.isDark? ThemeMode.dark : ThemeMode.light ,
+            darkTheme: notifier.isDark? notifier.darkTheme : notifier.lightTheme,
+            theme: ThemeData(
+              textTheme: GoogleFonts.robotoTextTheme(),
+              useMaterial3: true,
+            ),
+            debugShowCheckedModeBanner: false,
+            home: MainPage(),
+          );
+        }
       ),
-      debugShowCheckedModeBanner: false,
-      home: MainPage(),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
-import 'package:flutter_application_1/pages/search_page.dart';
 
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({Key? key}) : super(key: key);
@@ -14,10 +13,10 @@ class BottomNavPage extends StatefulWidget {
 
 class _BottomNavPageState extends State<BottomNavPage> {
   final user = FirebaseAuth.instance.currentUser;
-  int _currentIndex = 1;
+  int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    MySearch(),
+    MyHomePage(),
     MyHomePage(),
     MyLeaderBoardPage(),
     ProfilePage(),
@@ -25,44 +24,39 @@ class _BottomNavPageState extends State<BottomNavPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Retrieve Theme and Check Brightness
+    final theme = Theme.of(context);
+    final isDarkMode = theme.brightness == Brightness.dark;
+
     return Scaffold(
       body: Center(child: _pages.elementAt(_currentIndex)),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
         showUnselectedLabels: true,
-        selectedItemColor: const Color(0xFFDA2D4A),
-        backgroundColor: Colors.white60,
+        
+        // Set Colors Conditionally
         elevation: 0,
-        items: const [
+        selectedItemColor: isDarkMode ? Colors.white : Colors.black,
+        unselectedItemColor: isDarkMode ? Colors.white70 : Colors.black54,
+        
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                size: 40.0,
-                color: Colors.black,
-              ),
-              label: 'Search'),
+            icon: _buildIcon(Icons.search, 0),
+            label: 'Search',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-                size: 40.0,
-                color: Colors.black,
-              ),
-              label: 'Home'),
+            icon: _buildIcon(Icons.home_outlined, 1),
+            label: 'Home',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.leaderboard_outlined,
-                size: 40.0,
-                color: Colors.black,
-              ),
-              label: 'Rank'),
+            icon: _buildIcon(Icons.leaderboard_outlined, 2),
+            label: 'Rank',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_circle_outlined,
-                size: 40.0,
-                color: Colors.black,
-              ),
-              label: 'Profile'),
+            icon: _buildIcon(Icons.account_circle_outlined, 3),
+            label: 'Profile',
+          ),
         ],
       ),
     );
@@ -72,5 +66,29 @@ class _BottomNavPageState extends State<BottomNavPage> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  Widget _buildIcon(IconData iconData, int index) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        if (_currentIndex == index)
+          Container(
+            width: 48.0,
+            height: 48.0,
+            decoration: BoxDecoration(
+              color: const Color(0xFFDA2D4A).withOpacity(0.3), // Updated to use the specific pink color
+              shape: BoxShape.circle,
+            ),
+          ),
+        Icon(
+          iconData,
+          size: 40.0,
+          color: _currentIndex == index
+              ? (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black)
+              : (Theme.of(context).brightness == Brightness.dark ? Colors.white70 : Colors.black54),
+        ),
+      ],
+    );
   }
 }

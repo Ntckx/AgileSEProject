@@ -139,6 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Center(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white,
                                             minimumSize: const Size(300, 40)),
                                         onPressed: () {
                                           Navigator.push(context,
@@ -150,7 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         },
                                         child: const Text(
                                           'Start',
-                                          style: TextStyle(color: Colors.black),
+                                         
                                         ),
                                       ),
                                     ),
