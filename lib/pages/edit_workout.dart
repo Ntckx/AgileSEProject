@@ -1,13 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
+import 'package:flutter_application_1/pages/recommendedplan.dart';
+import 'package:flutter_application_1/pages/workoutoption_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 
 class EditWorkoutABS extends StatelessWidget {
   final List<Workout> workouts;
+  final String planId;
+  final String planname;
   Map<String, int> updatedWorkouts = {};
+  User? user = FirebaseAuth.instance.currentUser;
 
-  EditWorkoutABS({super.key, required this.workouts});
+  EditWorkoutABS(
+      {super.key,
+      required this.workouts,
+      required this.planId,
+      required this.planname});
 
   Future<void> updateWorkoutInformation(Map<String, int> updateWorkout) async {
     WriteBatch batch = FirebaseFirestore.instance.batch();
@@ -49,18 +60,18 @@ class EditWorkoutABS extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Good Choice',
                         style: TextStyle(
                             fontSize: 40,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text('Here is Your ABS Plan',
-                          style: TextStyle(
+                      Text('Here is Your $planname Plan',
+                          style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
@@ -84,7 +95,17 @@ class EditWorkoutABS extends StatelessWidget {
                     Align(
                       alignment: Alignment.topLeft,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return MyWorkoutPlanOption(
+                                planId: planId,
+                                planname: planname,
+                                email: user!.email.toString().trim(),
+                              );
+                            },
+                          ));
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                         ),
@@ -120,13 +141,19 @@ class EditWorkoutABS extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   updateWorkoutInformation(updatedWorkouts);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return RecommendedPlan();
+                    },
+                  ));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red, // Background color
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
                 child: const Text(
                   'Confirm',
@@ -193,6 +220,18 @@ class _WorkoutItemWithDeleteConfirmationState
     });
   }
 
+  void deleteWorkout() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('workouts')
+          .doc(widget.workoutId)
+          .delete();
+      print('Workout deleted successfully');
+    } catch (err) {
+      print(err);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -217,16 +256,22 @@ class _WorkoutItemWithDeleteConfirmationState
                 builder: (BuildContext context) {
                   return AlertDialog(
                     backgroundColor: Colors.white,
-                    title: Text('Are you sure you want to delete this pose?'),
+                    title: const Text(
+                        'Are you sure you want to delete this pose?'),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () {
-                          Navigator.of(context).pop(); // Dismiss dialog
+                          deleteWorkout();
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const MyHomePage();
+                            },
+                          )); // Dismiss dialog
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.red, // Background color
                         ),
-                        child: Text(
+                        child: const Text(
                           'Yes',
                           style: TextStyle(
                             color: Colors.white, // Text color
@@ -243,7 +288,7 @@ class _WorkoutItemWithDeleteConfirmationState
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.red, // Background color
                         ),
-                        child: Text(
+                        child: const Text(
                           'No',
                           style: TextStyle(
                             color: Colors.white, // Text color
@@ -255,7 +300,7 @@ class _WorkoutItemWithDeleteConfirmationState
                 },
               );
             },
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             color: Colors.red,
           ),
         ),
@@ -264,7 +309,7 @@ class _WorkoutItemWithDeleteConfirmationState
           children: [
             Text(
               widget.workoutName,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -275,12 +320,12 @@ class _WorkoutItemWithDeleteConfirmationState
               children: [
                 IconButton(
                   onPressed: _decrementTimes,
-                  icon: Icon(Icons.remove),
+                  icon: const Icon(Icons.remove),
                   color: Colors.white,
                 ),
                 Text(
                   '$_times times',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -288,7 +333,7 @@ class _WorkoutItemWithDeleteConfirmationState
                 ),
                 IconButton(
                   onPressed: _incrementTimes,
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   color: Colors.white,
                 ),
               ],

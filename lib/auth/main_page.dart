@@ -14,10 +14,13 @@ class MainPage extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            print('please work!!!');
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasData) {
+            print('User is signed in');
             return BottomNavPage();
           } else {
+            print('User is not signed in');
             return AuthPage();
           }
         },
