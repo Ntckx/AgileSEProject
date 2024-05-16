@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/setting_page.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -93,9 +94,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.black),
                         ),
                         //user rank
-                        const Text(
-                          'Rank #1',
-                          style: TextStyle(
+                         Text(
+                          'Rank #1'.tr,
+                          style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black,
                               fontWeight: FontWeight.bold),
@@ -138,18 +139,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                   ));
                 },
-                child: const Row(
+                child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.settings,
                       size: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'Settings',
-                      style: TextStyle(
+                      'Settings'.tr,
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                       ),
@@ -167,18 +168,18 @@ class _ProfilePageState extends State<ProfilePage> {
                 onTap: () {
                   FirebaseAuth.instance.signOut();
                 },
-                child: const Row(
+                child:  Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.logout,
                       size: 30,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'Log-out',
-                      style: TextStyle(
+                      'Log-out'.tr,
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                       ),
@@ -193,19 +194,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
               // delete account
               GestureDetector(
-                child: const Row(
+                child: Row(
                   children: [
-                    Icon(
+                   const  Icon(
                       Icons.delete_outlined,
                       size: 30,
                       color: Colors.red,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 15,
                     ),
                     Text(
-                      'Delete account',
-                      style: TextStyle(
+                      'Delete account'.tr,
+                      style: const TextStyle(
                         color: Colors.red,
                         fontSize: 16,
                       ),
