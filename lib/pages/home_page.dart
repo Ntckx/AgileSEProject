@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         },
                                         child: Text(
                                           'Start'.tr,
-                                          style: const TextStyle(color: Colors.black),
+                            
                                         ),
                                       ),
                                     ),
