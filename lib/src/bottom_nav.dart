@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
+import 'package:flutter_application_1/pages/search_page.dart';
 
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    MyHomePage(),
+    MySearch(),
     MyHomePage(),
     MyLeaderBoardPage(),
     ProfilePage(),
@@ -76,8 +77,8 @@ class _BottomNavPageState extends State<BottomNavPage> {
           Container(
             width: 48.0,
             height: 48.0,
-            decoration: BoxDecoration(
-              color: const Color(0xFFDA2D4A).withOpacity(0.3), // Updated to use the specific pink color
+            decoration: const BoxDecoration(
+              color:Color(0xFFDA2D4A), // Updated to use the specific pink color
               shape: BoxShape.circle,
             ),
           ),

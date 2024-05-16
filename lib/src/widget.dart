@@ -186,7 +186,7 @@ class _WorkoutplanState extends State<Workoutplan> {
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                     
                       ),
                     ),
                     // Text(
