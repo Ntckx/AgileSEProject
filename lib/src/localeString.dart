@@ -6,8 +6,8 @@ class LocaleString extends Translations{
 
   Map<String, Map<String, String>> get keys => {
    'en_US': {
-          'settings': 'Settings',
-          'general_settings': 'General Settings',
+          'Settings': 'Settings',
+          'General Settings': 'General Settings',
           'theme': 'Theme',
           'language': 'Language',
           'english': 'English',
@@ -33,8 +33,8 @@ class LocaleString extends Translations{
           'Rank #1':'RANK #1'
         },
         'th_TH': {
-          'settings': 'การตั้งค่า',
-          'general_settings': 'การตั้งค่าทั่วไป',
+          'Settings': 'การตั้งค่า',
+          'General Settings': 'การตั้งค่าทั่วไป',
           'theme': 'ธีม',
           'language': 'ภาษา',
           'english': 'อังกฤษ',
