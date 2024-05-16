@@ -241,8 +241,8 @@ class _WorkoutplanState extends State<Workoutplan> {
                   backgroundColor: MaterialStateProperty.all(Colors.orange),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                 ),
-                child: const Text(
-                  'ADD +',
+                child: Text(
+                  '+ Add'.tr,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,

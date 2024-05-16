@@ -8,6 +8,8 @@ import 'package:flutter_application_1/pages/workout_page.dart';
 import 'package:flutter_application_1/src/widget.dart' as tool;
 import 'package:flutter_application_1/src/workout.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
+import 'package:get/get.dart';
+
 
 class RecommendedPlan extends StatelessWidget {
   static const IconData edit = IconData(0xe21a, fontFamily: 'MaterialIcons');
@@ -104,17 +106,17 @@ class RecommendedPlan extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        const Column(
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Good Choice',
+                              'Good Choice'.tr,
                               style: TextStyle(
                                   fontSize: 40,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold),
                             ),
-                            Text('Here is Your Recommended Plan',
+                            Text('Here is Your Recommended Plan'.tr,
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Colors.white,
@@ -129,7 +131,7 @@ class RecommendedPlan extends StatelessWidget {
                               20), // Add padding of 8 pixels on all sides
                       child: Row(
                         children: [
-                          const Text('Workout list',
+                           Text('Workout list'.tr,
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                           const Spacer(), // Add a spacer to push the text to the right
@@ -184,8 +186,8 @@ class RecommendedPlan extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 50, vertical: 15),
                       ),
-                      child: const Text(
-                        'Start',
+                      child: Text(
+                        'Start'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -279,7 +281,15 @@ class _WorkoutItemState extends State<WorkoutItem> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      '$_timesPerformed times',
+                      '$_timesPerformed ',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      'times'.tr,
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,

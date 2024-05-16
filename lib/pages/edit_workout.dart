@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/recommendedplan.dart';
 import 'package:flutter_application_1/pages/workoutoption_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
+import 'package:get/get.dart';
 
 class EditWorkoutABS extends StatelessWidget {
   final List<Workout> workouts;
@@ -63,18 +64,20 @@ class EditWorkoutABS extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Good Choice',
+                      Text(
+                        'Good Choice'.tr,
                         style: TextStyle(
                             fontSize: 40,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text('Here is Your $planname Plan',
-                          style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                      Text(
+                        'Here is Your Recommended Plan'.tr,
+                        style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 ],
@@ -84,10 +87,10 @@ class EditWorkoutABS extends StatelessWidget {
                 padding: const EdgeInsets.all(2.0), // Add padding
                 child: Row(
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.topRight,
                       child: Text(
-                        'Workout list',
+                        'Workout list'.tr,
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -109,8 +112,8 @@ class EditWorkoutABS extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                         ),
-                        child: const Text(
-                          '+ Add',
+                        child: Text(
+                          '+ Add'.tr,
                           style: TextStyle(fontSize: 24, color: Colors.white),
                         ),
                       ),
@@ -155,8 +158,8 @@ class EditWorkoutABS extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
-                child: const Text(
-                  'Confirm',
+                child: Text(
+                  'Confirm'.tr,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -324,7 +327,15 @@ class _WorkoutItemWithDeleteConfirmationState
                   color: Colors.white,
                 ),
                 Text(
-                  '$_times times',
+                  '$_times ',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'times'.tr,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,
