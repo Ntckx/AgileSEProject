@@ -77,8 +77,8 @@ class _BottomNavPageState extends State<BottomNavPage> {
           Container(
             width: 48.0,
             height: 48.0,
-            decoration: BoxDecoration(
-              color: const Color(0xFFDA2D4A).withOpacity(0.3), // Updated to use the specific pink color
+            decoration: const BoxDecoration(
+              color:Color(0xFFDA2D4A), // Updated to use the specific pink color
               shape: BoxShape.circle,
             ),
           ),
