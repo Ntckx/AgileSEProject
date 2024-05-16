@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/leaderboard_page.dart';
+import 'package:get/get.dart';
+// import 'leaderboard_page.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -10,14 +11,13 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool theme = true;
-
-  String option = 'Thai';
+  String option = 'English';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Logo()),
+        title: Center(child: Text('Settings'.tr)), // Use localized string
         backgroundColor: const Color(0xFFDA2D4A),
       ),
       body: Center(
@@ -26,9 +26,9 @@ class _SettingPageState extends State<SettingPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'General Settings',
-                style: TextStyle(
+              Text(
+                'General Settings'.tr,
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                     fontSize: 16),
@@ -39,18 +39,18 @@ class _SettingPageState extends State<SettingPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
+                  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.mood,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Theme',
-                        style: TextStyle(
+                        'theme'.tr,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w300,
                           fontSize: 16,
@@ -72,22 +72,21 @@ class _SettingPageState extends State<SettingPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Row(
+                  Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.language,
                         color: Colors.black,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
-                        'Language',
-                        style: TextStyle(
+                        'language'.tr,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w300,
-                          fontSize: 16,
-                        ),
+                          fontSize: 16),
                       ),
                     ],
                   ),
@@ -104,24 +103,29 @@ class _SettingPageState extends State<SettingPage> {
                         onChanged: (String? select) {
                           setState(() {
                             option = select!;
+                            if (option == 'English') {
+                              Get.updateLocale(Locale('en', 'US'));
+                            } else if (option == 'Thai') {
+                              Get.updateLocale(Locale('th', 'TH'));
+                            }
                           });
                         },
                         icon: null,
-                        items: const [
+                        items: [
                           DropdownMenuItem<String>(
                             value: 'English',
-                            child: Text('English'),
+                            child: Text('English'.tr),
                           ),
                           DropdownMenuItem<String>(
                             value: 'Thai',
-                            child: Text('Thai'),
+                            child: Text('Thai'.tr),
                           ),
                         ],
                       ),
                     ),
                   )
                 ],
-              )
+              ),
             ],
           ),
         ),
