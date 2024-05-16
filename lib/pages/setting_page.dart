@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'leaderboard_page.dart';
 import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
@@ -93,13 +92,13 @@ class _SettingPageState extends State<SettingPage> {
                       children: [
                         const Icon(
                           Icons.language,
-                          color: Colors.black,
+                
                         ),
                         const SizedBox(width: 10),
                         Text(
                           'Language'.tr, // Use localized string
                           style: const TextStyle(
-                            color: Colors.black,
+            
                             fontWeight: FontWeight.w300,
                             fontSize: 16,
                           ),
@@ -116,7 +115,7 @@ class _SettingPageState extends State<SettingPage> {
                         child: DropdownButton<String>(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           value: option,
-                          style: const TextStyle(color: Colors.black),
+                        
                           onChanged: (String? select) {
                             setState(() {
                               option = select!;
