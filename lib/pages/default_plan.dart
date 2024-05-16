@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/workout_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
 import '../src/widget.dart';
+import 'package:get/get.dart';
 
 class DefaultPlan extends StatefulWidget {
   final WorkoutPlan plan;
@@ -145,10 +146,10 @@ class _DefaultPlanState extends State<DefaultPlan> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(top: 25, left: 20),
                               child: Text(
-                                "Workout list",
+                                "Workout list".tr,
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -185,7 +186,7 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                   horizontal: 15, vertical: 10),
                               child: Cardplan(
                                   planname: workouts![index].workoutName,
-                                  details: "${workouts[index].amount} times",
+                                  details: "${workouts[index].amount} ${'times'.tr}",
                                   imagePath: 'assets/images/Bicycle2.jpg',
                                   descriptionTopic: workouts[index].workoutName,
                                   descriptionDetail:
@@ -211,13 +212,13 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                             double.parse(weight.toString()),
                                       )))));
                         },
-                        child: const SizedBox(
+                        child:  SizedBox(
                           width: 300,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'Start',
+                                'Start'.tr,
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 25,
