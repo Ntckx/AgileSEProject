@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/provider.dart';
 import 'package:flutter_application_1/auth/main_page.dart';
+import 'package:flutter_application_1/src/localeString.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'auth/firebase_options.dart';
+import 'package:get/get.dart';
 
 // void main() {
 //   WidgetsFlutterBinding.ensureInitialized();
@@ -59,8 +61,9 @@ class MyApp extends StatelessWidget {
       create: (BuildContext context)=>UiProvider()..init(),
       child: Consumer<UiProvider>(
         builder: (context, UiProvider notifier, child) {
-          return MaterialApp(
+          return GetMaterialApp(
             title: 'OKKAMLANGKAI',
+            translations: LocaleString(),
             themeMode: notifier.isDark? ThemeMode.dark : ThemeMode.light ,
             darkTheme: notifier.isDark? notifier.darkTheme : notifier.lightTheme,
             theme: ThemeData(

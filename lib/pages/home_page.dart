@@ -5,6 +5,7 @@ import 'package:flutter_application_1/pages/default_plan.dart';
 import 'package:flutter_application_1/pages/recommendedplan.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
 import '../src/widget.dart';
+import 'package:get/get.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -90,12 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 14, top: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 14, top: 20),
                         child: Text(
-                          "Recommend Plan",
+                          "Recommend Plan".tr,
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -118,9 +119,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  const Text(
-                                    'DAY1',
-                                    style: TextStyle(
+                                  Text(
+                                    'DAY1'.tr,
+                                    style: const TextStyle(
                                         fontSize: 40,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -149,9 +150,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                             },
                                           ));
                                         },
-                                        child: const Text(
-                                          'Start',
-                                         
+                                        child: Text(
+                                          'Start'.tr,
+                            
                                         ),
                                       ),
                                     ),
@@ -160,11 +161,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             )),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 14, top: 25),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 14, top: 25),
                         child: Text(
-                          "Your own desire",
-                          style: TextStyle(
+                          "Your own desire".tr,
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -186,11 +187,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 14, vertical: 4),
                                 child: Cardplan(
-                                  planname: plans![index].name,
+                                  planname: plans![index].name.tr,
                                   details:
                                       "${plans[index].duration} Min - ${plans[index].gestureAmount} gestures",
                                   imagePath: 'assets/images/ABS.png',
-                                  descriptionTopic: plans[index].name,
+                                  descriptionTopic: plans[index].name.tr,
                                   descriptionDetail: plans[index].description,
                                 )),
                           );

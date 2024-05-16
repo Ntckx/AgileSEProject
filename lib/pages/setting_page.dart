@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Provider/provider.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
@@ -12,14 +13,13 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool theme = true;
-
-  String option = 'Thai';
+  String option = 'English';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Logo()),
+        title: Center(child: Text('Settings'.tr)), // Use localized string
         backgroundColor: const Color(0xFFDA2D4A),
       ),
       body: Consumer<UiProvider>(
@@ -30,8 +30,8 @@ class _SettingPageState extends State<SettingPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'General Settings',
+                  Text(
+                    'General Settings'.tr,
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                        
@@ -43,7 +43,7 @@ class _SettingPageState extends State<SettingPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                     Row(
                         children: [
                           Icon(
                             Icons.mood,
@@ -53,7 +53,7 @@ class _SettingPageState extends State<SettingPage> {
                             width: 10,
                           ),
                           Text(
-                            'Theme',
+                            'Theme'.tr,
                             style: TextStyle(
                             
                               fontWeight: FontWeight.w300,
@@ -71,7 +71,7 @@ class _SettingPageState extends State<SettingPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                       Row(
                         children: [
                           Icon(
                             Icons.language,
@@ -81,7 +81,7 @@ class _SettingPageState extends State<SettingPage> {
                             width: 10,
                           ),
                           Text(
-                            'Language',
+                            'Language'.tr,
                             style: TextStyle(
                           
                               fontWeight: FontWeight.w300,
@@ -91,34 +91,39 @@ class _SettingPageState extends State<SettingPage> {
                         ],
                       ),
                       Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(2),
-                            border: Border.all(color: const Color(0xFFDA2D4A)),
-                            color: const Color.fromRGBO(221, 45, 74, 0.05)),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            value: option,
-                          
-                            onChanged: (String? select) {
-                              setState(() {
-                                option = select!;
-                              });
-                            },
-                            icon: null,
-                            items: const [
-                              DropdownMenuItem<String>(
-                                value: 'English',
-                                child: Text('English'),
-                              ),
-                              DropdownMenuItem<String>(
-                                value: 'Thai',
-                                child: Text('Thai'),
-                              ),
-                            ],
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        border: Border.all(color: const Color(0xFFDA2D4A)),
+                        color: const Color.fromRGBO(221, 45, 74, 0.05)),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<String>(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        value: option,
+                        style: const TextStyle(color: Colors.black),
+                        onChanged: (String? select) {
+                          setState(() {
+                            option = select!;
+                            if (option == 'English') {
+                              Get.updateLocale(Locale('en', 'US'));
+                            } else if (option == 'Thai') {
+                              Get.updateLocale(Locale('th', 'TH'));
+                            }
+                          });
+                        },
+                        icon: null,
+                        items: [
+                          DropdownMenuItem<String>(
+                            value: 'English',
+                            child: Text('English'.tr),
                           ),
-                        ),
-                      )
+                          DropdownMenuItem<String>(
+                            value: 'Thai',
+                            child: Text('Thai'.tr),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                     ],
                   )
                 ],

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/user.dart';
+import 'package:get/get.dart';
 
 class MyLeaderBoardPage extends StatefulWidget {
   const MyLeaderBoardPage({Key? key}) : super(key: key);
@@ -94,12 +95,12 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(8),
+                   Padding(
+                    padding: const EdgeInsets.all(8),
                     child: Text(
-                      "LeaderBoard",
+                      "LeaderBoard".tr,
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -118,10 +119,10 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                       width: 400,
                       child: DataTable(
                         dividerThickness: 0.00000000001,
-                        columns: const [
-                          DataColumn(label: Text('Rank')),
-                          DataColumn(label: Text('User')),
-                          DataColumn(label: Text('Kcal')),
+                        columns:  [
+                          DataColumn(label: Text('Rank'.tr)),
+                          DataColumn(label: Text('User'.tr)),
+                          DataColumn(label: Text('Kcal'.tr)),
                         ],
                         rows: userList.map((user) {
                           final rank = userList.indexOf(user) + 1;
@@ -140,11 +141,11 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
                         child: Text(
-                          "Statistic",
-                          style: TextStyle(
+                          "Statistic".tr,
+                          style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -170,9 +171,9 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                            const Text(
-                                              "Workouts",
-                                              style: TextStyle(
+                                             Text(
+                                              "Workouts".tr,
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 15),
                                               textAlign: TextAlign.center,
@@ -189,9 +190,9 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
                                             children: [
-                                              const Text(
-                                                "Kcal",
-                                                style: TextStyle(
+                                               Text(
+                                                "Kcal".tr,
+                                                style: const TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 15,
                                                 ),
@@ -209,9 +210,9 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                                         ),
                                         Column(
                                           children: [
-                                            const Text(
-                                              "Minutes",
-                                              style: TextStyle(
+                                            Text(
+                                              "Minutes".tr,
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.normal,
                                                   fontSize: 15),
                                               textAlign: TextAlign.center,

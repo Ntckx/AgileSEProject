@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/src/bottom_nav.dart';
 import 'package:flutter_application_1/src/workout.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
 
 class Logo extends StatelessWidget {
   const Logo({super.key});
@@ -75,7 +76,7 @@ class Cardplan extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
-                                child: const Text('Close'),
+                                child: Text('Close'.tr),
                               ),
                             ],
                           );
