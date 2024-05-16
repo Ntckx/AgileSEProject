@@ -26,4 +26,8 @@ class WorkoutPlan {
       workouts: [],
     );
   }
+
+  void fetchGestureAmount() {
+    gestureAmount = workouts.length;
+  }
 }

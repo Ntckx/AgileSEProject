@@ -1,28 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/pages/default_plan.dart';
-import 'package:flutter_application_1/pages/edit_workout.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../src/widget.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'OKKAMLANGKAI',
-      theme: ThemeData(
-        textTheme: GoogleFonts.robotoTextTheme(),
-        useMaterial3: true,
-      ),
-      home: MySearch(),
-    );
-  }
-}
 
 class MySearch extends StatelessWidget {
   MySearch({super.key});

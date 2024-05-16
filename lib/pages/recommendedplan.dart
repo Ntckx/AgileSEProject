@@ -2,14 +2,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/edit_workout.dart';
-import 'package:flutter_application_1/pages/leaderboard_page.dart';
+import 'package:flutter_application_1/pages/leaderboard_page.dart'
+    as leaderboard;
+import 'package:flutter_application_1/pages/workout_page.dart';
+import 'package:flutter_application_1/src/widget.dart' as tool;
 import 'package:flutter_application_1/src/workout.dart';
+import 'package:flutter_application_1/src/workout_plan.dart';
 
 class RecommendedPlan extends StatelessWidget {
   static const IconData edit = IconData(0xe21a, fontFamily: 'MaterialIcons');
+  String planname = '';
+  double userWeight = 0;
 
-  Future<String> getPlanInformation() async {
+  Future<WorkoutPlan?> getPlanInformation() async {
     String planId = '';
+    WorkoutPlan? plan;
     User? user = FirebaseAuth.instance.currentUser;
     try {
       DocumentReference userRef =
@@ -20,33 +27,43 @@ class RecommendedPlan extends StatelessWidget {
 
       QuerySnapshot recommendPlanSnapshot = await recommendPlanRef.get();
 
+      DocumentSnapshot userSnapshot = await userRef.get();
+      Map<String, dynamic> userData =
+          userSnapshot.data() as Map<String, dynamic>;
+      userWeight = userData['weight'];
+
       if (recommendPlanSnapshot.docs.isNotEmpty) {
         planId = recommendPlanSnapshot.docs.first.id;
+        plan = WorkoutPlan.fromFirestore(
+            recommendPlanSnapshot.docs.first.data() as Map<String, dynamic>,
+            planId);
       }
     } catch (err) {
       print('Error getting planId: $err');
     }
-    return planId;
+    return plan;
   }
 
-  Future<List<Workout>> getWorkoutsForPlan() async {
-    String planId = await getPlanInformation();
+  Future<WorkoutPlan> getWorkoutsForPlan() async {
+    WorkoutPlan plan = await getPlanInformation() as WorkoutPlan;
 
     List<Workout> workouts = [];
     try {
       QuerySnapshot snapshot = await FirebaseFirestore.instance
           .collection('workouts')
-          .where('planId', isEqualTo: planId)
+          .where('planId', isEqualTo: plan.planId)
           .get();
 
       workouts = snapshot.docs.map((doc) {
         String workoutId = doc.id;
         return Workout.fromFirestore(doc, workoutId: workoutId);
       }).toList();
+
+      plan.workouts = workouts;
     } catch (e) {
       print('Error getting workouts: $e');
     }
-    return workouts;
+    return plan;
   }
 
   RecommendedPlan({super.key});
@@ -55,7 +72,7 @@ class RecommendedPlan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Logo()),
+        title: const Center(child: tool.Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
       ),
       body: SingleChildScrollView(
@@ -63,7 +80,7 @@ class RecommendedPlan extends StatelessWidget {
           child: FutureBuilder(
             future: getWorkoutsForPlan(),
             builder: (context, workoutList) {
-              List<Workout>? workouts = workoutList.data;
+              WorkoutPlan? plan = workoutList.data;
 
               if (workoutList.connectionState == ConnectionState.waiting) {
                 return const Center(
@@ -126,7 +143,9 @@ class RecommendedPlan extends StatelessWidget {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
                                   return EditWorkoutABS(
-                                    workouts: workouts as List<Workout>,
+                                    workouts: plan!.workouts,
+                                    planId: plan.planId,
+                                    planname: planname,
                                   );
                                 },
                               )); // Add functionality here
@@ -138,17 +157,25 @@ class RecommendedPlan extends StatelessWidget {
                     const SizedBox(height: 20),
                     ListView.builder(
                       shrinkWrap: true,
-                      itemCount: workouts?.length,
+                      itemCount: plan?.workouts.length,
                       itemBuilder: (context, index) {
                         return WorkoutItem(
-                          workoutName: workouts![index].workoutName,
-                          amount: workouts[index].amount,
+                          workoutName: plan!.workouts[index].workoutName,
+                          amount: plan.workouts[index].amount,
                           imagePath: 'assets/images/BicycleCrunches.png',
                         );
                       },
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return WorkoutPage(
+                                currentPlan: plan as WorkoutPlan,
+                                userWeight: userWeight);
+                          },
+                        ));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         shape: RoundedRectangleBorder(

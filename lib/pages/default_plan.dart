@@ -1,23 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/pages/edit_workout.dart';
 import 'package:flutter_application_1/pages/workout_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
 import '../src/widget.dart';
 
-class AbsPage extends StatefulWidget {
+class DefaultPlan extends StatefulWidget {
   final WorkoutPlan plan;
 
-  const AbsPage({super.key, required this.plan});
+  const DefaultPlan({super.key, required this.plan});
 
   @override
-  State<AbsPage> createState() => _AbsPageState();
+  State<DefaultPlan> createState() => _DefaultPlanState();
 }
 
-class _AbsPageState extends State<AbsPage> {
+class _DefaultPlanState extends State<DefaultPlan> {
   final user = FirebaseAuth.instance.currentUser;
   int weight = 0;
   double totalCalories = 0;
@@ -163,6 +162,8 @@ class _AbsPageState extends State<AbsPage> {
                                     builder: (context) {
                                       return EditWorkoutABS(
                                         workouts: workouts as List<Workout>,
+                                        planId: widget.plan.planId,
+                                        planname: widget.plan.name,
                                       );
                                     },
                                   ));

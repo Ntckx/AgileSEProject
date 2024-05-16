@@ -8,8 +8,8 @@ class LocaleString extends Translations{
    'en_US': {
           'Settings': 'Settings',
           'General Settings': 'General Settings',
-          'theme': 'Theme',
-          'language': 'Language',
+          'Theme': 'Theme',
+          'Language': 'Language',
           'english': 'English',
           'thai': 'Thai',
           'Log-out':'Log-out',
@@ -35,8 +35,8 @@ class LocaleString extends Translations{
         'th_TH': {
           'Settings': 'การตั้งค่า',
           'General Settings': 'การตั้งค่าทั่วไป',
-          'theme': 'ธีม',
-          'language': 'ภาษา',
+          'Theme': 'ธีม',
+          'Language': 'ภาษา',
           'english': 'อังกฤษ',
           'thai': 'ไทย',
           'Log-out':'ล๊อคเอ๊าท์',

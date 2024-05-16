@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
-                                    image: AssetImage(
+                                    image: const AssetImage(
                                         'assets/images/Workout#1.png'),
                                     fit: BoxFit.cover,
                                     colorFilter: ColorFilter.mode(
@@ -140,6 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Center(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white,
                                             minimumSize: const Size(300, 40)),
                                         onPressed: () {
                                           Navigator.push(context,
@@ -176,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(
                                 builder: (context) {
-                                  return AbsPage(
+                                  return DefaultPlan(
                                     plan: plans[index],
                                   );
                                 },

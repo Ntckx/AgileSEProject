@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/congrate_page.dart';
+import 'package:flutter_application_1/src/workout_plan.dart';
 import '../src/widget.dart';
 
 class CaloriesPage extends StatelessWidget {
-  const CaloriesPage({Key? key}) : super(key: key);
+  final double totalCalories;
+  final WorkoutPlan plan;
+  final List<double> caloriesDetails;
+  const CaloriesPage(
+      {Key? key,
+      required this.totalCalories,
+      required this.plan,
+      required this.caloriesDetails})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,107 +34,62 @@ class CaloriesPage extends StatelessWidget {
                   style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                 ),
               ),
-            Center(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        const Color(0xFFDA2D4A),
-                        const Color(0xFF741827).withOpacity(0.7)
-                      ]),
-                ),
-                height: 200,
-                width: 200,
-                child: const Center(
-                    child: Text(
-                  '200 kcal',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                )),
-              ),
-            ),
-
-            //Card
-
-            Calcard(
-                posture: "Bicycle Crunches", amount: "20 times", kcal: 200.00),
-            // Calcard(posture: "Pushup", amount: "20 times", kcal: 400.00),
-            // Calcard(posture: "Squat", amount: "20 times", kcal: 800.00),
-
-            Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(250, 65),
-                    backgroundColor: const Color(0xFFDA2D4A)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: ((context) => CongratePage())));
-                },
-                child: const SizedBox(
-                  width: 300,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        'Collect',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(
-                        Icons.check_circle_outline_rounded,
-                        color: Colors.white,
-                      ),
-                      ],
-                    ),
+              Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          const Color(0xFFDA2D4A),
+                          const Color(0xFF741827).withOpacity(0.7)
+                        ]),
                   ),
+                  height: 200,
+                  width: 200,
+                  child: Center(
+                      child: Text(
+                    '${totalCalories.toStringAsFixed(2)} kcal',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  )),
                 ),
               ),
 
               //Card
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: plan.workouts.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10 , vertical: 5),
+                    child: Calcard(
+                        posture: plan.workouts[index].workoutName,
+                        amount: "${plan.workouts[index].amount} times",
+                        kcal: caloriesDetails[index]),
+                  );
+                },
+              ),
 
-              Calcard(
-                posture: "Bicycle Crunches",
-                amount: "20 times",
-                kcal: 200.00,
-              ),
-              Calcard(
-                posture: "Pushup",
-                amount: "20 times",
-                kcal: 400.00,
-              ),
-              Calcard(
-                posture: "Squat",
-                amount: "20 times",
-                kcal: 800.00,
-              ),
+              // Calcard(posture: "Pushup", amount: "20 times", kcal: 400.00),
+              // Calcard(posture: "Squat", amount: "20 times", kcal: 800.00),
 
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(250, 65),
-                    backgroundColor: const Color(0xFFDA2D4A),
-                  ),
+                      minimumSize: const Size(250, 65),
+                      backgroundColor: const Color(0xFFDA2D4A)),
                   onPressed: () {
                     Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: ((context) => CongratePage()),
-                      ),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => const CongratePage())));
                   },
-                  child: SizedBox(
+                  child: const SizedBox(
                     width: 300,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -133,16 +97,14 @@ class CaloriesPage extends StatelessWidget {
                         Text(
                           'Collect',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(height: 10),
+                        SizedBox(width: 10),
                         Icon(
                           Icons.check_circle_outline_rounded,
                           color: Colors.white,
-                          size: 30,
                         ),
                       ],
                     ),

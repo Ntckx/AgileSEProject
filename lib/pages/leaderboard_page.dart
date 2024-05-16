@@ -64,9 +64,13 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
   }
 
   String calculateTimeSpend(double second) {
-    double minutes = (second > 60) ? second / 60 : 0;
+    double minutes = 0;
+    if (second > 60) {
+      minutes = second / 60;
+      second %= 60;
+    }
 
-    String timeFormat = minutes.toStringAsFixed(0);
+    String timeFormat = "${minutes.toStringAsFixed(0)}.$second";
     return timeFormat;
   }
 
