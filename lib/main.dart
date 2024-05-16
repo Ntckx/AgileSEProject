@@ -5,67 +5,41 @@ import 'package:flutter_application_1/auth/main_page.dart';
 import 'package:flutter_application_1/src/localeString.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'auth/firebase_options.dart';
 import 'package:get/get.dart';
 
-// void main() {
-//   WidgetsFlutterBinding.ensureInitialized();
-
-//   runApp(ChangeNotifierProvider(
-//     create: (context) => ApplicationState(),
-//     builder: ((context, child) => const MyApp()),
-//   ));
-// }
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(const MyApp());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? localeCode = prefs.getString('locale') ?? 'en_US';
+  List<String> localeParts = localeCode.split('_');
+  Locale initialLocale = Locale(localeParts[0], localeParts[1]);
+
+  runApp(MyApp(initialLocale: initialLocale));
 }
-// final GoRouter _router = GoRouter(routes: [
-//   GoRoute(path: '/', builder: (context, state) => Register(), routes: [
-//     GoRoute(
-//       path: 'body',
-//       builder: (context, state) => RegisterBodyInfo(),
-//     )
-//   ]),
-//   GoRoute(
-//     path: '/home',
-//     builder: (context, state) => const MyHomePage(),
-//   )
-// ]); 
-// final GoRouter _router = GoRouter(routes: [
-//   GoRoute(
-//       path: '/',
-//       builder: (context, state) {
-//         return const AuthFunc();
-//       },
-//       routes: [
-//         GoRoute(
-//           path: 'home',
-//           builder: (context, state) {
-//             return const BottomNavPage();
-//           },
-//         ),
-//       ])
-// ]);
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final Locale initialLocale;
 
-  // This widget is the root of your application.
+  const MyApp({super.key, required this.initialLocale});
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context)=>UiProvider()..init(),
+      create: (BuildContext context) => UiProvider()..init(),
       child: Consumer<UiProvider>(
         builder: (context, UiProvider notifier, child) {
           return GetMaterialApp(
             title: 'OKKAMLANGKAI',
             translations: LocaleString(),
-            themeMode: notifier.isDark? ThemeMode.dark : ThemeMode.light ,
-            darkTheme: notifier.isDark? notifier.darkTheme : notifier.lightTheme,
+            locale: initialLocale,
+            fallbackLocale: const Locale('en', 'US'),
+            themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
+            darkTheme: notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
             theme: ThemeData(
               textTheme: GoogleFonts.robotoTextTheme(),
               useMaterial3: true,
@@ -73,7 +47,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             home: MainPage(),
           );
-        }
+        },
       ),
     );
   }
