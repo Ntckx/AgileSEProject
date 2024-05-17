@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Center(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white,
+                                            backgroundColor: Colors.white,
                                             minimumSize: const Size(300, 40)),
                                         onPressed: () {
                                           Navigator.push(context,
@@ -152,7 +152,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         },
                                         child: Text(
                                           'Start'.tr,
-                            
                                         ),
                                       ),
                                     ),
@@ -184,16 +183,17 @@ class _MyHomePageState extends State<MyHomePage> {
                               ));
                             },
                             child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 14, vertical: 4),
-                                child: Cardplan(
-                                  planname: plans![index].name.tr,
-                                  details:
-                                      "${plans[index].duration} Min - ${plans[index].gestureAmount} gestures",
-                                  imagePath: 'assets/images/ABS.png',
-                                  descriptionTopic: plans[index].name.tr,
-                                  descriptionDetail: plans[index].description,
-                                )),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 14, vertical: 4),
+                              child: Cardplan(
+                                planname: plans![index].name.tr,
+                                details:
+                                    "${plans[index].duration} Min - ${plans[index].gestureAmount} gestures",
+                                imagePath: 'assets/images/ABS.png',
+                                descriptionTopic: plans[index].name.tr,
+                                descriptionDetail: plans[index].description,
+                              ),
+                            ),
                           );
                         },
                       ),

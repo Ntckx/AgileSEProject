@@ -37,6 +37,7 @@ class Cardplan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String imagePath = _getImagePath(planname);
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -103,23 +104,44 @@ class Cardplan extends StatelessWidget {
           ),
         ));
   }
+  String _getImagePath(String planname){
+    if (planname == "ARMS" || planname == "แขน"){
+      return 'assets/images/ARMS.jpg';
+    }
+    else if (planname == "ABS" || planname == "กล้ามเนื้อหน้าท้อง"){
+      return 'assets/images/ABS.png';
+    }
+    else if (planname == "BACK & SHOULDER" || planname == "หลัง และ ไหล่"){
+      return 'assets/images/back_shoulder.jpg';
+    }
+    else if (planname == "LEGS" || planname == "ขา"){
+      return 'assets/images/Leg.jpg';
+    }
+    else if ( planname == "Sqaut"){
+      return 'assets/images/picture.png';
+    }
+    else{
+      return 'assets/images/Award.png';
+    }
+  }
 }
+
 
 class Workoutplan extends StatefulWidget {
   final Workout workout;
-  final String imagePath;
   final String planId;
   final String planname;
   final String email;
+  final String imagePath;
 
-  const Workoutplan(
-      {Key? key,
-      required this.workout,
-      required this.imagePath,
-      required this.planId,
-      required this.planname,
-      required this.email})
-      : super(key: key);
+  const Workoutplan({
+    Key? key,
+    required this.workout,
+    required this.planId,
+    required this.planname,
+    required this.email,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   State<Workoutplan> createState() => _WorkoutplanState();
@@ -127,6 +149,14 @@ class Workoutplan extends StatefulWidget {
 
 class _WorkoutplanState extends State<Workoutplan> {
   int _number = 0;
+  late String imagePath;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize imagePath here
+    imagePath = _getImageWorkoutPath(widget.planname);
+  }
 
   void addWorkout() async {
     CollectionReference collectionReference =
@@ -169,7 +199,7 @@ class _WorkoutplanState extends State<Workoutplan> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(widget.imagePath),
+                    image: AssetImage(imagePath),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -187,18 +217,13 @@ class _WorkoutplanState extends State<Workoutplan> {
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
-                     
                       ),
                     ),
-                    // Text(
-                    //   details,
-                    //   style: const TextStyle(color: Colors.black),
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: const  Icon(Icons.remove),
+                          icon: const Icon(Icons.remove),
                           onPressed: () {
                             if (_number > 0) {
                               setState(() {
@@ -242,7 +267,7 @@ class _WorkoutplanState extends State<Workoutplan> {
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                 ),
                 child: Text(
-                  '+ Add'.tr,
+                  '+ Add',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
@@ -256,7 +281,16 @@ class _WorkoutplanState extends State<Workoutplan> {
       ),
     );
   }
+
+  String _getImageWorkoutPath(String planname) {
+    if (planname == "Sqaut" || planname == "Push up") {
+      return 'assets/images/ARMS.jpg';
+    } else {
+      return 'assets/images/Award.png';
+    }
+  }
 }
+
 
 class NumberInputDialog extends StatefulWidget {
   const NumberInputDialog({super.key});

@@ -27,6 +27,8 @@ class WorkoutPlan {
     );
   }
 
+  get imagePath => null;
+
   void fetchGestureAmount() {
     gestureAmount = workouts.length;
   }

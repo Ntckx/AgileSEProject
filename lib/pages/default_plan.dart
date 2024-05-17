@@ -178,16 +178,28 @@ class _DefaultPlanState extends State<DefaultPlan> {
                           ],
                         ),
                         ListView.builder(
+                          
                           shrinkWrap: true,
                           itemCount: workouts?.length,
                           itemBuilder: (context, index) {
+                            String _getImagePath(String planname) {
+                              if (planname == "Squat") {
+                                return 'assets/images/ARMS.jpg';
+                              } else {
+                                return 'assets/images/Award.png';
+                              }
+                            }
+
                             return Padding(
+                              
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: Cardplan(
                                   planname: workouts![index].workoutName,
-                                  details: "${workouts[index].amount} ${'times'.tr}",
-                                  imagePath: 'assets/images/Bicycle2.jpg',
+                                  details:
+                                      "${workouts[index].amount} ${'times'.tr}",
+                                  imagePath: _getImagePath(
+                                      workouts[index].workoutName),
                                   descriptionTopic: workouts[index].workoutName,
                                   descriptionDetail:
                                       workouts[index].description),
@@ -212,7 +224,7 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                             double.parse(weight.toString()),
                                       )))));
                         },
-                        child:  SizedBox(
+                        child: SizedBox(
                           width: 300,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

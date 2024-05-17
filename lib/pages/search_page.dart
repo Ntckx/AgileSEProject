@@ -81,7 +81,7 @@ class MySearch extends StatelessWidget {
                           //         builder: (context) => AbsPage()));
                         },
                         child: const Cardplan(
-                          planname: 'Arms',
+                          planname: 'ARMS',
                           details: '30 Min - 25 gestures',
                           imagePath: 'assets/images/ARMS.jpg',
                           descriptionTopic: "Lorem",
