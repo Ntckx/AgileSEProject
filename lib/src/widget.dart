@@ -68,7 +68,7 @@ class Cardplan extends StatelessWidget {
                             content: SingleChildScrollView(
                               child: ListBody(
                                 children: <Widget>[
-                                  Text(descriptionDetail),
+                                  Text(descriptionDetail.tr),
                                 ],
                               ),
                             ),
