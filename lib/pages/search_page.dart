@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../src/widget.dart';
+import 'package:get/get.dart';
 
 class MySearch extends StatelessWidget {
   MySearch({super.key});
@@ -20,7 +21,7 @@ class MySearch extends StatelessWidget {
             TextField(
               controller: _textController,
               decoration: InputDecoration(
-                hintText: "Search...",
+                hintText: "Search...".tr,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),

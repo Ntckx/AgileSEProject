@@ -44,6 +44,11 @@ class LocaleString extends Translations {
           'Home':'Home',
           'Search':'Search',
           'Profile':'Profile',
+          'Cancel':'Cancel',
+          'OK':'OK',
+          'Search...':'Search...',
+          'Rank #':'Rank #',
+          'No weight':'No weight'
 
 
 
@@ -87,6 +92,11 @@ class LocaleString extends Translations {
           'Home':'หน้าหลัก',
           'Search':'ค้นหา',
           'Profile':'โปรไฟล์',
+          'Cancel':'ยกเลิก',
+          'OK':'ตกลง',
+          'Search...':'ค้นหา.....',
+          'Rank #':'อันดับ #',
+          'No weight':'ไม่มีน้ำหนัก'
 
         },
       };
