@@ -38,6 +38,8 @@ class LocaleString extends Translations {
           // 'Here is Your Plan': 'Here is Your @planname ',
           '+ Add': '+ Add',
           'Confirm': 'Confirm',
+          'Here is Your':'Here is Your',
+
 
 
         },
@@ -74,7 +76,7 @@ class LocaleString extends Translations {
           'Start': 'เริ่มต้น',
           '+ Add': '+ เพิ่มท่า',
           'Confirm': 'ยืนยัน',
-
+          'Here is Your':'นี่คือแผนของคุณ'
 
         },
       };
