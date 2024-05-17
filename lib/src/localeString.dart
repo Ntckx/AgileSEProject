@@ -39,6 +39,14 @@ class LocaleString extends Translations {
           '+ Add': '+ Add',
           'Confirm': 'Confirm',
           'Here is Your':'Here is Your',
+          '20 Min - 16 gestures':'20 Min - 16 gestures',
+          '30 Min - 25 gestures':'30 Min - 25 gestures',
+          'Min':'Min',
+          'gestures':'gestures',
+          'This month':'This month',
+          'Kcal':'Kcal',
+
+
 
 
 
@@ -76,7 +84,18 @@ class LocaleString extends Translations {
           'Start': 'เริ่มต้น',
           '+ Add': '+ เพิ่มท่า',
           'Confirm': 'ยืนยัน',
-          'Here is Your':'นี่คือแผนของคุณ'
+          'ABS':'ABS',
+          'Here is Your':'นี่คือแผนของคุณ',
+          '20 Min - 16 gestures':'20 นาที - 16 ท่า',
+          '30 Min - 25 gestures':'30 นาที - 25 ท่า',
+          'Min':'นาที',
+          'gestures':'ท่า',
+          'This month':'เดือนนี้',
+          'Kcal':'กิโลแคลอรี่',
+
+
+
+
 
         },
       };

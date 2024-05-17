@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         height: 1),
                                   ),
                                   Text(
-                                    'This month ${calories.toStringAsFixed(1)} Kcal',
+                                    '${'This month'.tr} ${calories.toStringAsFixed(1)} ${'Kcal'.tr}',
                                     style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -189,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Cardplan(
                                   planname: plans![index].name.tr,
                                   details:
-                                      "${plans[index].duration} Min - ${plans[index].gestureAmount} gestures",
+                                      "${plans[index].duration} ${'Min'.tr} - ${plans[index].gestureAmount} ${'gestures'.tr}",
                                   imagePath: 'assets/images/ABS.png',
                                   descriptionTopic: plans[index].name.tr,
                                   descriptionDetail: plans[index].description,
