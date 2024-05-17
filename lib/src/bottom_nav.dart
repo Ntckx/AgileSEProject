@@ -4,6 +4,7 @@ import 'package:flutter_application_1/pages/home_page.dart';
 import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/profile_page.dart';
 import 'package:flutter_application_1/pages/search_page.dart';
+import 'package:get/get.dart';
 
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({Key? key}) : super(key: key);
@@ -44,19 +45,19 @@ class _BottomNavPageState extends State<BottomNavPage> {
         items: [
           BottomNavigationBarItem(
             icon: _buildIcon(Icons.search, 0),
-            label: 'Search',
+            label: 'Search'.tr,
           ),
           BottomNavigationBarItem(
             icon: _buildIcon(Icons.home_outlined, 1),
-            label: 'Home',
+            label: 'Home'.tr,
           ),
           BottomNavigationBarItem(
             icon: _buildIcon(Icons.leaderboard_outlined, 2),
-            label: 'Rank',
+            label: 'Rank'.tr,
           ),
           BottomNavigationBarItem(
             icon: _buildIcon(Icons.account_circle_outlined, 3),
-            label: 'Profile',
+            label: 'Profile'.tr,
           ),
         ],
       ),

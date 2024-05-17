@@ -68,7 +68,7 @@ class Cardplan extends StatelessWidget {
                             content: SingleChildScrollView(
                               child: ListBody(
                                 children: <Widget>[
-                                  Text(descriptionDetail),
+                                  Text(descriptionDetail.tr),
                                 ],
                               ),
                             ),
@@ -305,7 +305,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Choose a Number'),
+      title:  Text('Choose a Number'.tr),
       content: SizedBox(
         height: 100, // Set the height here
         child: SingleChildScrollView(
@@ -348,7 +348,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child: const Text('Cancel'),
+                    child: Text('Cancel'.tr),
                   ),
                   const SizedBox(width: 10),
                   TextButton(
@@ -356,7 +356,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                       // print('Selected number: $_number');
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child: const Text('Ok'),
+                    child:  Text('OK'.tr),
                   ),
                 ],
               ),

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "186770024187",
+    "project_id": "ok-kam-langkai",
+    "storage_bucket": "ok-kam-langkai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186770024187:android:f0fb087b0abbdfbac3f25e",
+        "android_client_info": {
+          "package_name": "com.example.agile_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApAh2gxfln0_R_y1TFI86rfb6edoeO71M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186770024187:android:68c7f92f967a2d99c3f25e",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApAh2gxfln0_R_y1TFI86rfb6edoeO71M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

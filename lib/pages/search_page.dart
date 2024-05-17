@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../src/widget.dart';
+import 'package:get/get.dart';
+
+
 
 class MySearch extends StatelessWidget {
   MySearch({super.key});
@@ -20,7 +23,7 @@ class MySearch extends StatelessWidget {
             TextField(
               controller: _textController,
               decoration: InputDecoration(
-                hintText: "Search...",
+                hintText: "Search...".tr,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -57,9 +60,9 @@ class MySearch extends StatelessWidget {
                           //     MaterialPageRoute(
                           //         builder: (context) => AbsPage()));
                         },
-                        child: const Cardplan(
+                        child: Cardplan(
                           planname: 'ABS',
-                          details: '20 Min - 16 gestures',
+                          details: '20 Min - 16 gestures'.tr,
                           imagePath: 'assets/images/ABS.png',
                           descriptionTopic: "Lorem",
                           descriptionDetail:
@@ -80,9 +83,9 @@ class MySearch extends StatelessWidget {
                           //     MaterialPageRoute(
                           //         builder: (context) => AbsPage()));
                         },
-                        child: const Cardplan(
-                          planname: 'ARMS',
-                          details: '30 Min - 25 gestures',
+                        child: Cardplan(
+                          planname: 'Arms',
+                          details: '30 Min - 25 gestures'.tr,
                           imagePath: 'assets/images/ARMS.jpg',
                           descriptionTopic: "Lorem",
                           descriptionDetail:

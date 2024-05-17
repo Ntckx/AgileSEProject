@@ -38,8 +38,40 @@ class LocaleString extends Translations {
           // 'Here is Your Plan': 'Here is Your @planname ',
           '+ Add': '+ Add',
           'Confirm': 'Confirm',
-
-
+          'Here is Your': 'Here is Your',
+          "here_is_your_plan": "Here is Your {plan} Plan",
+          'Choose a Number': 'Choose a Number',
+          'Home': 'Home',
+          'Search': 'Search',
+          'Profile': 'Profile',
+          'Cancel': 'Cancel',
+          'OK': 'OK',
+          'Search...': 'Search...',
+          'Rank #': 'Rank #',
+          'No weight': 'No weight',
+          '20 Min - 16 gestures': '20 Min - 16 gestures',
+          '30 Min - 25 gestures': '30 Min - 25 gestures',
+          'Min': 'Min',
+          'gestures': 'gestures',
+          'This month': 'This month',
+          'Kcal': 'Kcal',
+          'Choose a Number': 'Choose a Number',
+          'Home': 'Home',
+          'Search': 'Search',
+          'Profile': 'Profile',
+          'Cancel': 'Cancel',
+          'OK': 'OK',
+          'Search...': 'Search...',
+          'Rank #': 'Rank #',
+          'No weight': 'No weight',
+          "Arms include biceps, triceps, and forearms. Strengthen them with exercises like bicep curls, tricep dips, and forearm curls using weights or resistance bands. Focus on proper form and gradually increase resistance for results.":
+              "Arms include biceps, triceps, and forearms. Strengthen them with exercises like bicep curls, tricep dips, and forearm curls using weights or resistance bands. Focus on proper form and gradually increase resistance for results.",
+          "Abs, short for abdominals, refer to the muscles in your midsection. They include the rectus abdominis, obliques, and transverse abdominis. Exercises like crunches, planks, and leg raises can help strengthen and define your abs. Focus on proper form and engage your core muscles throughout each movement for best results.":
+              "Abs, short for abdominals, refer to the muscles in your midsection. They include the rectus abdominis, obliques, and transverse abdominis. Exercises like crunches, planks, and leg raises can help strengthen and define your abs. Focus on proper form and engage your core muscles throughout each movement for best results.",
+          "A back and shoulder workout is designed to target the muscles in your back and shoulders, helping to improve strength, posture, and overall upper body development. This workout typically includes a variety of exercises that target different muscle groups within the back and shoulders.":
+              "A back and shoulder workout is designed to target the muscles in your back and shoulders, helping to improve strength, posture, and overall upper body development. This workout typically includes a variety of exercises that target different muscle groups within the back and shoulders.",
+          "The leg workout plan is designed to enhance lower body strength, muscle development, and overall athletic performance. It emphasizes compound movements like squats and lunges, targeting major muscle groups such as the quadriceps, hamstrings, glutes, and calves. These exercises not only build muscle but also improve balance, stability, and coordination.":
+              "The leg workout plan is designed to enhance lower body strength, muscle development, and overall athletic performance. It emphasizes compound movements like squats and lunges, targeting major muscle groups such as the quadriceps, hamstrings, glutes, and calves. These exercises not only build muscle but also improve balance, stability, and coordination."
         },
         'th_TH': {
           'Settings': 'การตั้งค่า',
@@ -53,11 +85,16 @@ class LocaleString extends Translations {
           'LeaderBoard': 'กระดานคะแนน',
           'Rank': 'อันดับ',
           'User': 'ชื่อ',
-          'Kcal': 'แคลลอรี่',
+          '20 Min - 16 gestures': '20 นาที - 16 ท่า',
+          '30 Min - 25 gestures': '30 นาที - 25 ท่า',
+          'Min': 'นาที',
+          'gestures': 'ท่า',
+          'This month': 'เดือนนี้',
+          'Kcal': 'แคลอรี่',
           'Statistic': 'สถิติ',
           'Minutes': 'นาที',
           'Workouts': 'จำนวณ',
-          'Start': 'เริ่ม',
+          // 'Start': 'เริ่ม',
           'DAY1': 'วันที่ 1',
           'Recommend Plan': 'แผลนที่แนะนำ',
           'Your own desire': 'หมวดหมู่ ออกกำลังกาย',
@@ -72,10 +109,26 @@ class LocaleString extends Translations {
           'Workout list': 'ท่าออกกำลังกาย',
           'times': 'ครั้ง',
           'Start': 'เริ่มต้น',
-          '+ Add': '+ เพิ่มท่า',
+          '+ Add': '+ เพิ่ม',
           'Confirm': 'ยืนยัน',
-
-
+          'Here is Your': 'นี่คือแผนของคุณ',
+          'Choose a Number': 'ใส่ตัวเลข',
+          'Home': 'หน้าหลัก',
+          'Search': 'ค้นหา',
+          'Profile': 'โปรไฟล์',
+          'Cancel': 'ยกเลิก',
+          'OK': 'ตกลง',
+          'Search...': 'ค้นหา.....',
+          'Rank #': 'อันดับ #',
+          'No weight': 'ไม่มีน้ำหนัก',
+          "Arms include biceps, triceps, and forearms. Strengthen them with exercises like bicep curls, tricep dips, and forearm curls using weights or resistance bands. Focus on proper form and gradually increase resistance for results.":
+              "แขนประกอบด้วยไบเซบ ไทรเซบ และท่อนแขน เสริมความแข็งแรงด้วยการออกกำลังกาย เช่น ไบเซปเคิร์ล ไทรเซพดิป และฟอร์มอาร์มโดยใช้ตุ้มน้ำหนักหรือยางยืดออกกำลังกาย เน้นที่รูปร่างที่เหมาะสมและค่อยๆ เพิ่มแรงต้านเพื่อให้ได้ผลลัพธ์",
+          "Abs, short for abdominals, refer to the muscles in your midsection. They include the rectus abdominis, obliques, and transverse abdominis. Exercises like crunches, planks, and leg raises can help strengthen and define your abs. Focus on proper form and engage your core muscles throughout each movement for best results.":
+              "หน้าท้อง ย่อมาจาก Abdominis หมายถึงกล้ามเนื้อบริเวณช่วงกลางลำตัว ซึ่งได้แก่ หน้าท้องแบบเรกตัส หน้าท้องเฉียง และหน้าท้องตามขวาง การออกกำลังกายอย่างท่าครันช์ แพลงก์ และการยกขาสามารถช่วยเสริมสร้างและกำหนดหน้าท้องของคุณได้ เน้นที่รูปร่างที่เหมาะสมและมีส่วนร่วม กล้ามเนื้อแกนกลางของคุณตลอดการเคลื่อนไหวแต่ละครั้งเพื่อผลลัพธ์ที่ดีที่สุด",
+          "A back and shoulder workout is designed to target the muscles in your back and shoulders, helping to improve strength, posture, and overall upper body development. This workout typically includes a variety of exercises that target different muscle groups within the back and shoulders.":
+              "การออกกำลังกายหลังและไหล่ได้รับการออกแบบมาเพื่อเน้นที่กล้ามเนื้อหลังและไหล่ของคุณ ซึ่งช่วยปรับปรุงความแข็งแรง ท่าทาง และการพัฒนาร่างกายส่วนบนโดยรวม การออกกำลังกายนี้มักประกอบด้วยการออกกำลังกายที่หลากหลายซึ่งมุ่งเป้าไปที่กลุ่มกล้ามเนื้อต่างๆ ภายในหลังและไหล่ ",
+          "The leg workout plan is designed to enhance lower body strength, muscle development, and overall athletic performance. It emphasizes compound movements like squats and lunges, targeting major muscle groups such as the quadriceps, hamstrings, glutes, and calves. These exercises not only build muscle but also improve balance, stability, and coordination.":
+              "แผนการออกกำลังกายขาได้รับการออกแบบมาเพื่อเพิ่มความแข็งแรงของร่างกายส่วนล่าง การพัฒนากล้ามเนื้อ และประสิทธิภาพการกีฬาโดยรวม โดยเน้นการเคลื่อนไหวแบบผสมผสาน เช่น สควอทและลันจ์ โดยกำหนดเป้าหมายไปที่กลุ่มกล้ามเนื้อหลัก เช่น ควอดริเซบ เอ็นร้อยหวาย ก้น และน่อง การออกกำลังกายเหล่านี้ไม่เพียงแต่ สร้างกล้ามเนื้อ แต่ยังปรับปรุงความสมดุล ความมั่นคง และการประสานงาน"
         },
       };
 }
