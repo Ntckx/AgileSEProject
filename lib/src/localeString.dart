@@ -38,18 +38,32 @@ class LocaleString extends Translations {
           // 'Here is Your Plan': 'Here is Your @planname ',
           '+ Add': '+ Add',
           'Confirm': 'Confirm',
-          'Here is Your':'Here is Your',
-          '20 Min - 16 gestures':'20 Min - 16 gestures',
-          '30 Min - 25 gestures':'30 Min - 25 gestures',
-          'Min':'Min',
-          'gestures':'gestures',
-          'This month':'This month',
-          'Kcal':'Kcal',
-
-
-
-
-
+          'Here is Your': 'Here is Your',
+          "here_is_your_plan": "Here is Your {plan} Plan",
+          'Choose a Number': 'Choose a Number',
+          'Home': 'Home',
+          'Search': 'Search',
+          'Profile': 'Profile',
+          'Cancel': 'Cancel',
+          'OK': 'OK',
+          'Search...': 'Search...',
+          'Rank #': 'Rank #',
+          'No weight': 'No weight',
+          '20 Min - 16 gestures': '20 Min - 16 gestures',
+          '30 Min - 25 gestures': '30 Min - 25 gestures',
+          'Min': 'Min',
+          'gestures': 'gestures',
+          'This month': 'This month',
+          'Kcal': 'Kcal',
+          'Choose a Number': 'Choose a Number',
+          'Home': 'Home',
+          'Search': 'Search',
+          'Profile': 'Profile',
+          'Cancel': 'Cancel',
+          'OK': 'OK',
+          'Search...': 'Search...',
+          'Rank #': 'Rank #',
+          'No weight': 'No weight'
         },
         'th_TH': {
           'Settings': 'การตั้งค่า',
@@ -63,7 +77,12 @@ class LocaleString extends Translations {
           'LeaderBoard': 'กระดานคะแนน',
           'Rank': 'อันดับ',
           'User': 'ชื่อ',
-          'Kcal': 'แคลลอรี่',
+          '20 Min - 16 gestures': '20 นาที - 16 ท่า',
+          '30 Min - 25 gestures': '30 นาที - 25 ท่า',
+          'Min': 'นาที',
+          'gestures': 'ท่า',
+          'This month': 'เดือนนี้',
+          'Kcal': 'แคลอรี่',
           'Statistic': 'สถิติ',
           'Minutes': 'นาที',
           'Workouts': 'จำนวณ',
@@ -84,8 +103,16 @@ class LocaleString extends Translations {
           'Start': 'เริ่มต้น',
           '+ Add': '+ เพิ่มท่า',
           'Confirm': 'ยืนยัน',
-          'Here is Your':'นี่คือแผนของคุณ'
-
+          'Here is Your': 'นี่คือแผนของคุณ',
+          'Choose a Number': 'ใส่ตัวเลข',
+          'Home': 'หน้าหลัก',
+          'Search': 'ค้นหา',
+          'Profile': 'โปรไฟล์',
+          'Cancel': 'ยกเลิก',
+          'OK': 'ตกลง',
+          'Search...': 'ค้นหา.....',
+          'Rank #': 'อันดับ #',
+          'No weight': 'ไม่มีน้ำหนัก'
         },
       };
 }

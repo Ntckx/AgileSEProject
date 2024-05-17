@@ -315,7 +315,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child: const Text('Cancel'),
+                    child: Text('Cancel'.tr),
                   ),
                   const SizedBox(width: 10),
                   TextButton(
@@ -323,7 +323,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                       // print('Selected number: $_number');
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child: const Text('Ok'),
+                    child:  Text('OK'.tr),
                   ),
                 ],
               ),

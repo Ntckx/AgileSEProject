@@ -23,7 +23,7 @@ class MySearch extends StatelessWidget {
             TextField(
               controller: _textController,
               decoration: InputDecoration(
-                hintText: "Search...",
+                hintText: "Search...".tr,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),
