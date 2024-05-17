@@ -221,13 +221,13 @@ class _DefaultPlanState extends State<DefaultPlan> {
                             children: <Widget>[
                               Text(
                                 'Start'.tr,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(width: 10),
-                              Icon(
+                              const SizedBox(width: 10),
+                              const Icon(
                                 Icons.check_circle_outline_rounded,
                                 color: Colors.white,
                                 size: 30,

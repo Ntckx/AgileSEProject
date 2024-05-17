@@ -37,6 +37,7 @@ class Cardplan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -271,7 +272,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Choose a Number'),
+      title:  Text('Choose a Number'.tr),
       content: SizedBox(
         height: 100, // Set the height here
         child: SingleChildScrollView(
