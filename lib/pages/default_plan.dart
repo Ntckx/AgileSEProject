@@ -115,9 +115,9 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                           size: 30, color: Colors.white),
                                     ),
                                   ),
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      'Good Choice',
+                                      'Good Choice'.tr,
                                       style: TextStyle(
                                           fontSize: 40,
                                           fontWeight: FontWeight.bold,
@@ -127,7 +127,9 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                   ),
                                   Center(
                                     child: Text(
-                                      'Here is Your ${widget.plan.name} Plan',
+                                      Get.locale?.languageCode == 'th'
+                                          ? '${"Here is Your".tr} ${widget.plan.name}'
+                                          : 'Here is Your ${widget.plan.name} Plan',
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
