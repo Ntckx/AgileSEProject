@@ -39,6 +39,11 @@ class LocaleString extends Translations {
           '+ Add': '+ Add',
           'Confirm': 'Confirm',
           'Here is Your':'Here is Your',
+          "here_is_your_plan": "Here is Your {plan} Plan",
+          'Choose a Number':'Choose a Number',
+          'Home':'Home',
+          'Search':'Search',
+          'Profile':'Profile',
 
 
 
@@ -76,7 +81,12 @@ class LocaleString extends Translations {
           'Start': 'เริ่มต้น',
           '+ Add': '+ เพิ่มท่า',
           'Confirm': 'ยืนยัน',
-          'Here is Your':'นี่คือแผนของคุณ'
+          'Here is Your':'นี่คือแผนของคุณ',
+          "here_is_your_plan": "นี่คือแผน {plan} ของคุณ",
+          'Choose a Number':'ใส่ตัวเลข',
+          'Home':'หน้าหลัก',
+          'Search':'ค้นหา',
+          'Profile':'โปรไฟล์',
 
         },
       };
