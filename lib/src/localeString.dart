@@ -69,7 +69,7 @@ class LocaleString extends Translations {
           'Statistic': 'สถิติ',
           'Minutes': 'นาที',
           'Workouts': 'จำนวณ',
-          'Start': 'เริ่ม',
+          // 'Start': 'เริ่ม',
           'DAY1': 'วันที่ 1',
           'Recommend Plan': 'แผลนที่แนะนำ',
           'Your own desire': 'หมวดหมู่ ออกกำลังกาย',
