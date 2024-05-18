@@ -130,7 +130,7 @@ class EditWorkoutABS extends StatelessWidget {
             if (workoutName == 'Push up') {
               return 'assets/images/Pushup1.jpg';
             } else if (workoutName == 'Bicycle Crunches') {
-              return 'assets/images/BicycleCrunches.png';
+              return 'assets/images/BicycleC.jpg';
             } else if (workoutName == 'Squat') {
               return 'assets/images/Squat.jpg';
             } else {
