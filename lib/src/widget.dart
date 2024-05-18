@@ -38,6 +38,7 @@ class Cardplan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String imagePath = _getImagePath(planname);
+
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -108,6 +109,12 @@ class Cardplan extends StatelessWidget {
     if (planname == "ARMS" || planname == "แขน"){
       return 'assets/images/ARMS.jpg';
     }
+    else if(planname == "Squat"){
+      return 'assets/images/Squat.jpg';
+    }
+    else if(planname == "Bicycle Crunches"){
+      return 'assets/images/Bicycle2.jpg';
+    }
     else if (planname == "ABS" || planname == "กล้ามเนื้อหน้าท้อง"){
       return 'assets/images/ABS.png';
     }
@@ -117,12 +124,13 @@ class Cardplan extends StatelessWidget {
     else if (planname == "LEGS" || planname == "ขา"){
       return 'assets/images/Leg.jpg';
     }
-    else if ( planname == "Sqaut"){
-      return 'assets/images/picture.png';
+    else if (planname == "Push up"){
+      return 'assets/images/Pushup1.jpg';
     }
     else{
       return 'assets/images/Award.png';
     }
+
   }
 }
 
@@ -149,13 +157,13 @@ class Workoutplan extends StatefulWidget {
 
 class _WorkoutplanState extends State<Workoutplan> {
   int _number = 0;
-  late String imagePath;
+  late String imagePathWorkout;
 
   @override
   void initState() {
     super.initState();
     // Initialize imagePath here
-    imagePath = _getImageWorkoutPath(widget.planname);
+    imagePathWorkout = _getImageWorkoutPath(widget.workout.workoutName);
   }
 
   void addWorkout() async {
@@ -178,6 +186,7 @@ class _WorkoutplanState extends State<Workoutplan> {
 
   @override
   Widget build(BuildContext context) {
+    String imagePathWorkout = _getImageWorkoutPath(widget.workout.workoutName);
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: Container(
@@ -199,7 +208,7 @@ class _WorkoutplanState extends State<Workoutplan> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(imagePath),
+                    image: AssetImage(imagePathWorkout),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -281,14 +290,14 @@ class _WorkoutplanState extends State<Workoutplan> {
       ),
     );
   }
-
-  String _getImageWorkoutPath(String planname) {
-    if (planname == "Sqaut" || planname == "Push up") {
-      return 'assets/images/ARMS.jpg';
+  String _getImageWorkoutPath(String workoutName) {
+    if (workoutName == "Sqaut") {
+      return 'assets/images/Squat.jpg';
     } else {
       return 'assets/images/Award.png';
     }
   }
+
 }
 
 

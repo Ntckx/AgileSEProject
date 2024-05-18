@@ -83,15 +83,16 @@ flutter:
     - assets/images/Android_Icon.png
 
     - assets/images/Workout#1.png
-    - assets/images/Cat.jpg
+    # - assets/images/Cat.jpg
     - assets/images/ABS.png
     - assets/images/ARMS.jpg
-    - assets/gif/Bicycle.gif
+    # - assets/gif/Bicycle.gif
     - assets/images/Award.png
     - assets/images/picture.png
     - assets/images/BicycleCrunches.png
     - assets/images/pushup.png
     - assets/images/Award.png 
+    - assets/images/Squat.jpg
 
     - assets/images/Bicycle2.jpg
     - assets/images/Pushup1.jpg
