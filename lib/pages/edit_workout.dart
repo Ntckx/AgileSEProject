@@ -53,14 +53,15 @@ class EditWorkoutABS extends StatelessWidget {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset(
+            
+                
+                     Image.asset(
                       'images/picture.png',
-                      width: 500,
+          
+                    
                       fit: BoxFit.cover,
                     ),
-                  ),
+                 
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -136,18 +137,21 @@ class EditWorkoutABS extends StatelessWidget {
               return 'assets/images/Award.png';
             }
           }
-                  return WorkoutItemWithDeleteConfirmation(
-                    workoutName: workouts[index].workoutName,
-                    amount: workouts[index].amount,
-                    workoutId: workouts[index].workoutId,
-                    imagePath: _getImageWorkoutPath(workouts[index].workoutName),
-                    onTimesChanged: (workoutId, times) {
-                      if (!updatedWorkouts.containsKey(workoutId)) {
-                        updatedWorkouts[workoutId] = times;
-                      } else {
-                        updatedWorkouts.addAll({workoutId: times});
-                      }
-                    },
+                  return SizedBox(
+                    height: 170,
+                    child: WorkoutItemWithDeleteConfirmation(
+                      workoutName: workouts[index].workoutName,
+                      amount: workouts[index].amount,
+                      workoutId: workouts[index].workoutId,
+                      imagePath: _getImageWorkoutPath(workouts[index].workoutName),
+                      onTimesChanged: (workoutId, times) {
+                        if (!updatedWorkouts.containsKey(workoutId)) {
+                          updatedWorkouts[workoutId] = times;
+                        } else {
+                          updatedWorkouts.addAll({workoutId: times});
+                        }
+                      },
+                    ),
                   );
                 },
               ),
@@ -251,14 +255,18 @@ class _WorkoutItemWithDeleteConfirmationState
     return Stack(
       alignment: Alignment.center,
       children: [
-        ClipRRect(
+        
+         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
+          child:  Image.asset(
             widget.imagePath,
-            width: 500,
+            width: 400,
+            height: 150,
             fit: BoxFit.cover,
           ),
-        ),
+         ),
+          
+       
         Positioned(
           right: 10.0,
           top: 10.0,
