@@ -139,6 +139,7 @@ flutter:
     - assets/images/back_shoulder.jpg
     - assets/images/Leg.jpg
     - assets/images/BicycleC.jpg
+    - assets/images/WorkoutImage/Sqaut_Leg.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
