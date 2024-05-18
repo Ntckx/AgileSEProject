@@ -125,11 +125,22 @@ class EditWorkoutABS extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: workouts.length,
                 itemBuilder: (context, index) {
+                String _getImageWorkoutPath(String workoutName) {
+            if (workoutName == 'Push up') {
+              return 'assets/images/Pushup1.jpg';
+            } else if (workoutName == 'Bicycle Crunches') {
+              return 'assets/images/BicycleCrunches.png';
+            } else if (workoutName == 'Squat') {
+              return 'assets/images/Squat.jpg';
+            } else {
+              return 'assets/images/Award.png';
+            }
+          }
                   return WorkoutItemWithDeleteConfirmation(
                     workoutName: workouts[index].workoutName,
                     amount: workouts[index].amount,
                     workoutId: workouts[index].workoutId,
-                    imagePath: 'assets/images/BicycleCrunches.png',
+                    imagePath: _getImageWorkoutPath(workouts[index].workoutName),
                     onTimesChanged: (workoutId, times) {
                       if (!updatedWorkouts.containsKey(workoutId)) {
                         updatedWorkouts[workoutId] = times;

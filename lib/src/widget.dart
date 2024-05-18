@@ -85,8 +85,8 @@ class Cardplan extends StatelessWidget {
                         },
                       );
                     },
-                    icon:
-                        const Icon(Icons.info_outline, size: 30, color: Colors.white),
+                    icon: const Icon(Icons.info_outline,
+                        size: 30, color: Colors.white),
                   ),
                 ),
               ),
@@ -105,35 +105,27 @@ class Cardplan extends StatelessWidget {
           ),
         ));
   }
-  String _getImagePath(String planname){
-    if (planname == "ARMS" || planname == "แขน"){
+
+  String _getImagePath(String planname) {
+    if (planname == "ARMS" || planname == "แขน") {
       return 'assets/images/ARMS.jpg';
-    }
-    else if(planname == "Squat"){
+    } else if (planname == "Squat") {
       return 'assets/images/Squat.jpg';
-    }
-    else if(planname == "Bicycle Crunches"){
+    } else if (planname == "Bicycle Crunches") {
       return 'assets/images/Bicycle2.jpg';
-    }
-    else if (planname == "ABS" || planname == "กล้ามเนื้อหน้าท้อง"){
+    } else if (planname == "ABS" || planname == "กล้ามเนื้อหน้าท้อง") {
       return 'assets/images/ABS.png';
-    }
-    else if (planname == "BACK & SHOULDER" || planname == "หลัง และ ไหล่"){
+    } else if (planname == "BACK & SHOULDER" || planname == "หลัง และ ไหล่") {
       return 'assets/images/back_shoulder.jpg';
-    }
-    else if (planname == "LEGS" || planname == "ขา"){
+    } else if (planname == "LEGS" || planname == "ขา") {
       return 'assets/images/Leg.jpg';
-    }
-    else if (planname == "Push up"){
+    } else if (planname == "Push up") {
       return 'assets/images/Pushup1.jpg';
-    }
-    else{
+    } else {
       return 'assets/images/Award.png';
     }
-
   }
 }
-
 
 class Workoutplan extends StatefulWidget {
   final Workout workout;
@@ -290,21 +282,19 @@ class _WorkoutplanState extends State<Workoutplan> {
       ),
     );
   }
+
   String _getImageWorkoutPath(String workoutName) {
     if (workoutName == 'Push up') {
       return 'assets/images/Pushup1.jpg';
-    } else if(workoutName == 'Bicycle Crunches'){
+    } else if (workoutName == 'Bicycle Crunches') {
       return 'assets/images/BicycleCrunches.png';
-    } else if(workoutName == 'Squat'){
+    } else if (workoutName == 'Squat') {
       return 'assets/images/Squat.jpg';
-    }
-    else {
+    } else {
       return 'assets/images/Award.png';
     }
   }
-
 }
-
 
 class NumberInputDialog extends StatefulWidget {
   const NumberInputDialog({super.key});
@@ -319,7 +309,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title:  Text('Choose a Number'.tr),
+      title: Text('Choose a Number'.tr),
       content: SizedBox(
         height: 100, // Set the height here
         child: SingleChildScrollView(
@@ -370,7 +360,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                       // print('Selected number: $_number');
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child:  Text('OK'.tr),
+                    child: Text('OK'.tr),
                   ),
                 ],
               ),
@@ -411,12 +401,15 @@ class Calcard extends StatelessWidget {
               ),
               Text(
                 posture,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(amount,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
               Text("${kcal.toStringAsFixed(2)}kcal",
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           )),
     );
