@@ -291,9 +291,14 @@ class _WorkoutplanState extends State<Workoutplan> {
     );
   }
   String _getImageWorkoutPath(String workoutName) {
-    if (workoutName == "Sqaut") {
+    if (workoutName == 'Push up') {
+      return 'assets/images/Pushup1.jpg';
+    } else if(workoutName == 'Bicycle Crunches'){
+      return 'assets/images/BicycleCrunches.png';
+    } else if(workoutName == 'Squat'){
       return 'assets/images/Squat.jpg';
-    } else {
+    }
+    else {
       return 'assets/images/Award.png';
     }
   }
