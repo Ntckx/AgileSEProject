@@ -14,6 +14,7 @@ class Workout {
       this.description = '',
       this.workoutId = ''});
 
+  
   factory Workout.fromFirestore(DocumentSnapshot doc, {String workoutId = ''}) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Workout(

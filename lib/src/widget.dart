@@ -282,8 +282,8 @@ class _WorkoutplanState extends State<Workoutplan> {
     );
   }
 
-  String _getImageWorkoutPath(String planname) {
-    if (planname == "Sqaut" || planname == "Push up") {
+  String _getImageWorkoutPath(String workoutName) {
+    if (workoutName == 'Sqaut' || workoutName == 'Push up') {
       return 'assets/images/ARMS.jpg';
     } else {
       return 'assets/images/Award.png';
