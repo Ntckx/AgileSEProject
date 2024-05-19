@@ -19,7 +19,7 @@ class WorkoutPlan {
   factory WorkoutPlan.fromFirestore(Map<String, dynamic> map, String planId) {
     return WorkoutPlan(
       name: map['planname'] ?? 'no name',
-      duration: map['duration'] ?? 0,
+      duration: (map['duration'] ?? 0).toDouble(),
       gestureAmount: map['gestureAmount'] ?? 0,
       description: map['description'] ?? '',
       planId: planId,

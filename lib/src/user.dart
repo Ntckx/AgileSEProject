@@ -22,7 +22,7 @@ class AppUser {
       username: userData['username'] ?? '',
       email: userData['email'] ?? '',
       password: userData['password'] ?? '',
-      caloriesBurn: userData['caloriesBurn'] ?? 0.0,
+      caloriesBurn: (userData['caloriesBurn'] ?? 0.0).toDouble(),
       timeSpend: userData['timeSpend'] ?? 0,
       workoutsAmount: userData['workoutsAmount'] ?? 0,
     );
