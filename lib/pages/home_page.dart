@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/pages/default_plan.dart';
 import 'package:flutter_application_1/pages/recommendedplan.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
@@ -30,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
           await userRef.get() as DocumentSnapshot<Map<String, dynamic>>;
 
       Map<String, dynamic>? userData = snapshot.data();
-      calories = userData?['caloriesBurn'] ?? 0;
+      calories = (userData?['caloriesBurn'] ?? 0).toDouble();
       // print("Calories : " + calories.toString());
     } catch (err) {
       print(err);
@@ -53,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // print("Each plan Info : $data");
       }
     } catch (err) {
-      print("Error : $err");
+      print("Error for query : $err");
     }
 
     return planInfo;
@@ -140,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Center(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white,
+                                            backgroundColor: Colors.white,
                                             minimumSize: const Size(300, 40)),
                                         onPressed: () {
                                           Navigator.push(context,
@@ -152,7 +153,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                         },
                                         child: Text(
                                           'Start'.tr,
-                            
                                         ),
                                       ),
                                     ),
@@ -171,6 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       ListView.builder(
                         shrinkWrap: true,
+                        physics: const ClampingScrollPhysics(),
                         itemCount: plans?.length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
@@ -189,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 child: Cardplan(
                                   planname: plans![index].name.tr,
                                   details:
-                                      "${plans[index].duration} Min - ${plans[index].gestureAmount} gestures",
+                                      "${plans[index].duration.toString()} Min - ${plans[index].gestureAmount.toString()} gestures",
                                   imagePath: 'assets/images/ABS.png',
                                   descriptionTopic: plans[index].name.tr,
                                   descriptionDetail: plans[index].description,

@@ -47,6 +47,7 @@ class _DefaultPlanState extends State<DefaultPlan> {
           .collection('workouts')
           .where('planId', isEqualTo: planId)
           .get();
+      print("workout : $workouts");
 
       workouts = snapshot.docs.map((doc) {
         String workoutId = doc.id;
@@ -142,10 +143,10 @@ class _DefaultPlanState extends State<DefaultPlan> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Padding(
+                            Padding(
                               padding: EdgeInsets.only(top: 25, left: 20),
                               child: Text(
                                 "Workout list",
@@ -153,31 +154,11 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 25, right: 20),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      return EditWorkoutABS(
-                                        workouts: workouts as List<Workout>,
-                                        planId: widget.plan.planId,
-                                        planname: widget.plan.name,
-                                      );
-                                    },
-                                  ));
-                                },
-                                child: const Icon(
-                                  Icons.edit,
-                                  size: 25,
-                                ),
-                              ),
-                            )
                           ],
                         ),
                         ListView.builder(
                           shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(),
                           itemCount: workouts?.length,
                           itemBuilder: (context, index) {
                             return Padding(

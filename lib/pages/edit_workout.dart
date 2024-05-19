@@ -7,18 +7,33 @@ import 'package:flutter_application_1/pages/recommendedplan.dart';
 import 'package:flutter_application_1/pages/workoutoption_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 
-class EditWorkoutABS extends StatelessWidget {
+class EditWorkoutABS extends StatefulWidget {
   final List<Workout> workouts;
   final String planId;
   final String planname;
-  Map<String, int> updatedWorkouts = {};
-  User? user = FirebaseAuth.instance.currentUser;
 
   EditWorkoutABS(
       {super.key,
       required this.workouts,
       required this.planId,
       required this.planname});
+
+  @override
+  State<EditWorkoutABS> createState() => _EditWorkoutABSState();
+}
+
+class _EditWorkoutABSState extends State<EditWorkoutABS> {
+  Map<String, int> updatedWorkouts = {};
+
+  User? user = FirebaseAuth.instance.currentUser;
+
+  UniqueKey _key = UniqueKey();
+
+  void reloadWidget() {
+    setState(() {
+      _key = UniqueKey();
+    });
+  }
 
   Future<void> updateWorkoutInformation(Map<String, int> updateWorkout) async {
     WriteBatch batch = FirebaseFirestore.instance.batch();
@@ -40,6 +55,7 @@ class EditWorkoutABS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _key,
       appBar: AppBar(
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
@@ -55,7 +71,7 @@ class EditWorkoutABS extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      'images/picture.png',
+                      'assets/images/picture.png',
                       width: 500,
                       fit: BoxFit.cover,
                     ),
@@ -70,7 +86,7 @@ class EditWorkoutABS extends StatelessWidget {
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text('Here is Your $planname Plan',
+                      Text('Here is Your ${widget.planname} Plan',
                           style: const TextStyle(
                               fontSize: 20,
                               color: Colors.white,
@@ -99,8 +115,8 @@ class EditWorkoutABS extends StatelessWidget {
                           Navigator.push(context, MaterialPageRoute(
                             builder: (context) {
                               return MyWorkoutPlanOption(
-                                planId: planId,
-                                planname: planname,
+                                planId: widget.planId,
+                                planname: widget.planname,
                                 email: user!.email.toString().trim(),
                               );
                             },
@@ -120,12 +136,13 @@ class EditWorkoutABS extends StatelessWidget {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                itemCount: workouts.length,
+                physics: const ClampingScrollPhysics(),
+                itemCount: widget.workouts.length,
                 itemBuilder: (context, index) {
                   return WorkoutItemWithDeleteConfirmation(
-                    workoutName: workouts[index].workoutName,
-                    amount: workouts[index].amount,
-                    workoutId: workouts[index].workoutId,
+                    workoutName: widget.workouts[index].workoutName,
+                    amount: widget.workouts[index].amount,
+                    workoutId: widget.workouts[index].workoutId,
                     imagePath: 'assets/images/BicycleCrunches.png',
                     onTimesChanged: (workoutId, times) {
                       if (!updatedWorkouts.containsKey(workoutId)) {

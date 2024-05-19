@@ -62,6 +62,7 @@ class CaloriesPage extends StatelessWidget {
               //Card
               ListView.builder(
                 shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
                 itemCount: plan.workouts.length,
                 itemBuilder: (context, index) {
                   return Padding(

@@ -14,6 +14,8 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  // await dotenv.load(fileName: '.env');
+
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? localeCode = prefs.getString('locale') ?? 'en_US';
   List<String> localeParts = localeCode.split('_');
@@ -39,7 +41,8 @@ class MyApp extends StatelessWidget {
             locale: initialLocale,
             fallbackLocale: const Locale('en', 'US'),
             themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
-            darkTheme: notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
+            darkTheme:
+                notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
             theme: ThemeData(
               textTheme: GoogleFonts.robotoTextTheme(),
               useMaterial3: true,
