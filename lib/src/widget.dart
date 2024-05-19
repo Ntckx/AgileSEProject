@@ -37,6 +37,8 @@ class Cardplan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String imagePath = _getImagePath(planname);
+
     return Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -67,7 +69,7 @@ class Cardplan extends StatelessWidget {
                             content: SingleChildScrollView(
                               child: ListBody(
                                 children: <Widget>[
-                                  Text(descriptionDetail),
+                                  Text(descriptionDetail.tr),
                                 ],
                               ),
                             ),
@@ -83,8 +85,8 @@ class Cardplan extends StatelessWidget {
                         },
                       );
                     },
-                    icon:
-                        const Icon(Icons.info_outline, size: 30, color: Colors.white),
+                    icon: const Icon(Icons.info_outline,
+                        size: 30, color: Colors.white),
                   ),
                 ),
               ),
@@ -103,23 +105,43 @@ class Cardplan extends StatelessWidget {
           ),
         ));
   }
+
+  String _getImagePath(String planname) {
+    if (planname == "ARMS" || planname == "แขน") {
+      return 'assets/images/ARMS.jpg';
+    } else if (planname == "Squat") {
+      return 'assets/images/Squat.jpg';
+    } else if (planname == "Bicycle Crunches") {
+      return 'assets/images/Bicycle2.jpg';
+    } else if (planname == "ABS" || planname == "กล้ามเนื้อหน้าท้อง") {
+      return 'assets/images/ABS.png';
+    } else if (planname == "BACK & SHOULDER" || planname == "หลัง และ ไหล่") {
+      return 'assets/images/back_shoulder.jpg';
+    } else if (planname == "LEGS" || planname == "ขา") {
+      return 'assets/images/Leg.jpg';
+    } else if (planname == "Push up") {
+      return 'assets/images/Pushup1.jpg';
+    } else {
+      return 'assets/images/Award.png';
+    }
+  }
 }
 
 class Workoutplan extends StatefulWidget {
   final Workout workout;
-  final String imagePath;
   final String planId;
   final String planname;
   final String email;
+  final String imagePath;
 
-  const Workoutplan(
-      {Key? key,
-      required this.workout,
-      required this.imagePath,
-      required this.planId,
-      required this.planname,
-      required this.email})
-      : super(key: key);
+  const Workoutplan({
+    Key? key,
+    required this.workout,
+    required this.planId,
+    required this.planname,
+    required this.email,
+    required this.imagePath,
+  }) : super(key: key);
 
   @override
   State<Workoutplan> createState() => _WorkoutplanState();
@@ -127,6 +149,14 @@ class Workoutplan extends StatefulWidget {
 
 class _WorkoutplanState extends State<Workoutplan> {
   int _number = 0;
+  late String imagePathWorkout;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize imagePath here
+    imagePathWorkout = _getImageWorkoutPath(widget.workout.workoutName);
+  }
 
   void addWorkout() async {
     CollectionReference collectionReference =
@@ -148,6 +178,7 @@ class _WorkoutplanState extends State<Workoutplan> {
 
   @override
   Widget build(BuildContext context) {
+    String imagePathWorkout = _getImageWorkoutPath(widget.workout.workoutName);
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: Container(
@@ -169,7 +200,7 @@ class _WorkoutplanState extends State<Workoutplan> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   image: DecorationImage(
-                    image: AssetImage(widget.imagePath),
+                    image: AssetImage(imagePathWorkout),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -187,18 +218,13 @@ class _WorkoutplanState extends State<Workoutplan> {
                       style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
-                     
                       ),
                     ),
-                    // Text(
-                    //   details,
-                    //   style: const TextStyle(color: Colors.black),
-                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
-                          icon: const  Icon(Icons.remove),
+                          icon: const Icon(Icons.remove),
                           onPressed: () {
                             if (_number > 0) {
                               setState(() {
@@ -241,8 +267,8 @@ class _WorkoutplanState extends State<Workoutplan> {
                   backgroundColor: MaterialStateProperty.all(Colors.orange),
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                 ),
-                child: const Text(
-                  'ADD +',
+                child: Text(
+                  '+ Add',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 14,
@@ -255,6 +281,18 @@ class _WorkoutplanState extends State<Workoutplan> {
         ),
       ),
     );
+  }
+
+  String _getImageWorkoutPath(String workoutName) {
+    if (workoutName == 'Push up') {
+      return 'assets/images/Pushup1.jpg';
+    } else if (workoutName == 'Bicycle Crunches') {
+      return 'assets/images/BicycleCrunches.png';
+    } else if (workoutName == 'Squat') {
+      return 'assets/images/Squat.jpg';
+    } else {
+      return 'assets/images/Award.png';
+    }
   }
 }
 
@@ -271,7 +309,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Choose a Number'),
+      title: Text('Choose a Number'.tr),
       content: SizedBox(
         height: 100, // Set the height here
         child: SingleChildScrollView(
@@ -314,7 +352,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child: const Text('Cancel'),
+                    child: Text('Cancel'.tr),
                   ),
                   const SizedBox(width: 10),
                   TextButton(
@@ -322,7 +360,7 @@ class _NumberInputDialogState extends State<NumberInputDialog> {
                       // print('Selected number: $_number');
                       Navigator.of(context).pop(); // Close the dialog
                     },
-                    child: const Text('Ok'),
+                    child: Text('OK'.tr),
                   ),
                 ],
               ),
@@ -363,12 +401,15 @@ class Calcard extends StatelessWidget {
               ),
               Text(
                 posture,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Text(amount,
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
               Text("${kcal.toStringAsFixed(2)}kcal",
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           )),
     );

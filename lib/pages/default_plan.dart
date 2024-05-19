@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/workout_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
 import 'package:flutter_application_1/src/workout_plan.dart';
 import '../src/widget.dart';
+import 'package:get/get.dart';
 
 class DefaultPlan extends StatefulWidget {
   final WorkoutPlan plan;
@@ -115,9 +116,9 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                           size: 30, color: Colors.white),
                                     ),
                                   ),
-                                  const Center(
+                                  Center(
                                     child: Text(
-                                      'Good Choice',
+                                      'Good Choice'.tr,
                                       style: TextStyle(
                                           fontSize: 40,
                                           fontWeight: FontWeight.bold,
@@ -127,7 +128,9 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                   ),
                                   Center(
                                     child: Text(
-                                      'Here is Your ${widget.plan.name} Plan',
+                                      Get.locale?.languageCode == 'th'
+                                          ? '${"Here is Your".tr} ${widget.plan.name}'
+                                          : 'Here is Your ${widget.plan.name} Plan',
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
@@ -149,7 +152,7 @@ class _DefaultPlanState extends State<DefaultPlan> {
                             Padding(
                               padding: EdgeInsets.only(top: 25, left: 20),
                               child: Text(
-                                "Workout list",
+                                "Workout list".tr,
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -157,17 +160,29 @@ class _DefaultPlanState extends State<DefaultPlan> {
                           ],
                         ),
                         ListView.builder(
+                          
                           shrinkWrap: true,
                           physics: const ClampingScrollPhysics(),
                           itemCount: workouts?.length,
                           itemBuilder: (context, index) {
+                            String _getImagePath(String planname) {
+                              if (planname == "Squat") {
+                                return 'assets/images/ARMS.jpg';
+                              } else {
+                                return 'assets/images/Award.png';
+                              }
+                            }
+
                             return Padding(
+                              
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15, vertical: 10),
                               child: Cardplan(
                                   planname: workouts![index].workoutName,
-                                  details: "${workouts[index].amount} times",
-                                  imagePath: 'assets/images/Bicycle2.jpg',
+                                  details:
+                                      "${workouts[index].amount} ${'times'.tr}",
+                                  imagePath: _getImagePath(
+                                      workouts[index].workoutName),
                                   descriptionTopic: workouts[index].workoutName,
                                   descriptionDetail:
                                       workouts[index].description),
@@ -192,20 +207,20 @@ class _DefaultPlanState extends State<DefaultPlan> {
                                             double.parse(weight.toString()),
                                       )))));
                         },
-                        child: const SizedBox(
+                        child: SizedBox(
                           width: 300,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                'Start',
-                                style: TextStyle(
+                                'Start'.tr,
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(width: 10),
-                              Icon(
+                              const SizedBox(width: 10),
+                              const Icon(
                                 Icons.check_circle_outline_rounded,
                                 color: Colors.white,
                                 size: 30,

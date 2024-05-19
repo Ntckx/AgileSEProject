@@ -47,6 +47,7 @@ dependencies:
   firebase_auth: ^4.19.4
   cloud_firestore: ^4.17.2
   firebase_ui_auth: ^1.14.0
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -80,24 +81,66 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/Android_Icon.png
-
     - assets/images/Workout#1.png
-    - assets/images/Cat.jpg
     - assets/images/ABS.png
     - assets/images/ARMS.jpg
-    - assets/gif/Bicycle.gif
+    # - assets/images/Cat.jpg
+    - assets/images/ABS.png
+    - assets/images/ARMS.jpg
+    # - assets/gif/Bicycle.gif
     - assets/images/Award.png
     - assets/images/picture.png
     - assets/images/BicycleCrunches.png
     - assets/images/pushup.png
     - assets/images/Award.png 
-
+    - assets/images/Squat.jpg
     - assets/images/Bicycle2.jpg
     - assets/images/Pushup1.jpg
     - assets/images/pushup.png
     - assets/images/picture.png
-
     - assets/images/BicycleCrunches.png
+    - assets/gif/Post_Workout/Bicep_stretch_ARM.webp
+    - assets/gif/Post_Workout/Calf_stretch_LEG.gif
+    - assets/gif/Post_Workout/Chest_Stretch_CHEST.jpg
+    - assets/gif/Post_Workout/Child_pose_BS.png
+    - assets/gif/Post_Workout/Cobra_Stretch.jpg
+    - assets/gif/Post_Workout/Triceps_stretch_ARM.jpg
+    - assets/gif/Pre_Workout/Arm_circles_clockwire_ARM.gif
+    - assets/gif/Pre_Workout/Arm_circles_counterclockwire_ARM.gif
+    - assets/gif/Pre_Workout/Jump_warmup_ABS.gif
+    - assets/gif/Pre_Workout/Karlie_stretch_LEB.gif
+    - assets/gif/Work_out/Arm_raises_BS.gif
+    - assets/gif/Work_out/Crunches_ABS.gif
+    - assets/gif/Work_out/Diagonal_plank_ARM.gif
+    - assets/gif/Work_out/Diamond_pushup_ARM.gif
+    - assets/gif/Work_out/Heel_Touch_ABS.gif
+    - assets/gif/Work_out/Hindu_pushup_CHEST.gif
+    - assets/gif/Work_out/Incline_pushup_CHEST.gif
+    - assets/gif/Work_out/Jumping_jacks_ARM.gif
+    - assets/gif/Work_out/Knee_pushup_BS.gif
+    - assets/gif/Work_out/Knee_pushup_CHEST.gif
+    - assets/gif/Work_out/Kneeling_pushup_CHEST.gif
+    - assets/gif/Work_out/Left_Reverse_lunges_LEG.gif
+    - assets/gif/Work_out/Leg_raises_ABS.gif
+    - assets/gif/Work_out/Mountain_Climber_ABS.gif
+    - assets/gif/Work_out/Plank_ABS.gif
+    - assets/gif/Work_out/Plank_LEG.gif
+    - assets/gif/Work_out/Pushup_ARM.gif
+    - assets/gif/Work_out/Pushup_CHEST.gif
+    - assets/gif/Work_out/Rhomboid_pulls_BS.gif
+    - assets/gif/Work_out/Right_Reverse_lunges_LEG.gif
+    - assets/gif/Work_out/Russian_Twist_ABS.gif
+    - assets/gif/Work_out/Side_arm_raise_ARM.gif
+    - assets/gif/Work_out/Side_arm_raise_BS.gif
+    - assets/gif/Work_out/Superman_BS.gif
+    - assets/gif/Work_out/Triceps_Dips_ARM.gif
+    - assets/gif/Work_out/Wall_pushup_ARM.gif
+    - assets/gif/Work_out/Wide_arm_pushup_CHEST.gif
+    - assets/images/back_shoulder.jpg
+    - assets/images/Leg.jpg
+    - assets/images/BicycleC.jpg
+    - assets/images/WorkoutImage/Sqaut_Leg.jpg
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

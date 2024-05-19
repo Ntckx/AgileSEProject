@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../src/widget.dart';
+import 'package:get/get.dart';
+
+
 
 class MySearch extends StatefulWidget {
   MySearch({Key? key}) : super(key: key);
@@ -40,7 +43,7 @@ class _MySearchState extends State<MySearch> {
             TextField(
               controller: _textController,
               decoration: InputDecoration(
-                hintText: "Search...",
+                hintText: "Search...".tr,
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20.0),

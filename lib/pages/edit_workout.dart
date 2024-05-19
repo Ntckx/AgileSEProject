@@ -6,6 +6,7 @@ import 'package:flutter_application_1/pages/leaderboard_page.dart';
 import 'package:flutter_application_1/pages/recommendedplan.dart';
 import 'package:flutter_application_1/pages/workoutoption_page.dart';
 import 'package:flutter_application_1/src/workout.dart';
+import 'package:get/get.dart';
 
 class EditWorkoutABS extends StatefulWidget {
   final List<Workout> workouts;
@@ -79,18 +80,20 @@ class _EditWorkoutABSState extends State<EditWorkoutABS> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Good Choice',
+                      Text(
+                        'Good Choice'.tr,
                         style: TextStyle(
                             fontSize: 40,
                             color: Colors.white,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text('Here is Your ${widget.planname} Plan',
-                          style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                      Text(
+                        'Here is Your Recommended Plan'.tr,
+                        style: const TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 ],
@@ -100,10 +103,10 @@ class _EditWorkoutABSState extends State<EditWorkoutABS> {
                 padding: const EdgeInsets.all(2.0), // Add padding
                 child: Row(
                   children: [
-                    const Align(
+                    Align(
                       alignment: Alignment.topRight,
                       child: Text(
-                        'Workout list',
+                        'Workout list'.tr,
                         style: TextStyle(fontSize: 24),
                       ),
                     ),
@@ -125,8 +128,8 @@ class _EditWorkoutABSState extends State<EditWorkoutABS> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.orange,
                         ),
-                        child: const Text(
-                          '+ Add',
+                        child: Text(
+                          '+ Add'.tr,
                           style: TextStyle(fontSize: 24, color: Colors.white),
                         ),
                       ),
@@ -172,8 +175,8 @@ class _EditWorkoutABSState extends State<EditWorkoutABS> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
-                child: const Text(
-                  'Confirm',
+                child: Text(
+                  'Confirm'.tr,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -254,14 +257,18 @@ class _WorkoutItemWithDeleteConfirmationState
     return Stack(
       alignment: Alignment.center,
       children: [
-        ClipRRect(
+        
+         ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child: Image.asset(
+          child:  Image.asset(
             widget.imagePath,
-            width: 500,
+            width: 400,
+            height: 150,
             fit: BoxFit.cover,
           ),
-        ),
+         ),
+          
+       
         Positioned(
           right: 10.0,
           top: 10.0,
@@ -341,7 +348,15 @@ class _WorkoutItemWithDeleteConfirmationState
                   color: Colors.white,
                 ),
                 Text(
-                  '$_times times',
+                  '$_times ',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'times'.tr,
                   style: const TextStyle(
                     fontSize: 20,
                     color: Colors.white,

@@ -133,18 +133,41 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                         //user rank
+                        //            Get.locale?.languageCode == 'th'
+                        // ? '${"Here is Your".tr} ${widget.plan.name}'
+                        // : 'Here is Your ${widget.plan.name} Plan',
+                        // '${'Rank'} #$userRank' :'Rank #$userRank'
                         Text(
-                          'Rank #$userRank',
+                          Get.locale?.languageCode == 'th'
+                              ? '${'Rank #'.tr} $userRank'
+                              : 'Rank #$userRank',
                           style: const TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         //user weight
-                        Text(
-                          weight == 0
-                              ? 'No weight'
-                              : "Weight : ${weight.toString().trim()}",
-                          style: const TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: Get.locale?.languageCode == 'th'
+                                    ? 'น้ำหนัก: '.tr
+                                    : 'Weight: ',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              TextSpan(
+                                text: weight == 0
+                                    ? 'No weight'.tr
+                                    : weight.toString().trim(),
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         //user bmi
                         Text(
