@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../src/widget.dart';
 
-class MySearch extends StatelessWidget {
-  MySearch({super.key});
+class MySearch extends StatefulWidget {
+  MySearch({Key? key}) : super(key: key);
+
+  @override
+  _MySearchState createState() => _MySearchState();
+}
+
+class _MySearchState extends State<MySearch> {
   final TextEditingController _textController = TextEditingController(text: "");
+  List<DocumentSnapshot> _searchResults = [];
+
+  Future<void> _searchPlans(String query) async {
+    final result = await FirebaseFirestore.instance
+        .collection('defaultPlan')
+        .where('planname', isGreaterThanOrEqualTo: query)
+        .where('planname', isLessThanOrEqualTo: query + '\uf8ff')
+        .get();
+
+    setState(() {
+      _searchResults = result.docs;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,70 +48,36 @@ class MySearch extends StatelessWidget {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 5.0, horizontal: 15.0),
               ),
+              onSubmitted: (query) {
+                _searchPlans(query);
+              },
             ),
-            const SizedBox(
-                height: 40), // Add some space between TextField and Text widget
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ignore: avoid_unnecessary_containers
-                  Container(
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Recently',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                  Padding(
+            const SizedBox(height: 40),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _searchResults.length,
+                itemBuilder: (context, index) {
+                  final plan = _searchResults[index];
+                  return Padding(
                     padding: const EdgeInsets.all(5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20.0),
                       child: InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => AbsPage()));
+                          // Navigate to the plan detail page if needed
                         },
-                        child: const Cardplan(
-                          planname: 'ABS',
-                          details: '20 Min - 16 gestures',
+                        child: Cardplan(
+                          planname: plan['planname'],
+                          details:
+                              '${plan['duration']} Mins - ${plan['gestureAmount']} gestures',
                           imagePath: 'assets/images/ABS.png',
-                          descriptionTopic: "Lorem",
-                          descriptionDetail:
-                              "Amet cupidatat aliqua et id reprehenderit ex quis ullamco.",
+                          descriptionTopic: plan['planname'],
+                          descriptionDetail: plan['description'],
                         ),
                       ),
                     ),
-                  ),
-
-                  Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: InkWell(
-                        onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => AbsPage()));
-                        },
-                        child: const Cardplan(
-                          planname: 'Arms',
-                          details: '30 Min - 25 gestures',
-                          imagePath: 'assets/images/ARMS.jpg',
-                          descriptionTopic: "Lorem",
-                          descriptionDetail:
-                              "Amet cupidatat aliqua et id reprehenderit ex quis ullamco.",
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                  );
+                },
               ),
             ),
           ],

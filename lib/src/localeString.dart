@@ -50,7 +50,7 @@ class LocaleString extends Translations{
           'Workouts':'จำนวณ',
           'Start' : 'เริ่ม',
           'DAY1':'วันที่ 1',
-          'Recommend Plan':'แผลนที่แนะนำ',
+          'Recommend Plan':'แพลนที่แนะนำ',
           'Your own desire':'หมวดหมู่ ออกกำลังกาย',
           'Close':'ปิด',
           'ARMS':'แขน',
