@@ -13,6 +13,7 @@ class RecommendedPlan extends StatelessWidget {
   static const IconData edit = IconData(0xe21a, fontFamily: 'MaterialIcons');
   String planname = '';
   double userWeight = 0;
+  User? user = FirebaseAuth.instance.currentUser;
 
   Future<WorkoutPlan?> getPlanInformation() async {
     String planId = '';
@@ -30,7 +31,7 @@ class RecommendedPlan extends StatelessWidget {
       DocumentSnapshot userSnapshot = await userRef.get();
       Map<String, dynamic> userData =
           userSnapshot.data() as Map<String, dynamic>;
-      userWeight = userData['weight'];
+      userWeight = (userData['weight']).toDouble();
 
       if (recommendPlanSnapshot.docs.isNotEmpty) {
         planId = recommendPlanSnapshot.docs.first.id;
@@ -45,23 +46,33 @@ class RecommendedPlan extends StatelessWidget {
   }
 
   Future<WorkoutPlan> getWorkoutsForPlan() async {
-    WorkoutPlan plan = await getPlanInformation() as WorkoutPlan;
+    WorkoutPlan? plan = await getPlanInformation();
+    if (plan == null) {
+      throw Exception('Failed to load plan information');
+    }
 
     List<Workout> workouts = [];
     try {
-      QuerySnapshot snapshot = await FirebaseFirestore.instance
+      QuerySnapshot workoutSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user?.uid)
+          .collection('recommendPlan')
+          .doc(plan
+              .planId) // Assuming planId is properly set in your WorkoutPlan model
           .collection('workouts')
-          .where('planId', isEqualTo: plan.planId)
           .get();
 
-      workouts = snapshot.docs.map((doc) {
-        String workoutId = doc.id;
-        return Workout.fromFirestore(doc, workoutId: workoutId);
+      workouts = workoutSnapshot.docs.map((doc) {
+        return Workout.fromFirestore(doc, workoutId: doc.id);
       }).toList();
 
       plan.workouts = workouts;
+      for (Workout workout in workouts) {
+        print('Workout: ${workout.workoutName}');
+      }
     } catch (e) {
       print('Error getting workouts: $e');
+      throw Exception('Failed to load workouts');
     }
     return plan;
   }
@@ -99,7 +110,7 @@ class RecommendedPlan extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(20),
                           child: Image.asset(
-                            'images/picture.png',
+                            'assets/images/picture.png',
                             width: 500,
                             fit: BoxFit.cover,
                           ),
@@ -157,6 +168,7 @@ class RecommendedPlan extends StatelessWidget {
                     const SizedBox(height: 20),
                     ListView.builder(
                       shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
                       itemCount: plan?.workouts.length,
                       itemBuilder: (context, index) {
                         return WorkoutItem(

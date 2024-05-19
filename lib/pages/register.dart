@@ -44,7 +44,6 @@ class _RegisterState extends State<Register> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _emailController.dispose();
     _usernameController.dispose();
     _passwordController.dispose();
@@ -58,6 +57,7 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         title: const Center(child: Logo()),
         backgroundColor: const Color(0xFFDA2D4A),
+
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -72,7 +72,7 @@ class _RegisterState extends State<Register> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(500),
                       child: Image.asset(
-                        'images/maxresdefault.jpg',
+                        'assets/images/maxresdefault.jpg',
                         width: 250,
                         height: 250,
                         fit: BoxFit.cover,

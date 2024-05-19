@@ -114,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(500),
                             child: Image.asset(
-                              '../assets/images/maxresdefault.jpg',
+                              'assets/images/maxresdefault.jpg',
                               width: 150,
                               height: 150,
                               fit: BoxFit.cover,
@@ -128,17 +128,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         Text(
                           username.isEmpty ? 'No username' : username.trim(),
                           style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24,
-                              ),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
                         ),
                         //user rank
                         Text(
                           'Rank #$userRank',
                           style: const TextStyle(
-                              fontSize: 16,
-                             
-                              fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         //user weight
                         Text(
@@ -146,9 +144,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? 'No weight'
                               : "Weight : ${weight.toString().trim()}",
                           style: const TextStyle(
-                              fontSize: 16,
-                             
-                              fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                         //user bmi
                         Text(
@@ -156,9 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? 'No BMI'
                               : "BMI : ${BMI.toStringAsFixed(2).trim()}",
                           style: const TextStyle(
-                              fontSize: 16,
-                             
-                              fontWeight: FontWeight.bold),
+                              fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ],
                     );
@@ -190,7 +184,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     Text(
                       'Settings'.tr,
                       style: const TextStyle(
-                      
                         fontSize: 16,
                       ),
                     )
@@ -213,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   );
                 },
-                child:  Row(
+                child: Row(
                   children: [
                     const Icon(
                       Icons.logout,
@@ -225,7 +218,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     Text(
                       'Log-out'.tr,
                       style: const TextStyle(
-                      
                         fontSize: 16,
                       ),
                     )
@@ -284,9 +276,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     },
                   );
                 },
-                child:  Row(
+                child: Row(
                   children: [
-                   const  Icon(
+                    const Icon(
                       Icons.delete_outlined,
                       size: 30,
                       color: Colors.red,

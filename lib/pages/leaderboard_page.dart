@@ -30,7 +30,7 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
 
       if (snapshot.exists) {
         userData = snapshot.data() as Map<String, dynamic>;
-        timeSpend = userData['timeSpend'] as double;
+        timeSpend = (userData['timeSpend']).toDouble();
         displayTime = calculateTimeSpend(timeSpend);
       }
     } catch (err) {
@@ -63,15 +63,13 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
     }
   }
 
-  String calculateTimeSpend(double second) {
-    double minutes = 0;
-    if (second > 60) {
-      minutes = second / 60;
-      second %= 60;
-    }
+  String calculateTimeSpend(double seconds) {
+    int minutes = (seconds / 60).floor();
+    int remainingSeconds = (seconds % 60).toInt();
 
-    String timeFormat = "${minutes.toStringAsFixed(0)}.$second";
-    return timeFormat;
+    String formattedTime =
+        "$minutes.${remainingSeconds.toString().padLeft(2, '0')}";
+    return formattedTime;
   }
 
   @override
@@ -95,12 +93,12 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
                       "LeaderBoard".tr,
-                      style:
-                          const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ),
                   Padding(
@@ -119,7 +117,7 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                       width: 400,
                       child: DataTable(
                         dividerThickness: 0.00000000001,
-                        columns:  [
+                        columns: [
                           DataColumn(label: Text('Rank'.tr)),
                           DataColumn(label: Text('User'.tr)),
                           DataColumn(label: Text('Kcal'.tr)),
@@ -171,7 +169,7 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                                       children: <Widget>[
                                         Column(
                                           children: [
-                                             Text(
+                                            Text(
                                               "Workouts".tr,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.normal,
@@ -190,7 +188,7 @@ class _MyLeaderBoardPageState extends State<MyLeaderBoardPage> {
                                           padding: const EdgeInsets.all(4.0),
                                           child: Column(
                                             children: [
-                                               Text(
+                                              Text(
                                                 "Kcal".tr,
                                                 style: const TextStyle(
                                                   fontWeight: FontWeight.normal,
